@@ -11,7 +11,7 @@ function d3_geo_clipPolygon(polygon) {
     var cartesian0;
     ring = ring.map(function(point, i) {
       var cartesian = d3_geo_cartesian(point = [point[0] * d3_radians, point[1] * d3_radians]);
-      if (i) segments.push([cartesian0, cartesian]);
+      if (i) segments.push(new d3_geo_intersectSegment(cartesian0, cartesian));
       cartesian0 = cartesian;
       return point;
     });
@@ -44,7 +44,7 @@ function d3_geo_clipPolygon(polygon) {
         var point = d3_geo_cartesian([λ, φ]),
             v = v0;
         if (point0) {
-          var segment = [point0, point],
+          var segment = new d3_geo_intersectSegment(point0, point),
               intersections = [];
           for (var i = 0, j = 100; i < segments.length && j > 0; ++i) {
             var s = segments[i],
@@ -52,11 +52,11 @@ function d3_geo_clipPolygon(polygon) {
             if (intersection) {
               if (intersection === d3_geo_intersectCoincident ||
                   d3_geo_cartesianEqual(intersection, point0) || d3_geo_cartesianEqual(intersection, point) ||
-                  d3_geo_cartesianEqual(intersection, s[0]) || d3_geo_cartesianEqual(intersection, s[1])) {
+                  d3_geo_cartesianEqual(intersection, s.from) || d3_geo_cartesianEqual(intersection, s.to)) {
                 var t = 1e-4;
                 λ = (λ + 3 * π + (Math.random() < .5 ? t : -t)) % (2 * π) - π;
                 φ = Math.min(π / 2 - 1e-4, Math.max(1e-4 - π / 2, φ + (Math.random() < .5 ? t : -t)));
-                segment[1] = point = d3_geo_cartesian([λ, φ]);
+                segment = new d3_geo_intersectSegment(point0, point = d3_geo_cartesian([λ, φ]));
                 i = -1, --j;
                 intersections.length = 0;
                 continue;
@@ -64,7 +64,7 @@ function d3_geo_clipPolygon(polygon) {
               var spherical = d3_geo_spherical(intersection);
               intersection.distance = d3_geo_clipPolygonDistance(point0, intersection);
               intersection.index = i;
-              intersection.t = d3_geo_clipPolygonDistance(s[0], intersection);
+              intersection.t = d3_geo_clipPolygonDistance(s.from, intersection);
               intersection[0] = spherical[0], intersection[1] = spherical[1], intersection.pop();
               intersections.push(intersection);
             }
@@ -120,7 +120,7 @@ function d3_geo_clipPolygon(polygon) {
     } else if (from.index !== to.index && from.index != null && to.index != null) {
       for (var i = from.index; i !== to.index; i = (i + direction + segments.length) % segments.length) {
         var segment = segments[i],
-            point = d3_geo_spherical(direction > 0 ? segment[1] : segment[0]);
+            point = d3_geo_spherical(direction > 0 ? segment.to : segment.from);
         listener.point(point[0], point[1]);
       }
     }

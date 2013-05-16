@@ -2828,50 +2828,25 @@ d3 = function() {
     var Δλ = (b[0] - a[0]) * d3_radians, φ0 = a[1] * d3_radians, φ1 = b[1] * d3_radians, sinΔλ = Math.sin(Δλ), cosΔλ = Math.cos(Δλ), sinφ0 = Math.sin(φ0), cosφ0 = Math.cos(φ0), sinφ1 = Math.sin(φ1), cosφ1 = Math.cos(φ1), t;
     return Math.atan2(Math.sqrt((t = cosφ1 * sinΔλ) * t + (t = cosφ0 * sinφ1 - sinφ0 * cosφ1 * cosΔλ) * t), sinφ0 * sinφ1 + cosφ0 * cosφ1 * cosΔλ);
   };
+  function d3_geo_intersectSegment(from, to) {
+    this.from = from, this.to = to;
+    this.normal = d3_geo_cartesianCross(from, to);
+    this.fromNormal = d3_geo_cartesianCross(this.normal, from);
+    this.toNormal = d3_geo_cartesianCross(this.normal, to);
+  }
   function d3_geo_intersect(a, b) {
-    var a0 = a[0], a1 = a[1], b0 = b[0], b1 = b[1];
-    a = d3_geo_cartesianCross(a0, a1);
-    b = d3_geo_cartesianCross(b0, b1);
-    a0 = d3_geo_cartesianCross(a, a0);
-    a1 = d3_geo_cartesianCross(a, a1);
-    b0 = d3_geo_cartesianCross(b, b0);
-    b1 = d3_geo_cartesianCross(b, b1);
-    var axb = d3_geo_cartesianCross(a, b);
+    var axb = d3_geo_cartesianCross(a.normal, b.normal);
     d3_geo_cartesianNormalize(axb);
-    if (isNaN(axb[0])) {
-      var candidates = a.concat(b);
-      for (var i = 0; i < 4; ++i) {
-        axb = candidates[i];
-        a0 = d3_geo_cartesianDot(axb, a0);
-        a1 = d3_geo_cartesianDot(axb, a1);
-        b0 = d3_geo_cartesianDot(axb, b0);
-        b1 = d3_geo_cartesianDot(axb, b1);
-        if (a0 > -ε2 && a1 < ε2 && b0 > -ε2 && b1 < ε2) return d3_geo_intersectCoincident;
-        if (a0 < ε2 && a1 > -ε2 && b0 < ε2 && b1 > -ε2) {
-          axb[0] = -axb[0], axb[1] = -axb[1], axb[2] = -axb[2];
-          return d3_geo_intersectCoincident;
-        }
-      }
-    } else {
-      a0 = d3_geo_cartesianDot(axb, a0);
-      a1 = d3_geo_cartesianDot(axb, a1);
-      b0 = d3_geo_cartesianDot(axb, b0);
-      b1 = d3_geo_cartesianDot(axb, b1);
-      if (a0 > -ε2 && a1 < ε2 && b0 > -ε2 && b1 < ε2) return axb;
-      if (a0 < ε2 && a1 > -ε2 && b0 < ε2 && b1 > -ε2) {
-        axb[0] = -axb[0], axb[1] = -axb[1], axb[2] = -axb[2];
-        return axb;
-      }
+    var a0 = d3_geo_cartesianDot(axb, a.fromNormal), a1 = d3_geo_cartesianDot(axb, a.toNormal), b0 = d3_geo_cartesianDot(axb, b.fromNormal), b1 = d3_geo_cartesianDot(axb, b.toNormal);
+    if (a0 > -ε2 && a1 < ε2 && b0 > -ε2 && b1 < ε2) return axb;
+    if (a0 < ε2 && a1 > -ε2 && b0 < ε2 && b1 > -ε2) {
+      axb[0] = -axb[0], axb[1] = -axb[1], axb[2] = -axb[2];
+      return axb;
     }
   }
   function d3_geo_intersectPointOnLine(p, a) {
-    var a0 = a[0], a1 = a[1];
-    a = d3_geo_cartesianCross(a0, a1);
-    a0 = d3_geo_cartesianCross(a, a0);
-    a1 = d3_geo_cartesianCross(a, a1);
-    a0 = d3_geo_cartesianDot(p, a0);
-    a1 = d3_geo_cartesianDot(p, a1);
-    p = d3_geo_cartesianDot(p, a);
+    var a0 = d3_geo_cartesianDot(p, a.fromNormal), a1 = d3_geo_cartesianDot(p, a.toNormal);
+    p = d3_geo_cartesianDot(p, a.normal);
     return Math.abs(p) < ε2 && (a0 > -ε2 && a1 < ε2 || a0 < ε2 && a1 > -ε2);
   }
   var d3_geo_intersectCoincident = {};
@@ -2881,7 +2856,7 @@ d3 = function() {
       var cartesian0;
       ring = ring.map(function(point, i) {
         var cartesian = d3_geo_cartesian(point = [ point[0] * d3_radians, point[1] * d3_radians ]);
-        if (i) segments.push([ cartesian0, cartesian ]);
+        if (i) segments.push(new d3_geo_intersectSegment(cartesian0, cartesian));
         cartesian0 = cartesian;
         return point;
       });
@@ -2904,15 +2879,15 @@ d3 = function() {
           if (close) λ = λ00, φ = φ00;
           var point = d3_geo_cartesian([ λ, φ ]), v = v0;
           if (point0) {
-            var segment = [ point0, point ], intersections = [];
+            var segment = new d3_geo_intersectSegment(point0, point), intersections = [];
             for (var i = 0, j = 100; i < segments.length && j > 0; ++i) {
               var s = segments[i], intersection = d3_geo_intersect(segment, s);
               if (intersection) {
-                if (intersection === d3_geo_intersectCoincident || d3_geo_cartesianEqual(intersection, point0) || d3_geo_cartesianEqual(intersection, point) || d3_geo_cartesianEqual(intersection, s[0]) || d3_geo_cartesianEqual(intersection, s[1])) {
+                if (intersection === d3_geo_intersectCoincident || d3_geo_cartesianEqual(intersection, point0) || d3_geo_cartesianEqual(intersection, point) || d3_geo_cartesianEqual(intersection, s.from) || d3_geo_cartesianEqual(intersection, s.to)) {
                   var t = 1e-4;
                   λ = (λ + 3 * π + (Math.random() < .5 ? t : -t)) % (2 * π) - π;
                   φ = Math.min(π / 2 - 1e-4, Math.max(1e-4 - π / 2, φ + (Math.random() < .5 ? t : -t)));
-                  segment[1] = point = d3_geo_cartesian([ λ, φ ]);
+                  segment = new d3_geo_intersectSegment(point0, point = d3_geo_cartesian([ λ, φ ]));
                   i = -1, --j;
                   intersections.length = 0;
                   continue;
@@ -2920,7 +2895,7 @@ d3 = function() {
                 var spherical = d3_geo_spherical(intersection);
                 intersection.distance = d3_geo_clipPolygonDistance(point0, intersection);
                 intersection.index = i;
-                intersection.t = d3_geo_clipPolygonDistance(s[0], intersection);
+                intersection.t = d3_geo_clipPolygonDistance(s.from, intersection);
                 intersection[0] = spherical[0], intersection[1] = spherical[1], intersection.pop();
                 intersections.push(intersection);
               }
@@ -2976,7 +2951,7 @@ d3 = function() {
         });
       } else if (from.index !== to.index && from.index != null && to.index != null) {
         for (var i = from.index; i !== to.index; i = (i + direction + segments.length) % segments.length) {
-          var segment = segments[i], point = d3_geo_spherical(direction > 0 ? segment[1] : segment[0]);
+          var segment = segments[i], point = d3_geo_spherical(direction > 0 ? segment.to : segment.from);
           listener.point(point[0], point[1]);
         }
       }
