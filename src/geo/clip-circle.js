@@ -1,17 +1,20 @@
 import "../math/trigonometry";
 import "cartesian";
 import "clip";
+import "clip-antimeridian";
 import "circle";
 import "spherical";
+import "point-in-polygon";
 
 // Clip features against a small circle centered at [0°, 0°].
 function d3_geo_clipCircle(radius) {
   var cr = Math.cos(radius),
+      point = [radius, 0],
       smallRadius = cr > 0,
       notHemisphere = Math.abs(cr) > ε, // TODO optimise for this common case
       interpolate = d3_geo_circleInterpolate(radius, 6 * d3_radians);
 
-  return d3_geo_clip(visible, clipLine, interpolate);
+  return d3_geo_clip(visible, clipLine, interpolate, polygonContains, d3_geo_clipAntimeridianSort);
 
   function visible(λ, φ) {
     return Math.cos(λ) * Math.cos(φ) > cr;
@@ -98,6 +101,10 @@ function d3_geo_clipCircle(radius) {
       // and last points were visible.
       clean: function() { return clean | ((v00 && v0) << 1); }
     };
+  }
+
+  function polygonContains(polygon) {
+    return d3_geo_pointInPolygon(point, polygon);
   }
 
   // Intersects the great circle between a and b with the clip circle.
