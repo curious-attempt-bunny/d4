@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.centroid");
+var suite = vows.describe("d4.geo.centroid");
 
 suite.addBatch({
   "centroid": {
-    topic: load("geo/centroid").expression("d3.geo.centroid"),
+    topic: load("geo/centroid").expression("d4.geo.centroid"),
     "Point": function(centroid) {
       assert.deepEqual(centroid({type: "Point", coordinates: [0, 0]}), [0, 0]);
     },

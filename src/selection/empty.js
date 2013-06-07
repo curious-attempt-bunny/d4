@@ -1,5 +1,5 @@
 import "selection";
 
-d3_selectionPrototype.empty = function() {
+d4_selectionPrototype.empty = function() {
   return !this.node();
 };

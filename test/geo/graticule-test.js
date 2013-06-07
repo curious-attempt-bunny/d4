@@ -3,13 +3,13 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.graticule");
+var suite = vows.describe("d4.geo.graticule");
 
 var ε = 1e-6;
 
 suite.addBatch({
   "graticule": {
-    topic: load("geo/graticule").expression("d3.geo.graticule"),
+    topic: load("geo/graticule").expression("d4.geo.graticule"),
 
     "extent": {
       "sets minorExtent and majorExtent": function(graticule) {

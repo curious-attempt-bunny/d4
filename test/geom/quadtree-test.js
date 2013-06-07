@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geom.quadtree");
+var suite = vows.describe("d4.geom.quadtree");
 
 suite.addBatch({
   "quadtree": {
-    topic: load("geom/quadtree").expression("d3.geom.quadtree"),
+    topic: load("geom/quadtree").expression("d4.geom.quadtree"),
     "the default quadtree layout": {
       topic: function(quadtree) {
         return quadtree();

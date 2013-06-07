@@ -1,5 +1,5 @@
-function d3_functor(v) {
+function d4_functor(v) {
   return typeof v === "function" ? v : function() { return v; };
 }
 
-d3.functor = d3_functor;
+d4.functor = d4_functor;

@@ -1,8 +1,8 @@
 LOCALE ?= en_US
 
 GENERATED_FILES = \
-	d3.js \
-	d3.min.js \
+	d4.js \
+	d4.min.js \
 	component.json
 
 all: $(GENERATED_FILES)
@@ -24,16 +24,16 @@ src/time/format-localized.js: bin/locale src/time/format-locale.js
 src/start.js: package.json bin/start
 	bin/start > $@
 
-d3.js: $(shell node_modules/.bin/smash --list src/d3.js) package.json
+d4.js: $(shell node_modules/.bin/smash --list src/d4.js) package.json
 	@rm -f $@
-	node_modules/.bin/smash src/d3.js | node_modules/.bin/uglifyjs - -b indent-level=2 -o $@
+	node_modules/.bin/smash src/d4.js | node_modules/.bin/uglifyjs - -b indent-level=2 -o $@
 	@chmod a-w $@
 
-d3.min.js: d3.js
+d4.min.js: d4.js
 	@rm -f $@
 	bin/uglify $< > $@
 
-component.json: bin/component d3.js package.json
+component.json: bin/component d4.js package.json
 	@rm -f $@
 	bin/component > $@
 	@chmod a-w $@

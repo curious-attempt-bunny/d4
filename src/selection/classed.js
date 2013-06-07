@@ -2,7 +2,7 @@ import "../format/collapse";
 import "../format/requote";
 import "selection";
 
-d3_selectionPrototype.classed = function(name, value) {
+d4_selectionPrototype.classed = function(name, value) {
   if (arguments.length < 2) {
 
     // For classed(string), return true only if the first node has the specified
@@ -16,28 +16,28 @@ d3_selectionPrototype.classed = function(name, value) {
         while (++i < n) if (!value.contains(name[i])) return false;
       } else {
         value = node.getAttribute("class");
-        while (++i < n) if (!d3_selection_classedRe(name[i]).test(value)) return false;
+        while (++i < n) if (!d4_selection_classedRe(name[i]).test(value)) return false;
       }
       return true;
     }
 
     // For classed(object), the object specifies the names of classes to add or
     // remove. The values may be functions that are evaluated for each element.
-    for (value in name) this.each(d3_selection_classed(value, name[value]));
+    for (value in name) this.each(d4_selection_classed(value, name[value]));
     return this;
   }
 
   // Otherwise, both a name and a value are specified, and are handled as below.
-  return this.each(d3_selection_classed(name, value));
+  return this.each(d4_selection_classed(name, value));
 };
 
-function d3_selection_classedRe(name) {
-  return new RegExp("(?:^|\\s+)" + d3.requote(name) + "(?:\\s+|$)", "g");
+function d4_selection_classedRe(name) {
+  return new RegExp("(?:^|\\s+)" + d4.requote(name) + "(?:\\s+|$)", "g");
 }
 
 // Multiple class names are allowed (e.g., "foo bar").
-function d3_selection_classed(name, value) {
-  name = name.trim().split(/\s+/).map(d3_selection_classedName);
+function d4_selection_classed(name, value) {
+  name = name.trim().split(/\s+/).map(d4_selection_classedName);
   var n = name.length;
 
   function classedConstant() {
@@ -57,16 +57,16 @@ function d3_selection_classed(name, value) {
       : classedConstant;
 }
 
-function d3_selection_classedName(name) {
-  var re = d3_selection_classedRe(name);
+function d4_selection_classedName(name) {
+  var re = d4_selection_classedRe(name);
   return function(node, value) {
     if (c = node.classList) return value ? c.add(name) : c.remove(name);
     var c = node.getAttribute("class") || "";
     if (value) {
       re.lastIndex = 0;
-      if (!re.test(c)) node.setAttribute("class", d3_collapse(c + " " + name));
+      if (!re.test(c)) node.setAttribute("class", d4_collapse(c + " " + name));
     } else {
-      node.setAttribute("class", d3_collapse(c.replace(re, " ")));
+      node.setAttribute("class", d4_collapse(c.replace(re, " ")));
     }
   };
 }

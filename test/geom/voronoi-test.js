@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geom.voronoi");
+var suite = vows.describe("d4.geom.voronoi");
 
 suite.addBatch({
   "voronoi": {
-    topic: load("geom/voronoi").expression("d3.geom.voronoi"),
+    topic: load("geom/voronoi").expression("d4.geom.voronoi"),
 
     "the default voronoi layout": {
       topic: function(voronoi) {

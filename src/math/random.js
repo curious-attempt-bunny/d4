@@ -1,4 +1,4 @@
-d3.random = {
+d4.random = {
   normal: function(µ, σ) {
     var n = arguments.length;
     if (n < 2) σ = 1;
@@ -14,7 +14,7 @@ d3.random = {
     };
   },
   logNormal: function() {
-    var random = d3.random.normal.apply(d3, arguments);
+    var random = d4.random.normal.apply(d4, arguments);
     return function() {
       return Math.exp(random());
     };

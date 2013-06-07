@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <body>
-<script src="../../d3.js"></script>
+<script src="../../d4.js"></script>
 <script>
 
-var svg = d3.select("body").append("svg")
+var svg = d4.select("body").append("svg")
     .attr("width", 960)
     .attr("height", 500);
 
@@ -21,6 +21,6 @@ var rect = g.append("rect")
 
 g.transition()
     .duration(3000)
-    .attrTween("transform", d3.tween("translate(100,100)rotate(360)", d3.interpolateString));
+    .attrTween("transform", d4.tween("translate(100,100)rotate(360)", d4.interpolateString));
 
 </script>

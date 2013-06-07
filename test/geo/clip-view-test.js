@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.clipView");
+var suite = vows.describe("d4.geo.clipView");
 
 suite.addBatch({
   "clipView": {
-    topic: load("../test/geo/clip-view-mock").expression("d3.geo.clipView"),
+    topic: load("../test/geo/clip-view-mock").expression("d4.geo.clipView"),
     "100⨯100": {
       topic: function(clipView) {
         return clipView(0, 0, 100, 100);

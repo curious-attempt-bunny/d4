@@ -3,7 +3,7 @@ import "../interpolate/interpolate";
 import "transition";
 import "tween";
 
-d3_transitionPrototype.style = function(name, value, priority) {
+d4_transitionPrototype.style = function(name, value, priority) {
   var n = arguments.length;
   if (n < 3) {
 
@@ -22,7 +22,7 @@ d3_transitionPrototype.style = function(name, value, priority) {
     priority = "";
   }
 
-  var interpolate = d3_interpolateByName(name);
+  var interpolate = d4_interpolateByName(name);
 
   // For style(name, null) or style(name, null, priority), remove the style
   // property with the specified name. The priority is ignored.
@@ -35,19 +35,19 @@ d3_transitionPrototype.style = function(name, value, priority) {
   // Otherwise, a name, value and priority are specified, and handled as below.
   function styleString(b) {
     return b == null ? styleNull : (b += "", function() {
-      var a = d3_window.getComputedStyle(this, null).getPropertyValue(name), i;
+      var a = d4_window.getComputedStyle(this, null).getPropertyValue(name), i;
       return a !== b && (i = interpolate(a, b), function(t) { this.style.setProperty(name, i(t), priority); });
     });
   }
 
-  return d3_transition_tween(this, "style." + name, value, styleString);
+  return d4_transition_tween(this, "style." + name, value, styleString);
 };
 
-d3_transitionPrototype.styleTween = function(name, tween, priority) {
+d4_transitionPrototype.styleTween = function(name, tween, priority) {
   if (arguments.length < 3) priority = "";
 
   function styleTween(d, i) {
-    var f = tween.call(this, d, i, d3_window.getComputedStyle(this, null).getPropertyValue(name));
+    var f = tween.call(this, d, i, d4_window.getComputedStyle(this, null).getPropertyValue(name));
     return f && function(t) { this.style.setProperty(name, f(t), priority); };
   }
 

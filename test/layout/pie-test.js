@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.layout.pie");
+var suite = vows.describe("d4.layout.pie");
 
 suite.addBatch({
   "pie": {
-    topic: load("layout/pie").expression("d3.layout.pie"),
+    topic: load("layout/pie").expression("d4.layout.pie"),
     "arcs are in same order as original data": function(pie) {
       var p = pie();
       assert.deepEqual(p([5, 30, 15]).map(function(d) { return d.data; }), [

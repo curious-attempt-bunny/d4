@@ -1,4 +1,4 @@
-d3.extent = function(array, f) {
+d4.extent = function(array, f) {
   var i = -1,
       n = array.length,
       a,

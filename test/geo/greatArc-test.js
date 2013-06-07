@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.greatArc");
+var suite = vows.describe("d4.geo.greatArc");
 
 suite.addBatch({
   "greatArc": {
-    topic: load("geo/greatArc").expression("d3.geo.greatArc"),
+    topic: load("geo/greatArc").expression("d4.geo.greatArc"),
     "distance": function(arc) {
       var a = arc();
       assert.equal(a.distance({source: [0, 0], target: [0, 0]}), 0);

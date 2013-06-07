@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.median");
+var suite = vows.describe("d4.median");
 
 suite.addBatch({
   "median": {
-    topic: load("arrays/median").expression("d3.median"),
+    topic: load("arrays/median").expression("d4.median"),
     "returns the median value for numbers": function(median) {
       assert.equal(median([1]), 1);
       assert.equal(median([5, 1, 2, 3, 4]), 3);

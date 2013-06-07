@@ -3,11 +3,11 @@ var vows = require("vows"),
     assert = require("../assert"),
     projectionTestSuite = require("./projection-test-suite");
 
-var suite = vows.describe("d3.geo.conicEqualArea");
+var suite = vows.describe("d4.geo.conicEqualArea");
 
 suite.addBatch({
   "conicEqualArea": {
-    topic: load("geo/conic-equal-area").expression("d3.geo.conicEqualArea"),
+    topic: load("geo/conic-equal-area").expression("d4.geo.conicEqualArea"),
     "default": projectionTestSuite({
       topic: function(projection) { return projection(); }
     }, {

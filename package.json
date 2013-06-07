@@ -1,5 +1,5 @@
 {
-  "name": "d3",
+  "name": "d4",
   "version": "3.1.10",
   "description": "A small, free JavaScript library for manipulating documents based on data.",
   "keywords": [
@@ -10,7 +10,7 @@
     "animation",
     "canvas"
   ],
-  "homepage": "http://d3js.org",
+  "homepage": "http://d4js.org",
   "author": {
     "name": "Mike Bostock",
     "url": "http://bost.ocks.org/mike"
@@ -23,14 +23,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mbostock/d3.git"
+    "url": "https://github.com/davidcelis/d4.git"
   },
   "main": "index.js",
   "browserify": "index-browserify.js",
   "jam": {
-    "main": "d3.js",
+    "main": "d4.js",
     "shim": {
-      "exports": "d3"
+      "exports": "d4"
     }
   },
   "dependencies": {
@@ -47,7 +47,7 @@
   "licenses": [
     {
       "type": "BSD",
-      "url": "https://github.com/mbostock/d3/blob/master/LICENSE"
+      "url": "https://github.com/davidcelis/d4/blob/master/LICENSE"
     }
   ]
 }

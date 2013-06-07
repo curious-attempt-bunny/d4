@@ -1,10 +1,10 @@
 import "scale";
 
-d3.scale.quantize = function() {
-  return d3_scale_quantize(0, 1, [0, 1]);
+d4.scale.quantize = function() {
+  return d4_scale_quantize(0, 1, [0, 1]);
 };
 
-function d3_scale_quantize(x0, x1, range) {
+function d4_scale_quantize(x0, x1, range) {
   var kx, i;
 
   function scale(x) {
@@ -31,7 +31,7 @@ function d3_scale_quantize(x0, x1, range) {
   };
 
   scale.copy = function() {
-    return d3_scale_quantize(x0, x1, range); // copy on write
+    return d4_scale_quantize(x0, x1, range); // copy on write
   };
 
   return rescale();

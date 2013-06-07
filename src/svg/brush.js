@@ -8,17 +8,17 @@ import "../scale/scale";
 import "../selection/selection";
 import "svg";
 
-d3.svg.brush = function() {
-  var event = d3_eventDispatch(brush, "brushstart", "brush", "brushend"),
+d4.svg.brush = function() {
+  var event = d4_eventDispatch(brush, "brushstart", "brush", "brushend"),
       x = null, // x-scale, optional
       y = null, // y-scale, optional
-      resizes = d3_svg_brushResizes[0],
+      resizes = d4_svg_brushResizes[0],
       extent = [[0, 0], [0, 0]], // [x0, y0], [x1, y1], in pixels (integers)
       extentDomain; // the extent in data space, lazily created
 
   function brush(g) {
     g.each(function() {
-      var g = d3.select(this),
+      var g = d4.select(this),
           bg = g.selectAll(".background").data([0]),
           fg = g.selectAll(".extent").data([0]),
           tz = g.selectAll(".resize").data(resizes, String),
@@ -44,7 +44,7 @@ d3.svg.brush = function() {
       // More invisible rects for resizing the extent.
       tz.enter().append("g")
           .attr("class", function(d) { return "resize " + d; })
-          .style("cursor", function(d) { return d3_svg_brushCursor[d]; })
+          .style("cursor", function(d) { return d4_svg_brushCursor[d]; })
         .append("rect")
           .attr("x", function(d) { return /[ew]$/.test(d) ? -3 : null; })
           .attr("y", function(d) { return /^[ns]/.test(d) ? -3 : null; })
@@ -61,12 +61,12 @@ d3.svg.brush = function() {
       // Initialize the background to fill the defined range.
       // If the range isn't defined, you can post-process.
       if (x) {
-        e = d3_scaleRange(x);
+        e = d4_scaleRange(x);
         bg.attr("x", e[0]).attr("width", e[1] - e[0]);
         redrawX(g);
       }
       if (y) {
-        e = d3_scaleRange(y);
+        e = d4_scaleRange(y);
         bg.attr("y", e[0]).attr("height", e[1] - e[0]);
         redrawY(g);
       }
@@ -92,9 +92,9 @@ d3.svg.brush = function() {
 
   function brushstart() {
     var target = this,
-        eventTarget = d3.select(d3.event.target),
+        eventTarget = d4.select(d4.event.target),
         event_ = event.of(target, arguments),
-        g = d3.select(target),
+        g = d4.select(target),
         resizing = eventTarget.datum(),
         resizingX = !/^(n|s)$/.test(resizing) && x,
         resizingY = !/^(e|w)$/.test(resizing) && y,
@@ -103,7 +103,7 @@ d3.svg.brush = function() {
         origin = mouse(),
         offset;
 
-    var w = d3.select(d3_window)
+    var w = d4.select(d4_window)
         .on("mousemove.brush", brushmove)
         .on("mouseup.brush", brushend)
         .on("touchmove.brush", brushmove)
@@ -129,40 +129,40 @@ d3.svg.brush = function() {
     }
 
     // If the ALT key is down when starting a brush, the center is at the mouse.
-    else if (d3.event.altKey) center = origin.slice();
+    else if (d4.event.altKey) center = origin.slice();
 
     // Propagate the active cursor to the body for the drag duration.
     g.style("pointer-events", "none").selectAll(".resize").style("display", null);
-    d3.select("body").style("cursor", eventTarget.style("cursor"));
+    d4.select("body").style("cursor", eventTarget.style("cursor"));
 
     // Notify listeners.
     event_({type: "brushstart"});
     brushmove();
-    d3_eventCancel();
+    d4_eventCancel();
 
     function mouse() {
-      var touches = d3.event.changedTouches;
-      return touches ? d3.touches(target, touches)[0] : d3.mouse(target);
+      var touches = d4.event.changedTouches;
+      return touches ? d4.touches(target, touches)[0] : d4.mouse(target);
     }
 
     function keydown() {
-      if (d3.event.keyCode == 32) {
+      if (d4.event.keyCode == 32) {
         if (!dragging) {
           center = null;
           origin[0] -= extent[1][0];
           origin[1] -= extent[1][1];
           dragging = 2;
         }
-        d3_eventCancel();
+        d4_eventCancel();
       }
     }
 
     function keyup() {
-      if (d3.event.keyCode == 32 && dragging == 2) {
+      if (d4.event.keyCode == 32 && dragging == 2) {
         origin[0] += extent[1][0];
         origin[1] += extent[1][1];
         dragging = 0;
-        d3_eventCancel();
+        d4_eventCancel();
       }
     }
 
@@ -179,7 +179,7 @@ d3.svg.brush = function() {
       if (!dragging) {
 
         // If needed, determine the center from the current extent.
-        if (d3.event.altKey) {
+        if (d4.event.altKey) {
           if (!center) center = [(extent[0][0] + extent[1][0]) / 2, (extent[0][1] + extent[1][1]) / 2];
 
           // Update the origin, for when the ALT key is released.
@@ -209,7 +209,7 @@ d3.svg.brush = function() {
     }
 
     function move1(point, scale, i) {
-      var range = d3_scaleRange(scale),
+      var range = d4_scaleRange(scale),
           r0 = range[0],
           r1 = range[1],
           position = origin[i],
@@ -257,7 +257,7 @@ d3.svg.brush = function() {
 
       // reset the cursor styles
       g.style("pointer-events", "all").selectAll(".resize").style("display", brush.empty() ? "none" : null);
-      d3.select("body").style("cursor", null);
+      d4.select("body").style("cursor", null);
 
       w .on("mousemove.brush", null)
         .on("mouseup.brush", null)
@@ -267,21 +267,21 @@ d3.svg.brush = function() {
         .on("keyup.brush", null);
 
       event_({type: "brushend"});
-      d3_eventCancel();
+      d4_eventCancel();
     }
   }
 
   brush.x = function(z) {
     if (!arguments.length) return x;
     x = z;
-    resizes = d3_svg_brushResizes[!x << 1 | !y]; // fore!
+    resizes = d4_svg_brushResizes[!x << 1 | !y]; // fore!
     return brush;
   };
 
   brush.y = function(z) {
     if (!arguments.length) return y;
     y = z;
-    resizes = d3_svg_brushResizes[!x << 1 | !y]; // fore!
+    resizes = d4_svg_brushResizes[!x << 1 | !y]; // fore!
     return brush;
   };
 
@@ -346,10 +346,10 @@ d3.svg.brush = function() {
         || (y && extent[0][1] === extent[1][1]);
   };
 
-  return d3.rebind(brush, event, "on");
+  return d4.rebind(brush, event, "on");
 };
 
-var d3_svg_brushCursor = {
+var d4_svg_brushCursor = {
   n: "ns-resize",
   e: "ew-resize",
   s: "ns-resize",
@@ -360,7 +360,7 @@ var d3_svg_brushCursor = {
   sw: "nesw-resize"
 };
 
-var d3_svg_brushResizes = [
+var d4_svg_brushResizes = [
   ["n", "e", "s", "w", "nw", "ne", "se", "sw"],
   ["e", "w"],
   ["n", "s"],

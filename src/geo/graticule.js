@@ -2,7 +2,7 @@ import "../arrays/range";
 import "../math/trigonometry";
 import "geo";
 
-d3.geo.graticule = function() {
+d4.geo.graticule = function() {
   var x1, x0, X1, X0,
       y1, y0, Y1, Y0,
       dx = 10, dy = dx, DX = 90, DY = 360,
@@ -14,10 +14,10 @@ d3.geo.graticule = function() {
   }
 
   function lines() {
-    return d3.range(Math.ceil(X0 / DX) * DX, X1, DX).map(X)
-        .concat(d3.range(Math.ceil(Y0 / DY) * DY, Y1, DY).map(Y))
-        .concat(d3.range(Math.ceil(x0 / dx) * dx, x1, dx).filter(function(x) { return Math.abs(x % DX) > ε; }).map(x))
-        .concat(d3.range(Math.ceil(y0 / dy) * dy, y1, dy).filter(function(y) { return Math.abs(y % DY) > ε; }).map(y));
+    return d4.range(Math.ceil(X0 / DX) * DX, X1, DX).map(X)
+        .concat(d4.range(Math.ceil(Y0 / DY) * DY, Y1, DY).map(Y))
+        .concat(d4.range(Math.ceil(x0 / dx) * dx, x1, dx).filter(function(x) { return Math.abs(x % DX) > ε; }).map(x))
+        .concat(d4.range(Math.ceil(y0 / dy) * dy, y1, dy).filter(function(y) { return Math.abs(y % DY) > ε; }).map(y));
   }
 
   graticule.lines = function() {
@@ -79,10 +79,10 @@ d3.geo.graticule = function() {
   graticule.precision = function(_) {
     if (!arguments.length) return precision;
     precision = +_;
-    x = d3_geo_graticuleX(y0, y1, 90);
-    y = d3_geo_graticuleY(x0, x1, precision);
-    X = d3_geo_graticuleX(Y0, Y1, 90);
-    Y = d3_geo_graticuleY(X0, X1, precision);
+    x = d4_geo_graticuleX(y0, y1, 90);
+    y = d4_geo_graticuleY(x0, x1, precision);
+    X = d4_geo_graticuleX(Y0, Y1, 90);
+    Y = d4_geo_graticuleY(X0, X1, precision);
     return graticule;
   };
 
@@ -91,12 +91,12 @@ d3.geo.graticule = function() {
       .minorExtent([[-180, -80 - ε], [180, 80 + ε]]);
 };
 
-function d3_geo_graticuleX(y0, y1, dy) {
-  var y = d3.range(y0, y1 - ε, dy).concat(y1);
+function d4_geo_graticuleX(y0, y1, dy) {
+  var y = d4.range(y0, y1 - ε, dy).concat(y1);
   return function(x) { return y.map(function(y) { return [x, y]; }); };
 }
 
-function d3_geo_graticuleY(x0, x1, dx) {
-  var x = d3.range(x0, x1 - ε, dx).concat(x1);
+function d4_geo_graticuleY(x0, x1, dx) {
+  var x = d4.range(x0, x1 - ε, dx).concat(x1);
   return function(y) { return x.map(function(x) { return [x, y]; }); };
 }

@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.round");
+var suite = vows.describe("d4.round");
 
 suite.addBatch({
   "round": {
-    topic: load("format/round").expression("d3.round"),
+    topic: load("format/round").expression("d4.round"),
     "returns a number": function(round) {
       assert.isNumber(round(42));
     },

@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.descending");
+var suite = vows.describe("d4.descending");
 
 suite.addBatch({
   "descending": {
-    topic: load("arrays/descending").expression("d3.descending"),
+    topic: load("arrays/descending").expression("d4.descending"),
     "numbers": {
       "returns a negative number if a > b": function(descending) {
         assert.isTrue(descending(1, 0) < 0);

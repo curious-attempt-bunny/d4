@@ -1,5 +1,5 @@
 // Abstract azimuthal projection.
-function d3_geo_azimuthal(scale, angle) {
+function d4_geo_azimuthal(scale, angle) {
   function azimuthal(λ, φ) {
     var cosλ = Math.cos(λ),
         cosφ = Math.cos(φ),

@@ -1,8 +1,8 @@
 var assert = require("../assert");
 
 module.exports = {
-  topic: function(d3) {
-    var s = d3.select("body").append("div")
+  topic: function(d4) {
+    var s = d4.select("body").append("div")
         .style("background-color", "white")
         .style("color", "red")
         .style("display", "none")

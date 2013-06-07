@@ -1,13 +1,13 @@
 import "../selection/filter";
 import "transition";
 
-d3_transitionPrototype.filter = function(filter) {
+d4_transitionPrototype.filter = function(filter) {
   var subgroups = [],
       subgroup,
       group,
       node;
 
-  if (typeof filter !== "function") filter = d3_selection_filter(filter);
+  if (typeof filter !== "function") filter = d4_selection_filter(filter);
 
   for (var j = 0, m = this.length; j < m; j++) {
     subgroups.push(subgroup = []);
@@ -18,5 +18,5 @@ d3_transitionPrototype.filter = function(filter) {
     }
   }
 
-  return d3_transition(subgroups, this.id, this.time).ease(this.ease());
+  return d4_transition(subgroups, this.id, this.time).ease(this.ease());
 };

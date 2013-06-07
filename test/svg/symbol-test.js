@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.svg.symbol");
+var suite = vows.describe("d4.svg.symbol");
 
 suite.addBatch({
   "symbol": {
-    topic: load("svg/symbol").expression("d3.svg.symbol"),
+    topic: load("svg/symbol").expression("d4.svg.symbol"),
     "default symbol is a fixed-size circle": function(symbol) {
       var a = symbol();
       assert.pathEqual(a(), "M0,4.51351666838205A4.51351666838205,4.51351666838205 0 1,1 0,-4.51351666838205A4.51351666838205,4.51351666838205 0 1,1 0,4.51351666838205Z");
@@ -66,7 +66,7 @@ suite.addBatch({
     }
   },
   "symbolTypes": {
-    topic: load("svg/symbol").expression("d3.svg.symbolTypes"),
+    topic: load("svg/symbol").expression("d4.svg.symbolTypes"),
     "contains circle": function(types) {
       assert.isTrue(types.indexOf("circle") != -1);
     },

@@ -1,5 +1,5 @@
 import "xhr";
 
-d3.xml = d3_xhrType(function(request) {
+d4.xml = d4_xhrType(function(request) {
   return request.responseXML;
 });

@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.map");
+var suite = vows.describe("d4.map");
 
 suite.addBatch({
   "map": {
-    topic: load("arrays/map").expression("d3.map"),
+    topic: load("arrays/map").expression("d4.map"),
     "constructor": {
       "map() returns an empty map": function(map) {
         var m = map();

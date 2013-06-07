@@ -7,7 +7,7 @@ require("./XMLHttpRequest");
 
 module.exports = function() {
   var files = [].slice.call(arguments).map(function(d) { return "src/" + d; }),
-      expression = "d3",
+      expression = "d4",
       sandbox = {Date: Date}; // so we can use deepEqual in tests
 
   files.unshift("src/start");

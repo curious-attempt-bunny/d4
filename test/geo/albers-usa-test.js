@@ -3,11 +3,11 @@ var vows = require("vows"),
     assert = require("../assert"),
     projectionTestSuite = require("./projection-test-suite");
 
-var suite = vows.describe("d3.geo.albersUsa");
+var suite = vows.describe("d4.geo.albersUsa");
 
 suite.addBatch({
   "albersUsa": {
-    topic: load("geo/albers-usa").expression("d3.geo.albersUsa"),
+    topic: load("geo/albers-usa").expression("d4.geo.albersUsa"),
     "default": projectionTestSuite({
       topic: function(projection) { return projection(); },
       "has the scale 1070": function(p) {

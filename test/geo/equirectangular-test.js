@@ -3,11 +3,11 @@ var vows = require("vows"),
     assert = require("../assert"),
     projectionTestSuite = require("./projection-test-suite");
 
-var suite = vows.describe("d3.geo.equirectangular");
+var suite = vows.describe("d4.geo.equirectangular");
 
 suite.addBatch({
   "equirectangular": {
-    topic: load("geo/equirectangular").expression("d3.geo.equirectangular"),
+    topic: load("geo/equirectangular").expression("d4.geo.equirectangular"),
     "default": projectionTestSuite({
       topic: function(projection) { return projection(); }
     }, {

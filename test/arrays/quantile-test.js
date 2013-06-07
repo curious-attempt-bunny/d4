@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.quantile");
+var suite = vows.describe("d4.quantile");
 
 suite.addBatch({
   "quantile": {
-    topic: load("arrays/quantile").expression("d3.quantile"),
+    topic: load("arrays/quantile").expression("d4.quantile"),
     "requires sorted numeric input": function(quantile) {
       assert.equal(quantile([1, 2, 3, 4], 0), 1);
       assert.equal(quantile([1, 2, 3, 4], 1), 4);

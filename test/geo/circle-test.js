@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.circle");
+var suite = vows.describe("d4.geo.circle");
 
 suite.addBatch({
   "circle": {
-    topic: load("geo/circle").expression("d3.geo.circle"),
+    topic: load("geo/circle").expression("d4.geo.circle"),
     "generates a Polygon": function(circle) {
       var o = circle()();
       assert.equal(o.type, "Polygon");

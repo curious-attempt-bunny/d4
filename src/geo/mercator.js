@@ -2,16 +2,16 @@ import "../math/trigonometry";
 import "geo";
 import "projection";
 
-function d3_geo_mercator(λ, φ) {
+function d4_geo_mercator(λ, φ) {
   return [λ, Math.log(Math.tan(π / 4 + φ / 2))];
 }
 
-d3_geo_mercator.invert = function(x, y) {
+d4_geo_mercator.invert = function(x, y) {
   return [x, 2 * Math.atan(Math.exp(y)) - π / 2];
 };
 
-function d3_geo_mercatorProjection(project) {
-  var m = d3_geo_projection(project),
+function d4_geo_mercatorProjection(project) {
+  var m = d4_geo_projection(project),
       scale = m.scale,
       translate = m.translate,
       clipExtent = m.clipExtent,
@@ -43,6 +43,6 @@ function d3_geo_mercatorProjection(project) {
   return m.clipExtent(null);
 }
 
-(d3.geo.mercator = function() {
-  return d3_geo_mercatorProjection(d3_geo_mercator);
-}).raw = d3_geo_mercator;
+(d4.geo.mercator = function() {
+  return d4_geo_mercatorProjection(d4_geo_mercator);
+}).raw = d4_geo_mercator;

@@ -5,12 +5,12 @@ import "../math/trigonometry";
 import "arc";
 import "svg";
 
-d3.svg.chord = function() {
-  var source = d3_source,
-      target = d3_target,
-      radius = d3_svg_chordRadius,
-      startAngle = d3_svg_arcStartAngle,
-      endAngle = d3_svg_arcEndAngle;
+d4.svg.chord = function() {
+  var source = d4_source,
+      target = d4_target,
+      radius = d4_svg_chordRadius,
+      startAngle = d4_svg_arcStartAngle,
+      endAngle = d4_svg_arcEndAngle;
 
   // TODO Allow control point to be customized.
 
@@ -29,8 +29,8 @@ d3.svg.chord = function() {
   function subgroup(self, f, d, i) {
     var subgroup = f.call(self, d, i),
         r = radius.call(self, subgroup, i),
-        a0 = startAngle.call(self, subgroup, i) + d3_svg_arcOffset,
-        a1 = endAngle.call(self, subgroup, i) + d3_svg_arcOffset;
+        a0 = startAngle.call(self, subgroup, i) + d4_svg_arcOffset,
+        a1 = endAngle.call(self, subgroup, i) + d4_svg_arcOffset;
     return {
       r: r,
       a0: a0,
@@ -54,37 +54,37 @@ d3.svg.chord = function() {
 
   chord.radius = function(v) {
     if (!arguments.length) return radius;
-    radius = d3_functor(v);
+    radius = d4_functor(v);
     return chord;
   };
 
   chord.source = function(v) {
     if (!arguments.length) return source;
-    source = d3_functor(v);
+    source = d4_functor(v);
     return chord;
   };
 
   chord.target = function(v) {
     if (!arguments.length) return target;
-    target = d3_functor(v);
+    target = d4_functor(v);
     return chord;
   };
 
   chord.startAngle = function(v) {
     if (!arguments.length) return startAngle;
-    startAngle = d3_functor(v);
+    startAngle = d4_functor(v);
     return chord;
   };
 
   chord.endAngle = function(v) {
     if (!arguments.length) return endAngle;
-    endAngle = d3_functor(v);
+    endAngle = d4_functor(v);
     return chord;
   };
 
   return chord;
 };
 
-function d3_svg_chordRadius(d) {
+function d4_svg_chordRadius(d) {
   return d.radius;
 }

@@ -4,11 +4,11 @@ var vows = require("vows"),
     time = require("./time"),
     local = time.local;
 
-var suite = vows.describe("d3.time.format");
+var suite = vows.describe("d4.time.format");
 
 suite.addBatch({
   "format": {
-    topic: load("time/format").expression("d3.time.format"),
+    topic: load("time/format").expression("d4.time.format"),
     "formats abbreviated weekday": function(format) {
       var f = format("%a");
       assert.equal(f(local(1990, 0, 1)), "Mon");

@@ -1,8 +1,8 @@
 import "transition";
 
-d3_transitionPrototype.transition = function() {
+d4_transitionPrototype.transition = function() {
   var id0 = this.id,
-      id1 = ++d3_transitionId,
+      id1 = ++d4_transitionId,
       subgroups = [],
       subgroup,
       group,
@@ -15,11 +15,11 @@ d3_transitionPrototype.transition = function() {
       if (node = group[i]) {
         transition = Object.create(node.__transition__[id0]);
         transition.delay += transition.duration;
-        d3_transitionNode(node, i, id1, transition);
+        d4_transitionNode(node, i, id1, transition);
       }
       subgroup.push(node);
     }
   }
 
-  return d3_transition(subgroups, id1);
+  return d4_transition(subgroups, id1);
 };

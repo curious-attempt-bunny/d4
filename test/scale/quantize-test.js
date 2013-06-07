@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.scale.quantize");
+var suite = vows.describe("d4.scale.quantize");
 
 suite.addBatch({
   "quantize": {
-    topic: load("scale/quantize").expression("d3.scale.quantize"),
+    topic: load("scale/quantize").expression("d4.scale.quantize"),
     "has the default domain [0, 1]": function(quantize) {
       var x = quantize();
       assert.deepEqual(x.domain(), [0, 1]);

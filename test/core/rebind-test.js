@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.rebind");
+var suite = vows.describe("d4.rebind");
 
 suite.addBatch({
   "rebind": {
-    topic: load("core/rebind").expression("d3.rebind"),
+    topic: load("core/rebind").expression("d4.rebind"),
     "source function always has source as context": function(rebind) {
       var target = {}, source = {method: function() { that = this; }}, that;
       rebind(target, source, "method");

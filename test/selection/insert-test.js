@@ -8,8 +8,8 @@ suite.addBatch({
   "select(body)": {
     topic: load("selection/insert").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "inserts before the specified selector": function(body) {
         var span = body.html("").append("span");
@@ -59,8 +59,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/selection").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div").data([0, 1]).enter().insert("div");
+      topic: function(d4) {
+        return d4.select("body").selectAll("div").data([0, 1]).enter().insert("div");
       },
       "appends an HTML element": function(div) {
         var span = div.insert("span");
@@ -114,8 +114,8 @@ suite.addBatch({
   "selectAll(div).data(…).enter()": {
     topic: load("selection/selection").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "inserts before the specified selector": function(body) {
         var span = body.append("span");

@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.mean");
+var suite = vows.describe("d4.mean");
 
 suite.addBatch({
   "mean": {
-    topic: load("arrays/mean").expression("d3.mean"),
+    topic: load("arrays/mean").expression("d4.mean"),
     "returns the mean value for numbers": function(mean) {
       assert.equal(mean([1]), 1);
       assert.equal(mean([5, 1, 2, 3, 4]), 3);

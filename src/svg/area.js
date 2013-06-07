@@ -4,13 +4,13 @@ import "../core/true";
 import "svg";
 import "line";
 
-function d3_svg_area(projection) {
-  var x0 = d3_svg_lineX,
-      x1 = d3_svg_lineX,
+function d4_svg_area(projection) {
+  var x0 = d4_svg_lineX,
+      x1 = d4_svg_lineX,
       y0 = 0,
-      y1 = d3_svg_lineY,
-      defined = d3_true,
-      interpolate = d3_svg_lineLinear,
+      y1 = d4_svg_lineY,
+      defined = d4_true,
+      interpolate = d4_svg_lineLinear,
       interpolateKey = interpolate.key,
       interpolateReverse = interpolate,
       L = "L",
@@ -23,10 +23,10 @@ function d3_svg_area(projection) {
         i = -1,
         n = data.length,
         d,
-        fx0 = d3_functor(x0),
-        fy0 = d3_functor(y0),
-        fx1 = x0 === x1 ? function() { return x; } : d3_functor(x1),
-        fy1 = y0 === y1 ? function() { return y; } : d3_functor(y1),
+        fx0 = d4_functor(x0),
+        fy0 = d4_functor(y0),
+        fx1 = x0 === x1 ? function() { return x; } : d4_functor(x1),
+        fy1 = y0 === y1 ? function() { return y; } : d4_functor(y1),
         x,
         y;
 
@@ -97,7 +97,7 @@ function d3_svg_area(projection) {
   area.interpolate = function(_) {
     if (!arguments.length) return interpolateKey;
     if (typeof _ === "function") interpolateKey = interpolate = _;
-    else interpolateKey = (interpolate = d3_svg_lineInterpolators.get(_) || d3_svg_lineLinear).key;
+    else interpolateKey = (interpolate = d4_svg_lineInterpolators.get(_) || d4_svg_lineLinear).key;
     interpolateReverse = interpolate.reverse || interpolate;
     L = interpolate.closed ? "M" : "L";
     return area;
@@ -112,9 +112,9 @@ function d3_svg_area(projection) {
   return area;
 }
 
-d3_svg_lineStepBefore.reverse = d3_svg_lineStepAfter;
-d3_svg_lineStepAfter.reverse = d3_svg_lineStepBefore;
+d4_svg_lineStepBefore.reverse = d4_svg_lineStepAfter;
+d4_svg_lineStepAfter.reverse = d4_svg_lineStepBefore;
 
-d3.svg.area = function() {
-  return d3_svg_area(d3_identity);
+d4.svg.area = function() {
+  return d4_svg_area(d4_identity);
 };

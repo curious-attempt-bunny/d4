@@ -2,10 +2,10 @@ import "../arrays/merge";
 import "../core/rebind";
 import "layout";
 
-d3.layout.hierarchy = function() {
-  var sort = d3_layout_hierarchySort,
-      children = d3_layout_hierarchyChildren,
-      value = d3_layout_hierarchyValue;
+d4.layout.hierarchy = function() {
+  var sort = d4_layout_hierarchySort,
+      children = d4_layout_hierarchyChildren,
+      value = d4_layout_hierarchyValue;
 
   // Recursively compute the node depth and value.
   // Also converts to a standard hierarchy structure.
@@ -84,31 +84,31 @@ d3.layout.hierarchy = function() {
 };
 
 // A method assignment helper for hierarchy subclasses.
-function d3_layout_hierarchyRebind(object, hierarchy) {
-  d3.rebind(object, hierarchy, "sort", "children", "value");
+function d4_layout_hierarchyRebind(object, hierarchy) {
+  d4.rebind(object, hierarchy, "sort", "children", "value");
 
   // Add an alias for nodes and links, for convenience.
   object.nodes = object;
-  object.links = d3_layout_hierarchyLinks;
+  object.links = d4_layout_hierarchyLinks;
 
   return object;
 }
 
-function d3_layout_hierarchyChildren(d) {
+function d4_layout_hierarchyChildren(d) {
   return d.children;
 }
 
-function d3_layout_hierarchyValue(d) {
+function d4_layout_hierarchyValue(d) {
   return d.value;
 }
 
-function d3_layout_hierarchySort(a, b) {
+function d4_layout_hierarchySort(a, b) {
   return b.value - a.value;
 }
 
 // Returns an array source+target objects for the specified nodes.
-function d3_layout_hierarchyLinks(nodes) {
-  return d3.merge(nodes.map(function(parent) {
+function d4_layout_hierarchyLinks(nodes) {
+  return d4.merge(nodes.map(function(parent) {
     return (parent.children || []).map(function(child) {
       return {source: parent, target: child};
     });

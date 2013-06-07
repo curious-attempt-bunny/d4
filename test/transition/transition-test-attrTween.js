@@ -2,14 +2,14 @@ var assert = require("../assert"),
     _ = require("../../");
 
 module.exports = {
-  topic: function(d3) {
+  topic: function(d4) {
     var callback = this.callback,
         dd = [],
         ii = [],
         tt = [],
         vv = [];
 
-    var s = d3.select("body").html("").append("div").selectAll("div")
+    var s = d4.select("body").html("").append("div").selectAll("div")
         .data(["red", "green"])
       .enter().append("div")
         .attr("color", function(d, i) { return i ? "#008000" : "#ff0000"; });

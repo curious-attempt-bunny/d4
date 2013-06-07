@@ -3,7 +3,7 @@ import "geo";
 import "conic";
 import "projection";
 
-function d3_geo_conicEqualArea(φ0, φ1) {
+function d4_geo_conicEqualArea(φ0, φ1) {
   var sinφ0 = Math.sin(φ0),
       n = (sinφ0 + Math.sin(φ1)) / 2,
       C = 1 + sinφ0 * (2 * n - sinφ0),
@@ -21,13 +21,13 @@ function d3_geo_conicEqualArea(φ0, φ1) {
     var ρ0_y = ρ0 - y;
     return [
       Math.atan2(x, ρ0_y) / n,
-      d3_asin((C - (x * x + ρ0_y * ρ0_y) * n * n) / (2 * n))
+      d4_asin((C - (x * x + ρ0_y * ρ0_y) * n * n) / (2 * n))
     ];
   };
 
   return forward;
 }
 
-(d3.geo.conicEqualArea = function() {
-  return d3_geo_conic(d3_geo_conicEqualArea);
-}).raw = d3_geo_conicEqualArea;
+(d4.geo.conicEqualArea = function() {
+  return d4_geo_conic(d4_geo_conicEqualArea);
+}).raw = d4_geo_conicEqualArea;

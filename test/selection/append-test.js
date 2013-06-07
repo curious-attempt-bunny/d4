@@ -8,8 +8,8 @@ suite.addBatch({
   "select(body)": {
     topic: load("selection/append").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "appends an HTML element": function(body) {
         var div = body.append("div");
@@ -44,8 +44,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/selection").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div").data([0, 1]).enter().append("div");
+      topic: function(d4) {
+        return d4.select("body").selectAll("div").data([0, 1]).enter().append("div");
       },
       "appends an HTML element": function(div) {
         var span = div.append("span");
@@ -98,8 +98,8 @@ suite.addBatch({
   "selectAll(div).data(…).enter()": {
     topic: load("selection/selection").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "appends to the parent node": function(body) {
         var div = body.selectAll("div").data([0, 1]).enter().append("div");

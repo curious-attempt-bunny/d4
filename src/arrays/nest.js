@@ -1,6 +1,6 @@
 import "map";
 
-d3.nest = function() {
+d4.nest = function() {
   var nest = {},
       keys = [],
       sortKeys = [],
@@ -19,7 +19,7 @@ d3.nest = function() {
         keyValue,
         object,
         setter,
-        valuesByKey = new d3_Map,
+        valuesByKey = new d4_Map,
         values;
 
     while (++i < n) {
@@ -66,7 +66,7 @@ d3.nest = function() {
   };
 
   nest.entries = function(array) {
-    return entries(map(d3.map, array, 0), 0);
+    return entries(map(d4.map, array, 0), 0);
   };
 
   nest.key = function(d) {

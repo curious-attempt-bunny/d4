@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.layout.treemap");
+var suite = vows.describe("d4.layout.treemap");
 
 suite.addBatch({
   "treemap": {
-    topic: load("layout/treemap").expression("d3.layout.treemap"),
+    topic: load("layout/treemap").expression("d4.layout.treemap"),
     "outputs a squarified treemap": function(treemap) {
       var t = treemap().size([1000, 1000]).sort(null);
       assert.deepEqual(t.nodes({children: [{value: 1}, {value: 2}, {children: [{value: 1}, {value: 2}]}]}).map(layout), [

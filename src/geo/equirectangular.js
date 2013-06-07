@@ -1,10 +1,10 @@
 import "geo";
 import "projection";
 
-function d3_geo_equirectangular(λ, φ) {
+function d4_geo_equirectangular(λ, φ) {
   return [λ, φ];
 }
 
-(d3.geo.equirectangular = function() {
-  return d3_geo_projection(d3_geo_equirectangular);
-}).raw = d3_geo_equirectangular.invert = d3_geo_equirectangular;
+(d4.geo.equirectangular = function() {
+  return d4_geo_projection(d4_geo_equirectangular);
+}).raw = d4_geo_equirectangular.invert = d4_geo_equirectangular;

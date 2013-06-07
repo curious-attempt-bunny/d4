@@ -1,5 +1,5 @@
-function d3_geo_pathBuffer() {
-  var pointCircle = d3_geo_pathBufferCircle(4.5),
+function d4_geo_pathBuffer() {
+  var pointCircle = d4_geo_pathBufferCircle(4.5),
       buffer = [];
 
   var stream = {
@@ -14,7 +14,7 @@ function d3_geo_pathBuffer() {
     polygonEnd: function() { stream.lineEnd = lineEnd; stream.point = point; },
 
     pointRadius: function(_) {
-      pointCircle = d3_geo_pathBufferCircle(_);
+      pointCircle = d4_geo_pathBufferCircle(_);
       return stream;
     },
 
@@ -51,7 +51,7 @@ function d3_geo_pathBuffer() {
   return stream;
 }
 
-function d3_geo_pathBufferCircle(radius) {
+function d4_geo_pathBufferCircle(radius) {
   return "m0," + radius
       + "a" + radius + "," + radius + " 0 1,1 0," + -2 * radius
       + "a" + radius + "," + radius + " 0 1,1 0," + 2 * radius

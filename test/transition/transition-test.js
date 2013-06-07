@@ -2,32 +2,32 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.transition");
+var suite = vows.describe("d4.transition");
 
 suite.addBatch({
   "transition": {
     topic: load("transition/transition").document(),
-    "selects the document element": function(d3) {
-      var transition = d3.transition();
+    "selects the document element": function(d4) {
+      var transition = d4.transition();
       assert.equal(transition.length, 1);
       assert.equal(transition[0].length, 1);
       assert.equal(transition[0][0].nodeType, 1);
       assert.equal(transition[0][0].tagName, "HTML");
     },
-    "is an instanceof d3.transition": function(d3) {
-      assert.isTrue(d3.transition() instanceof d3.transition);
+    "is an instanceof d4.transition": function(d4) {
+      assert.isTrue(d4.transition() instanceof d4.transition);
     },
-    "subselections are also instanceof d3.transition": function(d3) {
-      var transition = d3.transition();
-      assert.isTrue(transition.select("body") instanceof d3.transition);
-      assert.isTrue(transition.selectAll("body") instanceof d3.transition);
+    "subselections are also instanceof d4.transition": function(d4) {
+      var transition = d4.transition();
+      assert.isTrue(transition.select("body") instanceof d4.transition);
+      assert.isTrue(transition.selectAll("body") instanceof d4.transition);
     },
-    "transition prototype can be extended": function(d3) {
-      var transition = d3.transition(), vv = [];
-      d3.transition.prototype.foo = function(v) { vv.push(v); return this; };
+    "transition prototype can be extended": function(d4) {
+      var transition = d4.transition(), vv = [];
+      d4.transition.prototype.foo = function(v) { vv.push(v); return this; };
       transition.select("body").foo(42);
       assert.deepEqual(vv, [42]);
-      delete d3.transition.prototype.foo;
+      delete d4.transition.prototype.foo;
     }
   }
 });

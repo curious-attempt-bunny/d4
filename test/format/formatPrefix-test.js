@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.formatPrefix");
+var suite = vows.describe("d4.formatPrefix");
 
 suite.addBatch({
   "formatPrefix": {
-    topic: load("format/formatPrefix").expression("d3.formatPrefix"),
+    topic: load("format/formatPrefix").expression("d4.formatPrefix"),
     "determines the appropriate prefix for small numbers": function(prefix) {
       assert.equal(prefix(0).symbol, "");
       assert.equal(prefix(1e-00).symbol, "");

@@ -1,7 +1,7 @@
 import "../core/document";
 import "selection";
 
-d3_selectionPrototype.style = function(name, value, priority) {
+d4_selectionPrototype.style = function(name, value, priority) {
   var n = arguments.length;
   if (n < 3) {
 
@@ -11,12 +11,12 @@ d3_selectionPrototype.style = function(name, value, priority) {
     // specifies the priority.
     if (typeof name !== "string") {
       if (n < 2) value = "";
-      for (priority in name) this.each(d3_selection_style(priority, name[priority], value));
+      for (priority in name) this.each(d4_selection_style(priority, name[priority], value));
       return this;
     }
 
     // For style(string), return the computed style value for the first node.
-    if (n < 2) return d3_window.getComputedStyle(this.node(), null).getPropertyValue(name);
+    if (n < 2) return d4_window.getComputedStyle(this.node(), null).getPropertyValue(name);
 
     // For style(string, string) or style(string, function), use the default
     // priority. The priority is ignored for style(string, null).
@@ -24,10 +24,10 @@ d3_selectionPrototype.style = function(name, value, priority) {
   }
 
   // Otherwise, a name, value and priority are specified, and handled as below.
-  return this.each(d3_selection_style(name, value, priority));
+  return this.each(d4_selection_style(name, value, priority));
 };
 
-function d3_selection_style(name, value, priority) {
+function d4_selection_style(name, value, priority) {
 
   // For style(name, null) or style(name, null, priority), remove the style
   // property with the specified name. The priority is ignored.

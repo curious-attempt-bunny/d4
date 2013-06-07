@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.time.year");
+var suite = vows.describe("d4.time.year");
 
 suite.addBatch({
   "year": {
-    topic: load("time/year").expression("d3.time.year"),
+    topic: load("time/year").expression("d4.time.year"),
     "defaults to floor": function(interval) {
       assert.strictEqual(interval, interval.floor);
     },

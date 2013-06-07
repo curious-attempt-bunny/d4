@@ -1,7 +1,7 @@
 import "selection";
 import "enter";
 
-d3_selection_enterPrototype.select = function(selector) {
+d4_selection_enterPrototype.select = function(selector) {
   var subgroups = [],
       subgroup,
       subnode,
@@ -23,5 +23,5 @@ d3_selection_enterPrototype.select = function(selector) {
     }
   }
 
-  return d3_selection(subgroups);
+  return d4_selection(subgroups);
 };

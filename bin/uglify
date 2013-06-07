@@ -10,7 +10,7 @@ var filename = process.argv[2],
     warn = uglify.AST_Node.warn;
 
 uglify.AST_Node.warn = function(s, o) {
-  if (o.msg === "Accidental global?" && o.name === "d3" && o.line === 1 && !o.col) return;
+  if (o.msg === "Accidental global?" && o.name === "d4" && o.line === 1 && !o.col) return;
   warn.apply(this, arguments);
 };
 

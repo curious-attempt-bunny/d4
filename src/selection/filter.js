@@ -1,12 +1,12 @@
 import "selection";
 
-d3_selectionPrototype.filter = function(filter) {
+d4_selectionPrototype.filter = function(filter) {
   var subgroups = [],
       subgroup,
       group,
       node;
 
-  if (typeof filter !== "function") filter = d3_selection_filter(filter);
+  if (typeof filter !== "function") filter = d4_selection_filter(filter);
 
   for (var j = 0, m = this.length; j < m; j++) {
     subgroups.push(subgroup = []);
@@ -18,11 +18,11 @@ d3_selectionPrototype.filter = function(filter) {
     }
   }
 
-  return d3_selection(subgroups);
+  return d4_selection(subgroups);
 };
 
-function d3_selection_filter(selector) {
+function d4_selection_filter(selector) {
   return function() {
-    return d3_selectMatches(this, selector);
+    return d4_selectMatches(this, selector);
   };
 }

@@ -1,7 +1,7 @@
 import "../arrays/range";
 import "../math/trigonometry";
 
-d3.layout.chord = function() {
+d4.layout.chord = function() {
   var chord = {},
       chords,
       groups,
@@ -15,7 +15,7 @@ d3.layout.chord = function() {
   function relayout() {
     var subgroups = {},
         groupSums = [],
-        groupIndex = d3.range(n),
+        groupIndex = d4.range(n),
         subgroupIndex = [],
         k,
         x,
@@ -32,7 +32,7 @@ d3.layout.chord = function() {
         x += matrix[i][j];
       }
       groupSums.push(x);
-      subgroupIndex.push(d3.range(n));
+      subgroupIndex.push(d4.range(n));
       k += x;
     }
 

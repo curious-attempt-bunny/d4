@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.bounds");
+var suite = vows.describe("d4.geo.bounds");
 
 suite.addBatch({
   "bounds": {
-    topic: load("geo/bounds").expression("d3.geo.bounds"),
+    topic: load("geo/bounds").expression("d4.geo.bounds"),
     "Feature": function(bounds) {
       assert.deepEqual(bounds({
         type: "Feature",

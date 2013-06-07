@@ -3,11 +3,11 @@ var vows = require("vows"),
     assert = require("../assert"),
     projectionTestSuite = require("./projection-test-suite");
 
-var suite = vows.describe("d3.geo.azimuthalEquidistant");
+var suite = vows.describe("d4.geo.azimuthalEquidistant");
 
 suite.addBatch({
   "azimuthalEquidistant": {
-    topic: load("geo/azimuthal-equidistant").expression("d3.geo.azimuthalEquidistant"),
+    topic: load("geo/azimuthal-equidistant").expression("d4.geo.azimuthalEquidistant"),
     "default": projectionTestSuite({
       topic: function(projection) { return projection(); }
     }, {

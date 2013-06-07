@@ -3,9 +3,9 @@ import "../arrays/sum";
 import "../math/trigonometry";
 import "layout";
 
-d3.layout.pie = function() {
+d4.layout.pie = function() {
   var value = Number,
-      sort = d3_layout_pieSortByValue,
+      sort = d4_layout_pieSortByValue,
       startAngle = 0,
       endAngle = 2 * π;
 
@@ -23,11 +23,11 @@ d3.layout.pie = function() {
     var k = ((typeof endAngle === "function"
         ? endAngle.apply(this, arguments)
         : endAngle) - a)
-        / d3.sum(values);
+        / d4.sum(values);
 
     // Optionally sort the data.
-    var index = d3.range(data.length);
-    if (sort != null) index.sort(sort === d3_layout_pieSortByValue
+    var index = d4.range(data.length);
+    if (sort != null) index.sort(sort === d4_layout_pieSortByValue
         ? function(i, j) { return values[j] - values[i]; }
         : function(i, j) { return sort(data[i], data[j]); });
 
@@ -96,4 +96,4 @@ d3.layout.pie = function() {
   return pie;
 };
 
-var d3_layout_pieSortByValue = {};
+var d4_layout_pieSortByValue = {};

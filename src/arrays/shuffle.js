@@ -1,4 +1,4 @@
-d3.shuffle = function(array) {
+d4.shuffle = function(array) {
   var m = array.length, t, i;
   while (m) {
     i = Math.random() * m-- | 0;

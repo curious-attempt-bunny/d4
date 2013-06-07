@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.interpolate");
+var suite = vows.describe("d4.geo.interpolate");
 
 suite.addBatch({
   "interpolate": {
-    topic: load("geo/interpolate").expression("d3.geo.interpolate"),
+    topic: load("geo/interpolate").expression("d4.geo.interpolate"),
     "zero distance": function(interpolate) {
       assert.deepEqual(interpolate([140.63289, -29.95101], [140.63289, -29.95101])(.5), [140.63289, -29.95101]);
     },

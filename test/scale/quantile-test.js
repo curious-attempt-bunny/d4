@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.scale.quantile");
+var suite = vows.describe("d4.scale.quantile");
 
 suite.addBatch({
   "quantile": {
-    topic: load("scale/quantile").expression("d3.scale.quantile"),
+    topic: load("scale/quantile").expression("d4.scale.quantile"),
     "has the empty domain by default": function(quantile) {
       assert.isEmpty(quantile().domain());
     },

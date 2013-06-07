@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.hsl");
+var suite = vows.describe("d4.hsl");
 
 suite.addBatch({
   "hsl": {
-    topic: load("color/hsl").expression("d3.hsl"),
+    topic: load("color/hsl").expression("d4.hsl"),
     "does not clamp channel values": function(hsl) {
       assert.hslEqual(hsl(-100, -1, -2), -100, -1, -2);
       assert.hslEqual(hsl(400, 2, 3), 400, 2, 3);

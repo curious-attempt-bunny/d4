@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.extent");
+var suite = vows.describe("d4.extent");
 
 suite.addBatch({
   "extent": {
-    topic: load("arrays/extent").expression("d3.extent"),
+    topic: load("arrays/extent").expression("d4.extent"),
     "returns the numeric extent for numbers": function(extent) {
       assert.deepEqual(extent([1]), [1, 1]);
       assert.deepEqual(extent([5, 1, 2, 3, 4]), [1, 5]);

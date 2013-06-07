@@ -3,7 +3,7 @@ import "../interpolate/interpolate";
 import "transition";
 import "tween";
 
-d3_transitionPrototype.attr = function(nameNS, value) {
+d4_transitionPrototype.attr = function(nameNS, value) {
   if (arguments.length < 2) {
 
     // For attr(object), the object specifies the names and values of the
@@ -13,8 +13,8 @@ d3_transitionPrototype.attr = function(nameNS, value) {
     return this;
   }
 
-  var interpolate = d3_interpolateByName(nameNS),
-      name = d3.ns.qualify(nameNS);
+  var interpolate = d4_interpolateByName(nameNS),
+      name = d4.ns.qualify(nameNS);
 
   // For attr(string, null), remove the attribute with the specified name.
   function attrNull() {
@@ -38,11 +38,11 @@ d3_transitionPrototype.attr = function(nameNS, value) {
     });
   }
 
-  return d3_transition_tween(this, "attr." + nameNS, value, name.local ? attrTweenNS : attrTween);
+  return d4_transition_tween(this, "attr." + nameNS, value, name.local ? attrTweenNS : attrTween);
 };
 
-d3_transitionPrototype.attrTween = function(nameNS, tween) {
-  var name = d3.ns.qualify(nameNS);
+d4_transitionPrototype.attrTween = function(nameNS, tween) {
+  var name = d4.ns.qualify(nameNS);
 
   function attrTween(d, i) {
     var f = tween.call(this, d, i, this.getAttribute(name));

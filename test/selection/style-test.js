@@ -9,8 +9,8 @@ suite.addBatch({
   "on select(body)": {
     topic: load("selection/style").document(),
     "on an initially-empty page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "sets a property as a string": function(body) {
         body.style("background-color", "red");
@@ -75,8 +75,8 @@ suite.addBatch({
   "on selectAll(div)": {
     topic: load("selection/style").document(),
     "on a page with a few divs": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div").data([0, 1]).enter().append("div");
+      topic: function(d4) {
+        return d4.select("body").selectAll("div").data([0, 1]).enter().append("div");
       },
       "sets a property as a string": function(div) {
         div.style("background-color", "red");

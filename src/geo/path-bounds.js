@@ -1,21 +1,21 @@
 import "../core/noop";
 
-var d3_geo_pathBoundsX0,
-    d3_geo_pathBoundsY0,
-    d3_geo_pathBoundsX1,
-    d3_geo_pathBoundsY1;
+var d4_geo_pathBoundsX0,
+    d4_geo_pathBoundsY0,
+    d4_geo_pathBoundsX1,
+    d4_geo_pathBoundsY1;
 
-var d3_geo_pathBounds = {
-  point: d3_geo_pathBoundsPoint,
-  lineStart: d3_noop,
-  lineEnd: d3_noop,
-  polygonStart: d3_noop,
-  polygonEnd: d3_noop
+var d4_geo_pathBounds = {
+  point: d4_geo_pathBoundsPoint,
+  lineStart: d4_noop,
+  lineEnd: d4_noop,
+  polygonStart: d4_noop,
+  polygonEnd: d4_noop
 };
 
-function d3_geo_pathBoundsPoint(x, y) {
-  if (x < d3_geo_pathBoundsX0) d3_geo_pathBoundsX0 = x;
-  if (x > d3_geo_pathBoundsX1) d3_geo_pathBoundsX1 = x;
-  if (y < d3_geo_pathBoundsY0) d3_geo_pathBoundsY0 = y;
-  if (y > d3_geo_pathBoundsY1) d3_geo_pathBoundsY1 = y;
+function d4_geo_pathBoundsPoint(x, y) {
+  if (x < d4_geo_pathBoundsX0) d4_geo_pathBoundsX0 = x;
+  if (x > d4_geo_pathBoundsX1) d4_geo_pathBoundsX1 = x;
+  if (y < d4_geo_pathBoundsY0) d4_geo_pathBoundsY0 = y;
+  if (y > d4_geo_pathBoundsY1) d4_geo_pathBoundsY1 = y;
 }

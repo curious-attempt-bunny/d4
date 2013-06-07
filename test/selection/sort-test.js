@@ -8,8 +8,8 @@ suite.addBatch({
   "selectAll(div).selectAll(span)": {
     topic: load("selection/sort").document(),
     "on a page with some spans": {
-      topic: function(d3) {
-        return d3.select("body").append("div").selectAll("div")
+      topic: function(d4) {
+        return d4.select("body").append("div").selectAll("div")
             .data([1, 2, 10, 20])
           .enter().append("div")
           .selectAll("span")

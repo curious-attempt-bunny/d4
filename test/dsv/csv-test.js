@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.csv");
+var suite = vows.describe("d4.csv");
 
 suite.addBatch({
   "csv": {
-    topic: load("dsv/csv").expression("d3.csv").document(),
+    topic: load("dsv/csv").expression("d4.csv").document(),
 
     "on a sample file": {
       topic: function(csv) {

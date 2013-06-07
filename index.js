@@ -1,4 +1,4 @@
-var globals = ["document", "window", "d3"],
+var globals = ["document", "window", "d4"],
     globalValues = {};
 
 globals.forEach(function(g) {
@@ -6,9 +6,9 @@ globals.forEach(function(g) {
 });
 
 require("./globals");
-require("./d3");
+require("./d4");
 
-module.exports = d3;
+module.exports = d4;
 
 globals.forEach(function(g) {
   if (g in globalValues) global[g] = globalValues[g];

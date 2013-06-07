@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.scale.identity");
+var suite = vows.describe("d4.scale.identity");
 
 suite.addBatch({
   "identity": {
-    topic: load("scale/identity").expression("d3.scale.identity").document(),
+    topic: load("scale/identity").expression("d4.scale.identity").document(),
 
     "domain and range": {
       "are identical": function(identity) {

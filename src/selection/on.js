@@ -6,7 +6,7 @@ import "../event/event";
 import "../format/requote";
 import "selection";
 
-d3_selectionPrototype.on = function(type, listener, capture) {
+d4_selectionPrototype.on = function(type, listener, capture) {
   var n = arguments.length;
   if (n < 3) {
 
@@ -15,7 +15,7 @@ d3_selectionPrototype.on = function(type, listener, capture) {
     // whether the listener captures events.
     if (typeof type !== "string") {
       if (n < 2) listener = false;
-      for (capture in type) this.each(d3_selection_on(capture, type[capture], listener));
+      for (capture in type) this.each(d4_selection_on(capture, type[capture], listener));
       return this;
     }
 
@@ -27,17 +27,17 @@ d3_selectionPrototype.on = function(type, listener, capture) {
   }
 
   // Otherwise, a type, listener and capture are specified, and handled as below.
-  return this.each(d3_selection_on(type, listener, capture));
+  return this.each(d4_selection_on(type, listener, capture));
 };
 
-function d3_selection_on(type, listener, capture) {
+function d4_selection_on(type, listener, capture) {
   var name = "__on" + type,
       i = type.indexOf("."),
-      wrap = d3_selection_onListener;
+      wrap = d4_selection_onListener;
 
   if (i > 0) type = type.substring(0, i);
-  var filter = d3_selection_onFilters.get(type);
-  if (filter) type = filter, wrap = d3_selection_onFilter;
+  var filter = d4_selection_onFilters.get(type);
+  if (filter) type = filter, wrap = d4_selection_onFilter;
 
   function onRemove() {
     var l = this[name];
@@ -48,14 +48,14 @@ function d3_selection_on(type, listener, capture) {
   }
 
   function onAdd() {
-    var l = wrap(listener, d3_array(arguments));
+    var l = wrap(listener, d4_array(arguments));
     onRemove.call(this);
     this.addEventListener(type, this[name] = l, l.$ = capture);
     l._ = listener;
   }
 
   function removeAll() {
-    var re = new RegExp("^__on([^.]+)" + d3.requote(type) + "$"),
+    var re = new RegExp("^__on([^.]+)" + d4.requote(type) + "$"),
         match;
     for (var name in this) {
       if (match = name.match(re)) {
@@ -68,33 +68,33 @@ function d3_selection_on(type, listener, capture) {
 
   return i
       ? listener ? onAdd : onRemove
-      : listener ? d3_noop : removeAll;
+      : listener ? d4_noop : removeAll;
 }
 
-var d3_selection_onFilters = d3.map({
+var d4_selection_onFilters = d4.map({
   mouseenter: "mouseover",
   mouseleave: "mouseout"
 });
 
-d3_selection_onFilters.forEach(function(k) {
-  if ("on" + k in d3_document) d3_selection_onFilters.remove(k);
+d4_selection_onFilters.forEach(function(k) {
+  if ("on" + k in d4_document) d4_selection_onFilters.remove(k);
 });
 
-function d3_selection_onListener(listener, argumentz) {
+function d4_selection_onListener(listener, argumentz) {
   return function(e) {
-    var o = d3.event; // Events can be reentrant (e.g., focus).
-    d3.event = e;
+    var o = d4.event; // Events can be reentrant (e.g., focus).
+    d4.event = e;
     argumentz[0] = this.__data__;
     try {
       listener.apply(this, argumentz);
     } finally {
-      d3.event = o;
+      d4.event = o;
     }
   };
 }
 
-function d3_selection_onFilter(listener, argumentz) {
-  var l = d3_selection_onListener(listener, argumentz);
+function d4_selection_onFilter(listener, argumentz) {
+  var l = d4_selection_onListener(listener, argumentz);
   return function(e) {
     var target = this, related = e.relatedTarget;
     if (!related || (related !== target && !(related.compareDocumentPosition(target) & 8))) {

@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.interpolateObject");
+var suite = vows.describe("d4.interpolateObject");
 
 suite.addBatch({
   "interpolateObject": {
-    topic: load("interpolate/object").expression("d3.interpolateObject").document(),
+    topic: load("interpolate/object").expression("d4.interpolateObject").document(),
     "interpolates defined properties": function(interpolate) {
       assert.deepEqual(interpolate({a: 2, b: 12}, {a: 4, b: 24})(.5), {a: 3, b: 18});
     },

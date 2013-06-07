@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.random");
+var suite = vows.describe("d4.random");
 
 suite.addBatch({
   "random": {
-    topic: load("math/random").expression("d3.random"),
+    topic: load("math/random").expression("d4.random"),
     "normal": {
       "topic": function(random) {
         return random.normal();

@@ -8,15 +8,15 @@ import "../geom/quadtree";
 import "layout";
 
 // A rudimentary force layout using Gauss-Seidel.
-d3.layout.force = function() {
+d4.layout.force = function() {
   var force = {},
-      event = d3.dispatch("start", "tick", "end"),
+      event = d4.dispatch("start", "tick", "end"),
       size = [1, 1],
       drag,
       alpha,
       friction = .9,
-      linkDistance = d3_layout_forceLinkDistance,
-      linkStrength = d3_layout_forceLinkStrength,
+      linkDistance = d4_layout_forceLinkDistance,
+      linkStrength = d4_layout_forceLinkStrength,
       charge = -30,
       gravity = .1,
       theta = .8,
@@ -101,7 +101,7 @@ d3.layout.force = function() {
 
     // compute quadtree center of mass and apply charge forces
     if (charge) {
-      d3_layout_forceAccumulate(q = d3.geom.quadtree(nodes), alpha, charges);
+      d4_layout_forceAccumulate(q = d4.geom.quadtree(nodes), alpha, charges);
       i = -1; while (++i < n) {
         if (!(o = nodes[i]).fixed) {
           q.visit(repulse(o));
@@ -190,7 +190,7 @@ d3.layout.force = function() {
       else alpha = 0; // or, next tick will dispatch "end"
     } else if (x > 0) { // otherwise, fire it up!
       event.start({type: "start", alpha: alpha = x});
-      d3.timer(force.tick);
+      d4.timer(force.tick);
     }
 
     return force;
@@ -278,25 +278,25 @@ d3.layout.force = function() {
 
   // use `node.call(force.drag)` to make nodes draggable
   force.drag = function() {
-    if (!drag) drag = d3.behavior.drag()
-        .origin(d3_identity)
-        .on("dragstart.force", d3_layout_forceDragstart)
+    if (!drag) drag = d4.behavior.drag()
+        .origin(d4_identity)
+        .on("dragstart.force", d4_layout_forceDragstart)
         .on("drag.force", dragmove)
-        .on("dragend.force", d3_layout_forceDragend);
+        .on("dragend.force", d4_layout_forceDragend);
 
     if (!arguments.length) return drag;
 
-    this.on("mouseover.force", d3_layout_forceMouseover)
-        .on("mouseout.force", d3_layout_forceMouseout)
+    this.on("mouseover.force", d4_layout_forceMouseover)
+        .on("mouseout.force", d4_layout_forceMouseout)
         .call(drag);
   };
 
   function dragmove(d) {
-    d.px = d3.event.x, d.py = d3.event.y;
+    d.px = d4.event.x, d.py = d4.event.y;
     force.resume(); // restart annealing
   }
 
-  return d3.rebind(force, event, "on");
+  return d4.rebind(force, event, "on");
 };
 
 // The fixed property has three bits:
@@ -305,24 +305,24 @@ d3.layout.force = function() {
 // Bit 3 stores the hover state, from mouseover to mouseout.
 // Dragend is a special case: it also clears the hover state.
 
-function d3_layout_forceDragstart(d) {
+function d4_layout_forceDragstart(d) {
   d.fixed |= 2; // set bit 2
 }
 
-function d3_layout_forceDragend(d) {
+function d4_layout_forceDragend(d) {
   d.fixed &= ~6; // unset bits 2 and 3
 }
 
-function d3_layout_forceMouseover(d) {
+function d4_layout_forceMouseover(d) {
   d.fixed |= 4; // set bit 3
   d.px = d.x, d.py = d.y; // set velocity to zero
 }
 
-function d3_layout_forceMouseout(d) {
+function d4_layout_forceMouseout(d) {
   d.fixed &= ~4; // unset bit 3
 }
 
-function d3_layout_forceAccumulate(quad, alpha, charges) {
+function d4_layout_forceAccumulate(quad, alpha, charges) {
   var cx = 0,
       cy = 0;
   quad.charge = 0;
@@ -334,7 +334,7 @@ function d3_layout_forceAccumulate(quad, alpha, charges) {
     while (++i < n) {
       c = nodes[i];
       if (c == null) continue;
-      d3_layout_forceAccumulate(c, alpha, charges);
+      d4_layout_forceAccumulate(c, alpha, charges);
       quad.charge += c.charge;
       cx += c.charge * c.cx;
       cy += c.charge * c.cy;
@@ -355,5 +355,5 @@ function d3_layout_forceAccumulate(quad, alpha, charges) {
   quad.cy = cy / quad.charge;
 }
 
-var d3_layout_forceLinkDistance = 20,
-    d3_layout_forceLinkStrength = 1;
+var d4_layout_forceLinkDistance = 20,
+    d4_layout_forceLinkStrength = 1;

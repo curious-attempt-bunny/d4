@@ -3,7 +3,7 @@ import "../core/noop";
 import "../math/trigonometry";
 import "clip-polygon";
 
-function d3_geo_clip(pointVisible, clipLine, interpolate) {
+function d4_geo_clip(pointVisible, clipLine, interpolate) {
   return function(listener) {
     var line = clipLine(listener);
 
@@ -25,9 +25,9 @@ function d3_geo_clip(pointVisible, clipLine, interpolate) {
         clip.lineStart = lineStart;
         clip.lineEnd = lineEnd;
 
-        segments = d3.merge(segments);
+        segments = d4.merge(segments);
         if (segments.length) {
-          d3_geo_clipPolygon(segments, d3_geo_clipSort, null, interpolate, listener);
+          d4_geo_clipPolygon(segments, d4_geo_clipSort, null, interpolate, listener);
         } else if (visibleArea < -ε || invisible && invisibleArea < -ε) {
           listener.lineStart();
           interpolate(null, null, 1, listener);
@@ -55,7 +55,7 @@ function d3_geo_clip(pointVisible, clipLine, interpolate) {
         invisibleArea,
         invisible;
 
-    var buffer = d3_geo_clipBufferListener(),
+    var buffer = d4_geo_clipBufferListener(),
         ringListener = clipLine(buffer),
         ring;
 
@@ -81,7 +81,7 @@ function d3_geo_clip(pointVisible, clipLine, interpolate) {
       // TODO compute on-the-fly?
       if (!n) {
         invisible = true;
-        invisibleArea += d3_geo_clipAreaRing(ring, -1);
+        invisibleArea += d4_geo_clipAreaRing(ring, -1);
         ring = null;
         return;
       }
@@ -91,7 +91,7 @@ function d3_geo_clip(pointVisible, clipLine, interpolate) {
       // TODO compute on-the-fly?
       if (clean & 1) {
         segment = ringSegments[0];
-        visibleArea += d3_geo_clipAreaRing(segment, 1);
+        visibleArea += d4_geo_clipAreaRing(segment, 1);
         var n = segment.length - 1,
             i = -1,
             point;
@@ -105,24 +105,24 @@ function d3_geo_clip(pointVisible, clipLine, interpolate) {
       // TODO reuse bufferListener.rejoin()?
       if (n > 1 && clean & 2) ringSegments.push(ringSegments.pop().concat(ringSegments.shift()));
 
-      segments.push(ringSegments.filter(d3_geo_clipSegmentLength1));
+      segments.push(ringSegments.filter(d4_geo_clipSegmentLength1));
     }
 
     return clip;
   };
 }
 
-function d3_geo_clipSegmentLength1(segment) {
+function d4_geo_clipSegmentLength1(segment) {
   return segment.length > 1;
 }
 
-function d3_geo_clipBufferListener() {
+function d4_geo_clipBufferListener() {
   var lines = [],
       line;
   return {
     lineStart: function() { lines.push(line = []); },
     point: function(λ, φ) { line.push([λ, φ]); },
-    lineEnd: d3_noop,
+    lineEnd: d4_noop,
     buffer: function() {
       var buffer = lines;
       lines = [];
@@ -141,7 +141,7 @@ function d3_geo_clipBufferListener() {
 // Based on Robert. G. Chamberlain and William H. Duquette,
 // “Some Algorithms for Polygons on a Sphere”,
 // http://trs-new.jpl.nasa.gov/dspace/handle/2014/40409
-function d3_geo_clipAreaRing(ring, invisible) {
+function d4_geo_clipAreaRing(ring, invisible) {
   if (!(n = ring.length)) return 0;
   var n,
       i = 0,
@@ -190,7 +190,7 @@ function d3_geo_clipAreaRing(ring, invisible) {
 
 // Intersection points are sorted along the clip edge. For both antimeridian
 // cutting and circle clipping, the same comparison is used.
-function d3_geo_clipSort(a, b) {
+function d4_geo_clipSort(a, b) {
   return ((a = a.point)[0] < 0 ? a[1] - π / 2 - ε : π / 2 - a[1])
        - ((b = b.point)[0] < 0 ? b[1] - π / 2 - ε : π / 2 - b[1]);
 }

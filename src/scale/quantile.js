@@ -3,29 +3,29 @@ import "../arrays/bisect";
 import "../arrays/quantile";
 import "scale";
 
-d3.scale.quantile = function() {
-  return d3_scale_quantile([], []);
+d4.scale.quantile = function() {
+  return d4_scale_quantile([], []);
 };
 
-function d3_scale_quantile(domain, range) {
+function d4_scale_quantile(domain, range) {
   var thresholds;
 
   function rescale() {
     var k = 0,
         q = range.length;
     thresholds = [];
-    while (++k < q) thresholds[k - 1] = d3.quantile(domain, k / q);
+    while (++k < q) thresholds[k - 1] = d4.quantile(domain, k / q);
     return scale;
   }
 
   function scale(x) {
     if (isNaN(x = +x)) return NaN;
-    return range[d3.bisect(thresholds, x)];
+    return range[d4.bisect(thresholds, x)];
   }
 
   scale.domain = function(x) {
     if (!arguments.length) return domain;
-    domain = x.filter(function(d) { return !isNaN(d); }).sort(d3.ascending);
+    domain = x.filter(function(d) { return !isNaN(d); }).sort(d4.ascending);
     return rescale();
   };
 
@@ -40,7 +40,7 @@ function d3_scale_quantile(domain, range) {
   };
 
   scale.copy = function() {
-    return d3_scale_quantile(domain, range); // copy on write!
+    return d4_scale_quantile(domain, range); // copy on write!
   };
 
   return rescale();

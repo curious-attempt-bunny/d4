@@ -8,8 +8,8 @@ suite.addBatch({
   "select(body)": {
     topic: load("selection/call").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "calls the function once": function(body) {
         var count = 0;
@@ -42,8 +42,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/call").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div").data([0, 1]).enter().append("div");
+      topic: function(d4) {
+        return d4.select("body").selectAll("div").data([0, 1]).enter().append("div");
       },
       "calls the function once": function(div) {
         var count = 0;

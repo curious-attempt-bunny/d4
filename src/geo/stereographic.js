@@ -2,11 +2,11 @@ import "azimuthal";
 import "geo";
 import "projection";
 
-var d3_geo_stereographic = d3_geo_azimuthal(
+var d4_geo_stereographic = d4_geo_azimuthal(
   function(cosλcosφ) { return 1 / (1 + cosλcosφ); },
   function(ρ) { return 2 * Math.atan(ρ); }
 );
 
-(d3.geo.stereographic = function() {
-  return d3_geo_projection(d3_geo_stereographic);
-}).raw = d3_geo_stereographic;
+(d4.geo.stereographic = function() {
+  return d4_geo_projection(d4_geo_stereographic);
+}).raw = d4_geo_stereographic;

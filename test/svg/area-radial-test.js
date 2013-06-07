@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.svg.area.radial");
+var suite = vows.describe("d4.svg.area.radial");
 
 suite.addBatch({
   "area.radial": {
-    topic: load("svg/area-radial").expression("d3.svg.area.radial"),
+    topic: load("svg/area-radial").expression("d4.svg.area.radial"),
 
     "radius is an alias for setting innerRadius and outerRadius": function(area) {
       var a = area().radius(f);

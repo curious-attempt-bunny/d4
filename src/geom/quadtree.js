@@ -2,15 +2,15 @@ import "../core/functor";
 import "../svg/line";
 import "geom";
 
-d3.geom.quadtree = function(points, x1, y1, x2, y2) {
-  var x = d3_svg_lineX,
-      y = d3_svg_lineY,
+d4.geom.quadtree = function(points, x1, y1, x2, y2) {
+  var x = d4_svg_lineX,
+      y = d4_svg_lineY,
       compat;
 
   // For backwards-compatibility.
   if (compat = arguments.length) {
-    x = d3_geom_quadtreeCompatX;
-    y = d3_geom_quadtreeCompatY;
+    x = d4_geom_quadtreeCompatX;
+    y = d4_geom_quadtreeCompatY;
     if (compat === 3) {
       y2 = y1;
       x2 = x1;
@@ -21,8 +21,8 @@ d3.geom.quadtree = function(points, x1, y1, x2, y2) {
 
   function quadtree(data) {
     var d,
-        fx = d3_functor(x),
-        fy = d3_functor(y),
+        fx = d4_functor(x),
+        fy = d4_functor(y),
         xs,
         ys,
         i,
@@ -105,7 +105,7 @@ d3.geom.quadtree = function(points, x1, y1, x2, y2) {
 
       // Recursively insert into the child node.
       n.leaf = false;
-      n = n.nodes[i] || (n.nodes[i] = d3_geom_quadtreeNode());
+      n = n.nodes[i] || (n.nodes[i] = d4_geom_quadtreeNode());
 
       // Update the bounds as we recurse.
       if (right) x1 = sx; else x2 = sx;
@@ -114,14 +114,14 @@ d3.geom.quadtree = function(points, x1, y1, x2, y2) {
     }
 
     // Create the root node.
-    var root = d3_geom_quadtreeNode();
+    var root = d4_geom_quadtreeNode();
 
     root.add = function(d) {
       insert(root, d, +fx(d, ++i), +fy(d, i), x1_, y1_, x2_, y2_);
     };
 
     root.visit = function(f) {
-      d3_geom_quadtreeVisit(f, root, x1_, y1_, x2_, y2_);
+      d4_geom_quadtreeVisit(f, root, x1_, y1_, x2_, y2_);
     };
 
     // Insert all points.
@@ -161,10 +161,10 @@ d3.geom.quadtree = function(points, x1, y1, x2, y2) {
   return quadtree;
 };
 
-function d3_geom_quadtreeCompatX(d) { return d.x; }
-function d3_geom_quadtreeCompatY(d) { return d.y; }
+function d4_geom_quadtreeCompatX(d) { return d.x; }
+function d4_geom_quadtreeCompatY(d) { return d.y; }
 
-function d3_geom_quadtreeNode() {
+function d4_geom_quadtreeNode() {
   return {
     leaf: true,
     nodes: [],
@@ -174,14 +174,14 @@ function d3_geom_quadtreeNode() {
   };
 }
 
-function d3_geom_quadtreeVisit(f, node, x1, y1, x2, y2) {
+function d4_geom_quadtreeVisit(f, node, x1, y1, x2, y2) {
   if (!f(node, x1, y1, x2, y2)) {
     var sx = (x1 + x2) * .5,
         sy = (y1 + y2) * .5,
         children = node.nodes;
-    if (children[0]) d3_geom_quadtreeVisit(f, children[0], x1, y1, sx, sy);
-    if (children[1]) d3_geom_quadtreeVisit(f, children[1], sx, y1, x2, sy);
-    if (children[2]) d3_geom_quadtreeVisit(f, children[2], x1, sy, sx, y2);
-    if (children[3]) d3_geom_quadtreeVisit(f, children[3], sx, sy, x2, y2);
+    if (children[0]) d4_geom_quadtreeVisit(f, children[0], x1, y1, sx, sy);
+    if (children[1]) d4_geom_quadtreeVisit(f, children[1], sx, y1, x2, sy);
+    if (children[2]) d4_geom_quadtreeVisit(f, children[2], x1, sy, sx, y2);
+    if (children[3]) d4_geom_quadtreeVisit(f, children[3], sx, sy, x2, y2);
   }
 }

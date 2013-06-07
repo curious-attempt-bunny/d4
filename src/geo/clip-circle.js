@@ -5,13 +5,13 @@ import "circle";
 import "spherical";
 
 // Clip features against a small circle centered at [0°, 0°].
-function d3_geo_clipCircle(radius) {
+function d4_geo_clipCircle(radius) {
   var cr = Math.cos(radius),
       smallRadius = cr > 0,
       notHemisphere = Math.abs(cr) > ε, // TODO optimise for this common case
-      interpolate = d3_geo_circleInterpolate(radius, 6 * d3_radians);
+      interpolate = d4_geo_circleInterpolate(radius, 6 * d4_radians);
 
-  return d3_geo_clip(visible, clipLine, interpolate);
+  return d4_geo_clip(visible, clipLine, interpolate);
 
   function visible(λ, φ) {
     return Math.cos(λ) * Math.cos(φ) > cr;
@@ -46,7 +46,7 @@ function d3_geo_clipCircle(radius) {
         // TODO ignore if not clipping polygons.
         if (v !== v0) {
           point2 = intersect(point0, point1);
-          if (d3_geo_sphericalEqual(point0, point2) || d3_geo_sphericalEqual(point1, point2)) {
+          if (d4_geo_sphericalEqual(point0, point2) || d4_geo_sphericalEqual(point1, point2)) {
             point1[0] += ε;
             point1[1] += ε;
             v = visible(point1[0], point1[1]);
@@ -85,7 +85,7 @@ function d3_geo_clipCircle(radius) {
             }
           }
         }
-        if (v && (!point0 || !d3_geo_sphericalEqual(point0, point1))) {
+        if (v && (!point0 || !d4_geo_sphericalEqual(point0, point1))) {
           listener.point(point1[0], point1[1]);
         }
         point0 = point1, v0 = v, c0 = c;
@@ -102,15 +102,15 @@ function d3_geo_clipCircle(radius) {
 
   // Intersects the great circle between a and b with the clip circle.
   function intersect(a, b, two) {
-    var pa = d3_geo_cartesian(a),
-        pb = d3_geo_cartesian(b);
+    var pa = d4_geo_cartesian(a),
+        pb = d4_geo_cartesian(b);
 
     // We have two planes, n1.p = d1 and n2.p = d2.
     // Find intersection line p(t) = c1 n1 + c2 n2 + t (n1 ⨯ n2).
     var n1 = [1, 0, 0], // normal
-        n2 = d3_geo_cartesianCross(pa, pb),
-        n2n2 = d3_geo_cartesianDot(n2, n2),
-        n1n2 = n2[0], // d3_geo_cartesianDot(n1, n2),
+        n2 = d4_geo_cartesianCross(pa, pb),
+        n2n2 = d4_geo_cartesianDot(n2, n2),
+        n1n2 = n2[0], // d4_geo_cartesianDot(n1, n2),
         determinant = n2n2 - n1n2 * n1n2;
 
     // Two polar points.
@@ -118,23 +118,23 @@ function d3_geo_clipCircle(radius) {
 
     var c1 =  cr * n2n2 / determinant,
         c2 = -cr * n1n2 / determinant,
-        n1xn2 = d3_geo_cartesianCross(n1, n2),
-        A = d3_geo_cartesianScale(n1, c1),
-        B = d3_geo_cartesianScale(n2, c2);
-    d3_geo_cartesianAdd(A, B);
+        n1xn2 = d4_geo_cartesianCross(n1, n2),
+        A = d4_geo_cartesianScale(n1, c1),
+        B = d4_geo_cartesianScale(n2, c2);
+    d4_geo_cartesianAdd(A, B);
 
     // Solve |p(t)|^2 = 1.
     var u = n1xn2,
-        w = d3_geo_cartesianDot(A, u),
-        uu = d3_geo_cartesianDot(u, u),
-        t2 = w * w - uu * (d3_geo_cartesianDot(A, A) - 1);
+        w = d4_geo_cartesianDot(A, u),
+        uu = d4_geo_cartesianDot(u, u),
+        t2 = w * w - uu * (d4_geo_cartesianDot(A, A) - 1);
 
     if (t2 < 0) return;
 
     var t = Math.sqrt(t2),
-        q = d3_geo_cartesianScale(u, (-w - t) / uu);
-    d3_geo_cartesianAdd(q, A);
-    q = d3_geo_spherical(q);
+        q = d4_geo_cartesianScale(u, (-w - t) / uu);
+    d4_geo_cartesianAdd(q, A);
+    q = d4_geo_spherical(q);
     if (!two) return q;
 
     // Two intersection points.
@@ -156,9 +156,9 @@ function d3_geo_clipCircle(radius) {
           ? φ0 + φ1 > 0 ^ q[1] < (Math.abs(q[0] - λ0) < ε ? φ0 : φ1)
           : φ0 <= q[1] && q[1] <= φ1
         : δλ > π ^ (λ0 <= q[0] && q[0] <= λ1)) {
-      var q1 = d3_geo_cartesianScale(u, (-w + t) / uu);
-      d3_geo_cartesianAdd(q1, A);
-      return [q, d3_geo_spherical(q1)];
+      var q1 = d4_geo_cartesianScale(u, (-w + t) / uu);
+      d4_geo_cartesianAdd(q1, A);
+      return [q, d4_geo_spherical(q1)];
     }
   }
 

@@ -1,27 +1,27 @@
 import "format";
 import "time";
 
-d3.time.format.utc = function(template) {
-  var local = d3.time.format(template);
+d4.time.format.utc = function(template) {
+  var local = d4.time.format(template);
 
   function format(date) {
     try {
-      d3_time = d3_time_utc;
-      var utc = new d3_time();
+      d4_time = d4_time_utc;
+      var utc = new d4_time();
       utc._ = date;
       return local(utc);
     } finally {
-      d3_time = Date;
+      d4_time = Date;
     }
   }
 
   format.parse = function(string) {
     try {
-      d3_time = d3_time_utc;
+      d4_time = d4_time_utc;
       var date = local.parse(string);
       return date && date._;
     } finally {
-      d3_time = Date;
+      d4_time = Date;
     }
   };
 

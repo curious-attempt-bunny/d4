@@ -2,9 +2,9 @@ import "../math/trigonometry";
 import "geo";
 
 // Length returned in radians; multiply by radius for distance.
-d3.geo.distance = function(a, b) {
-  var Δλ = (b[0] - a[0]) * d3_radians,
-      φ0 = a[1] * d3_radians, φ1 = b[1] * d3_radians,
+d4.geo.distance = function(a, b) {
+  var Δλ = (b[0] - a[0]) * d4_radians,
+      φ0 = a[1] * d4_radians, φ1 = b[1] * d4_radians,
       sinΔλ = Math.sin(Δλ), cosΔλ = Math.cos(Δλ),
       sinφ0 = Math.sin(φ0), cosφ0 = Math.cos(φ0),
       sinφ1 = Math.sin(φ1), cosφ1 = Math.cos(φ1),

@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.zip");
+var suite = vows.describe("d4.zip");
 
 suite.addBatch({
   "zip": {
-    topic: load("arrays/zip").expression("d3.zip"),
+    topic: load("arrays/zip").expression("d4.zip"),
     "transposes a square matrix": function(zip) {
       assert.deepEqual(zip([1, 2], [3, 4]), [[1, 3], [2, 4]]);
     },

@@ -1,8 +1,8 @@
 import "number";
 
-d3.interpolateString = d3_interpolateString;
+d4.interpolateString = d4_interpolateString;
 
-function d3_interpolateString(a, b) {
+function d4_interpolateString(a, b) {
   var m, // current match
       i, // current index
       j, // current index (for coalescing)
@@ -17,19 +17,19 @@ function d3_interpolateString(a, b) {
   a = a + "", b = b + "";
 
   // Reset our regular expression!
-  d3_interpolate_number.lastIndex = 0;
+  d4_interpolate_number.lastIndex = 0;
 
   // Find all numbers in b.
-  for (i = 0; m = d3_interpolate_number.exec(b); ++i) {
+  for (i = 0; m = d4_interpolate_number.exec(b); ++i) {
     if (m.index) s.push(b.substring(s0, s1 = m.index));
     q.push({i: s.length, x: m[0]});
     s.push(null);
-    s0 = d3_interpolate_number.lastIndex;
+    s0 = d4_interpolate_number.lastIndex;
   }
   if (s0 < b.length) s.push(b.substring(s0));
 
   // Find all numbers in a.
-  for (i = 0, n = q.length; (m = d3_interpolate_number.exec(a)) && i < n; ++i) {
+  for (i = 0, n = q.length; (m = d4_interpolate_number.exec(a)) && i < n; ++i) {
     o = q[i];
     if (o.x == m[0]) { // The numbers match, so coalesce.
       if (o.i) {
@@ -55,7 +55,7 @@ function d3_interpolateString(a, b) {
       n--;
       i--;
     } else {
-      o.x = d3_interpolateNumber(parseFloat(m[0]), parseFloat(o.x));
+      o.x = d4_interpolateNumber(parseFloat(m[0]), parseFloat(o.x));
     }
   }
 
@@ -85,4 +85,4 @@ function d3_interpolateString(a, b) {
   };
 }
 
-var d3_interpolate_number = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g;
+var d4_interpolate_number = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g;

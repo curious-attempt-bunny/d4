@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.timer");
+var suite = vows.describe("d4.timer");
 
 suite.addBatch({
   "timer": {
-    topic: load("event/timer").expression("d3.timer").document(),
+    topic: load("event/timer").expression("d4.timer").document(),
 
     "with no delay": {
       topic: delay(),

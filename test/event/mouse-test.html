@@ -2,10 +2,10 @@
 <meta charset="utf-8">
 <title>HTML Mouse Test</title>
 <body>
-<script src="../../d3.js"></script>
+<script src="../../d4.js"></script>
 <script>
 
-var body = d3.select("body");
+var body = d4.select("body");
 
 var div = body.append("div")
     .style("width", "1000px")
@@ -15,8 +15,8 @@ var div = body.append("div")
 
 var span = body.append("span");
 
-d3.select(window).on("mousemove", function() {
-  span.text(d3.mouse(div[0][0]));
+d4.select(window).on("mousemove", function() {
+  span.text(d4.mouse(div[0][0]));
 });
 
 </script>

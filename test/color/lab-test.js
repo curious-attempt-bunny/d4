@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.lab");
+var suite = vows.describe("d4.lab");
 
 suite.addBatch({
   "lab": {
-    topic: load("color/lab").expression("d3.lab"),
+    topic: load("color/lab").expression("d4.lab"),
     "converts string channel values to numbers": function(lab) {
       assertLabEqual(lab("50", "-4", "-32"), 50, -4, -32);
     },

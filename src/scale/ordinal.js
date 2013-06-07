@@ -2,11 +2,11 @@ import "../arrays/map";
 import "../arrays/range";
 import "scale";
 
-d3.scale.ordinal = function() {
-  return d3_scale_ordinal([], {t: "range", a: [[]]});
+d4.scale.ordinal = function() {
+  return d4_scale_ordinal([], {t: "range", a: [[]]});
 };
 
-function d3_scale_ordinal(domain, ranger) {
+function d4_scale_ordinal(domain, ranger) {
   var index,
       range,
       rangeBand;
@@ -16,13 +16,13 @@ function d3_scale_ordinal(domain, ranger) {
   }
 
   function steps(start, step) {
-    return d3.range(domain.length).map(function(i) { return start + step * i; });
+    return d4.range(domain.length).map(function(i) { return start + step * i; });
   }
 
   scale.domain = function(x) {
     if (!arguments.length) return domain;
     domain = [];
-    index = new d3_Map;
+    index = new d4_Map;
     var i = -1, n = x.length, xi;
     while (++i < n) if (!index.has(xi = x[i])) index.set(xi, domain.push(xi));
     return scale[ranger.t].apply(scale, ranger.a);
@@ -81,11 +81,11 @@ function d3_scale_ordinal(domain, ranger) {
   };
 
   scale.rangeExtent = function() {
-    return d3_scaleExtent(ranger.a[0]);
+    return d4_scaleExtent(ranger.a[0]);
   };
 
   scale.copy = function() {
-    return d3_scale_ordinal(domain, ranger);
+    return d4_scale_ordinal(domain, ranger);
   };
 
   return scale.domain(domain);

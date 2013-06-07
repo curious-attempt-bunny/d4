@@ -3,11 +3,11 @@ var vows = require("vows"),
     assert = require("../assert"),
     projectionTestSuite = require("./projection-test-suite");
 
-var suite = vows.describe("d3.geo.conicEquidistant");
+var suite = vows.describe("d4.geo.conicEquidistant");
 
 suite.addBatch({
   "conicEquidistant": {
-    topic: load("geo/conic-equidistant").expression("d3.geo.conicEquidistant"),
+    topic: load("geo/conic-equidistant").expression("d4.geo.conicEquidistant"),
     "default": projectionTestSuite({
       topic: function(projection) { return projection(); }
     }, {

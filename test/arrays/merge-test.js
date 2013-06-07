@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.merge");
+var suite = vows.describe("d4.merge");
 
 suite.addBatch({
   "merge": {
-    topic: load("arrays/merge").expression("d3.merge"),
+    topic: load("arrays/merge").expression("d4.merge"),
     "merges an array of arrays": function(merge) {
       var a = {}, b = {}, c = {}, d = {}, e = {}, f = {};
       assert.deepEqual(merge([[a], [b, c], [d, e, f]]), [a, b, c, d, e, f]);

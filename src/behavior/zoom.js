@@ -6,13 +6,13 @@ import "../event/touches";
 import "../selection/selection";
 import "behavior";
 
-d3.behavior.zoom = function() {
+d4.behavior.zoom = function() {
   var translate = [0, 0],
       translate0, // translate when we started zooming (to avoid drift)
       scale = 1,
       scale0, // scale when we started touching
-      scaleExtent = d3_behavior_zoomInfinity,
-      event = d3_eventDispatch(zoom, "zoom"),
+      scaleExtent = d4_behavior_zoomInfinity,
+      event = d4_eventDispatch(zoom, "zoom"),
       x0,
       x1,
       y0,
@@ -22,7 +22,7 @@ d3.behavior.zoom = function() {
   function zoom() {
     this.on("mousedown.zoom", mousedown)
         .on("mousemove.zoom", mousemove)
-        .on(d3_behavior_zoomWheel + ".zoom", mousewheel)
+        .on(d4_behavior_zoomWheel + ".zoom", mousewheel)
         .on("dblclick.zoom", dblclick)
         .on("touchstart.zoom", touchstart)
         .on("touchmove.zoom", touchmove)
@@ -45,7 +45,7 @@ d3.behavior.zoom = function() {
 
   zoom.scaleExtent = function(x) {
     if (!arguments.length) return scaleExtent;
-    scaleExtent = x == null ? d3_behavior_zoomInfinity : x.map(Number);
+    scaleExtent = x == null ? d4_behavior_zoomInfinity : x.map(Number);
     return zoom;
   };
 
@@ -92,38 +92,38 @@ d3.behavior.zoom = function() {
 
   function dispatch(event) {
     rescale();
-    d3.event.preventDefault();
+    d4.event.preventDefault();
     event({type: "zoom", scale: scale, translate: translate});
   }
 
   function mousedown() {
     var target = this,
         event_ = event.of(target, arguments),
-        eventTarget = d3.event.target,
+        eventTarget = d4.event.target,
         moved = 0,
-        w = d3.select(d3_window).on("mousemove.zoom", mousemove).on("mouseup.zoom", mouseup),
-        l = location(d3.mouse(target));
+        w = d4.select(d4_window).on("mousemove.zoom", mousemove).on("mouseup.zoom", mouseup),
+        l = location(d4.mouse(target));
 
-    d3_window.focus();
-    d3_eventCancel();
+    d4_window.focus();
+    d4_eventCancel();
 
     function mousemove() {
       moved = 1;
-      translateTo(d3.mouse(target), l);
+      translateTo(d4.mouse(target), l);
       dispatch(event_);
     }
 
     function mouseup() {
-      if (moved) d3_eventCancel();
+      if (moved) d4_eventCancel();
       w.on("mousemove.zoom", null).on("mouseup.zoom", null);
-      if (moved && d3.event.target === eventTarget) d3_eventSuppress(w, "click.zoom");
+      if (moved && d4.event.target === eventTarget) d4_eventSuppress(w, "click.zoom");
     }
   }
 
   function mousewheel() {
-    if (!translate0) translate0 = location(d3.mouse(this));
-    scaleTo(Math.pow(2, d3_behavior_zoomDelta() * .002) * scale);
-    translateTo(d3.mouse(this), translate0);
+    if (!translate0) translate0 = location(d4.mouse(this));
+    scaleTo(Math.pow(2, d4_behavior_zoomDelta() * .002) * scale);
+    translateTo(d4.mouse(this), translate0);
     dispatch(event.of(this, arguments));
   }
 
@@ -132,20 +132,20 @@ d3.behavior.zoom = function() {
   }
 
   function dblclick() {
-    var p = d3.mouse(this), l = location(p), k = Math.log(scale) / Math.LN2;
-    scaleTo(Math.pow(2, d3.event.shiftKey ? Math.ceil(k) - 1 : Math.floor(k) + 1));
+    var p = d4.mouse(this), l = location(p), k = Math.log(scale) / Math.LN2;
+    scaleTo(Math.pow(2, d4.event.shiftKey ? Math.ceil(k) - 1 : Math.floor(k) + 1));
     translateTo(p, l);
     dispatch(event.of(this, arguments));
   }
 
   function touchstart() {
-    var touches = d3.touches(this),
+    var touches = d4.touches(this),
         now = Date.now();
 
     scale0 = scale;
     translate0 = {};
     touches.forEach(function(t) { translate0[t.identifier] = location(t); });
-    d3_eventCancel();
+    d4_eventCancel();
 
     if (touches.length === 1) {
       if (now - touchtime < 500) { // dbltap
@@ -159,27 +159,27 @@ d3.behavior.zoom = function() {
   }
 
   function touchmove() {
-    var touches = d3.touches(this),
+    var touches = d4.touches(this),
         p0 = touches[0],
         l0 = translate0[p0.identifier];
     if (p1 = touches[1]) {
       var p1, l1 = translate0[p1.identifier];
       p0 = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
       l0 = [(l0[0] + l1[0]) / 2, (l0[1] + l1[1]) / 2];
-      scaleTo(d3.event.scale * scale0);
+      scaleTo(d4.event.scale * scale0);
     }
     translateTo(p0, l0);
     touchtime = null;
     dispatch(event.of(this, arguments));
   }
 
-  return d3.rebind(zoom, event, "on");
+  return d4.rebind(zoom, event, "on");
 };
 
-var d3_behavior_zoomInfinity = [0, Infinity]; // default scale extent
+var d4_behavior_zoomInfinity = [0, Infinity]; // default scale extent
 
 // https://developer.mozilla.org/en-US/docs/Mozilla_event_reference/wheel
-var d3_behavior_zoomDelta, d3_behavior_zoomWheel
-    = "onwheel" in d3_document ? (d3_behavior_zoomDelta = function() { return -d3.event.deltaY * (d3.event.deltaMode ? 120 : 1); }, "wheel")
-    : "onmousewheel" in d3_document ? (d3_behavior_zoomDelta = function() { return d3.event.wheelDelta; }, "mousewheel")
-    : (d3_behavior_zoomDelta = function() { return -d3.event.detail; }, "MozMousePixelScroll");
+var d4_behavior_zoomDelta, d4_behavior_zoomWheel
+    = "onwheel" in d4_document ? (d4_behavior_zoomDelta = function() { return -d4.event.deltaY * (d4.event.deltaMode ? 120 : 1); }, "wheel")
+    : "onmousewheel" in d4_document ? (d4_behavior_zoomDelta = function() { return d4.event.wheelDelta; }, "mousewheel")
+    : (d4_behavior_zoomDelta = function() { return -d4.event.detail; }, "MozMousePixelScroll");

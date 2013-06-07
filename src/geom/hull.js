@@ -10,17 +10,17 @@ import "geom";
  * @param vertices [[x1, y1], [x2, y2], …]
  * @returns polygon [[x1, y1], [x2, y2], …]
  */
-d3.geom.hull = function(vertices) {
-  var x = d3_svg_lineX,
-      y = d3_svg_lineY;
+d4.geom.hull = function(vertices) {
+  var x = d4_svg_lineX,
+      y = d4_svg_lineY;
 
   if (arguments.length) return hull(vertices);
 
   function hull(data) {
     if (data.length < 3) return [];
 
-    var fx = d3_functor(x),
-        fy = d3_functor(y),
+    var fx = d4_functor(x),
+        fy = d4_functor(y),
         n = data.length,
         vertices, // TODO use parallel arrays
         plen = n - 1,
@@ -29,7 +29,7 @@ d3.geom.hull = function(vertices) {
         d,
         i, j, h = 0, x1, y1, x2, y2, u, v, a, sp;
 
-    if (fx === d3_svg_lineX && y === d3_svg_lineY) vertices = data;
+    if (fx === d4_svg_lineX && y === d4_svg_lineY) vertices = data;
     else for (i = 0, vertices = []; i < n; ++i) {
       vertices.push([+fx.call(this, d = data[i], i), +fy.call(this, d, i)]);
     }
@@ -87,7 +87,7 @@ d3.geom.hull = function(vertices) {
     // do graham's scan
     for (; j < plen; ++j) {
       if (points[j].index < 0) continue; // skip tossed out points
-      while (!d3_geom_hullCCW(stack[sp - 2], stack[sp - 1], points[j].index, vertices)) {
+      while (!d4_geom_hullCCW(stack[sp - 2], stack[sp - 1], points[j].index, vertices)) {
         --sp;
       }
       stack[sp++] = points[j].index;
@@ -111,7 +111,7 @@ d3.geom.hull = function(vertices) {
 };
 
 // are three points in counter-clockwise order?
-function d3_geom_hullCCW(i1, i2, i3, v) {
+function d4_geom_hullCCW(i1, i2, i3, v) {
   var t, a, b, c, d, e, f;
   t = v[i1]; a = t[0]; b = t[1];
   t = v[i2]; c = t[0]; d = t[1];

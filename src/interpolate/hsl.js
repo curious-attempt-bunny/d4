@@ -1,12 +1,12 @@
 import "../color/hsl";
 
-d3.interpolateHsl = d3_interpolateHsl;
+d4.interpolateHsl = d4_interpolateHsl;
 
 // interpolates HSL space, but outputs RGB string (for compatibility)
 
-function d3_interpolateHsl(a, b) {
-  a = d3.hsl(a);
-  b = d3.hsl(b);
+function d4_interpolateHsl(a, b) {
+  a = d4.hsl(a);
+  b = d4.hsl(b);
   var ah = a.h,
       as = a.s,
       al = a.l,
@@ -17,6 +17,6 @@ function d3_interpolateHsl(a, b) {
   if (isNaN(bh)) bh = 0, ah = isNaN(ah) ? b.h : ah;
   else if (bh > 180) bh -= 360; else if (bh < -180) bh += 360; // shortest path
   return function(t) {
-    return d3_hsl_rgb(ah + bh * t, as + bs * t, al + bl * t) + "";
+    return d4_hsl_rgb(ah + bh * t, as + bs * t, al + bl * t) + "";
   };
 }

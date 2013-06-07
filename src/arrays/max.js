@@ -1,4 +1,4 @@
-d3.max = function(array, f) {
+d4.max = function(array, f) {
   var i = -1,
       n = array.length,
       a,

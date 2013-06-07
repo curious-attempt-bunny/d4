@@ -6,7 +6,7 @@ var suite = vows.describe("ns");
 
 suite.addBatch({
   "ns": {
-    topic: load("core/ns").expression("d3.ns"),
+    topic: load("core/ns").expression("d4.ns"),
     "prefix": {
       topic: function(ns) {
         return ns.prefix;

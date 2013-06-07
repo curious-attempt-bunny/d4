@@ -1,16 +1,16 @@
 import "../arrays/map";
 
-d3.dispatch = function() {
-  var dispatch = new d3_dispatch,
+d4.dispatch = function() {
+  var dispatch = new d4_dispatch,
       i = -1,
       n = arguments.length;
-  while (++i < n) dispatch[arguments[i]] = d3_dispatch_event(dispatch);
+  while (++i < n) dispatch[arguments[i]] = d4_dispatch_event(dispatch);
   return dispatch;
 };
 
-function d3_dispatch() {}
+function d4_dispatch() {}
 
-d3_dispatch.prototype.on = function(type, listener) {
+d4_dispatch.prototype.on = function(type, listener) {
   var i = type.indexOf("."),
       name = "";
 
@@ -32,9 +32,9 @@ d3_dispatch.prototype.on = function(type, listener) {
   }
 };
 
-function d3_dispatch_event(dispatch) {
+function d4_dispatch_event(dispatch) {
   var listeners = [],
-      listenerByName = new d3_Map;
+      listenerByName = new d4_Map;
 
   function event() {
     var z = listeners, // defensive reference

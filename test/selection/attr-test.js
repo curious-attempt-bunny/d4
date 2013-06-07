@@ -9,8 +9,8 @@ suite.addBatch({
   "select(body)": {
     topic: load("selection/attr").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "sets an attribute as a string": function(body) {
         body.attr("bgcolor", "red");
@@ -98,8 +98,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/attr").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div").data([0, 1]).enter().append("div");
+      topic: function(d4) {
+        return d4.select("body").selectAll("div").data([0, 1]).enter().append("div");
       },
       "sets an attribute as a string": function(div) {
         div.attr("bgcolor", "red");

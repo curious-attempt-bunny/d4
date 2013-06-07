@@ -2,13 +2,13 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("assert");
 
-var suite = vows.describe("d3.geo.length");
+var suite = vows.describe("d4.geo.length");
 
 var π = Math.PI;
 
 suite.addBatch({
   "length": {
-    topic: load("geo/length").expression("d3.geo.length"),
+    topic: load("geo/length").expression("d4.geo.length"),
     "the length of points are zero": function(length) {
       assert.inDelta(length({type: "Point", coordinates: [0, 0]}), 0, 1e-6);
       assert.inDelta(length({type: "MultiPoint", coordinates: [[0, 1], [2, 3]]}), 0, 1e-6);

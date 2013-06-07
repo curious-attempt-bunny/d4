@@ -2,9 +2,9 @@ var assert = require("../assert");
 
 module.exports = {
   "start": {
-    topic: function(d3) {
+    topic: function(d4) {
       var cb = this.callback,
-          div = d3.select("body").html("").selectAll().data(["foo", "bar"]).enter().append("div").attr("class", String),
+          div = d4.select("body").html("").selectAll().data(["foo", "bar"]).enter().append("div").attr("class", String),
           transition = div.transition().delay(350),
           then = Date.now(),
           n = 0,
@@ -47,7 +47,7 @@ module.exports = {
     },
 
     // For the same node, listeners will be called back in order, according to
-    // the implementation of d3.dispatch. However, the order of callbacks across
+    // the implementation of d4.dispatch. However, the order of callbacks across
     // nodes is not guaranteed; currently, callbacks are in reverse order if
     // they share the same delay, because of the timer queue. I suppose it'd be
     // slightly better if the callbacks were invoked in node order (consistent
@@ -74,9 +74,9 @@ module.exports = {
   },
 
   "end": {
-    topic: function(d3) {
+    topic: function(d4) {
       var cb = this.callback,
-          div = d3.select("body").html("").selectAll().data(["foo", "bar"]).enter().append("div").attr("class", String),
+          div = d4.select("body").html("").selectAll().data(["foo", "bar"]).enter().append("div").attr("class", String),
           transition = div.transition().duration(350),
           then = Date.now(),
           n = 0,
@@ -119,7 +119,7 @@ module.exports = {
     },
 
     // For the same node, listeners will be called back in order, according to
-    // the implementation of d3.dispatch. However, the order of callbacks across
+    // the implementation of d4.dispatch. However, the order of callbacks across
     // nodes is not guaranteed; currently, callbacks are in reverse order if
     // they share the same delay, because of the timer queue. I suppose it'd be
     // slightly better if the callbacks were invoked in node order (consistent
@@ -140,16 +140,16 @@ module.exports = {
       assert.isFalse("__transition__" in result.selection[0][1]);
     },
 
-    // I'd like to test d3.timer.flush here, but unfortunately there's a bug in
+    // I'd like to test d4.timer.flush here, but unfortunately there's a bug in
     // Vows where it really doesn't like to receive multiple callbacks from
     // different tests at the same time!
 
     "sequenced": {
-      topic: function(result, d3) {
+      topic: function(result, d4) {
         var cb = this.callback,
             node = result.selection[0][0],
             id = result.id;
-        d3.select(node).transition().delay(150).each("start", function() {
+        d4.select(node).transition().delay(150).each("start", function() {
           cb(null, {id: id, node: this});
         });
       },

@@ -5,11 +5,11 @@ var vows = require("vows"),
     local = time.local,
     utc = time.utc;
 
-var suite = vows.describe("d3.time.days");
+var suite = vows.describe("d4.time.days");
 
 suite.addBatch({
   "days": {
-    topic: load("time/day").expression("d3.time.days"),
+    topic: load("time/day").expression("d4.time.days"),
     "returns midnights": function(range) {
       assert.deepEqual(range(local(2010, 11, 31, 12), local(2011, 0, 3, 12)), [
         local(2011, 0, 1),

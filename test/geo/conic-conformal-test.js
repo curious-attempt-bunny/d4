@@ -3,11 +3,11 @@ var vows = require("vows"),
     assert = require("../assert"),
     projectionTestSuite = require("./projection-test-suite");
 
-var suite = vows.describe("d3.geo.conicConformal");
+var suite = vows.describe("d4.geo.conicConformal");
 
 suite.addBatch({
   "conicConformal": {
-    topic: load("geo/conic-conformal").expression("d3.geo.conicConformal"),
+    topic: load("geo/conic-conformal").expression("d4.geo.conicConformal"),
     "default": projectionTestSuite({
       topic: function(projection) { return projection(); }
     }, {

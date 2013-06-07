@@ -3,11 +3,11 @@ var vows = require("vows"),
     assert = require("../assert"),
     projectionTestSuite = require("./projection-test-suite");
 
-var suite = vows.describe("d3.geo.azimuthalEqualArea");
+var suite = vows.describe("d4.geo.azimuthalEqualArea");
 
 suite.addBatch({
   "azimuthalEqualArea": {
-    topic: load("geo/azimuthal-equal-area").expression("d3.geo.azimuthalEqualArea"),
+    topic: load("geo/azimuthal-equal-area").expression("d4.geo.azimuthalEqualArea"),
     "default": projectionTestSuite({
       topic: function(projection) { return projection(); }
     }, {

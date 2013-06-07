@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.max");
+var suite = vows.describe("d4.max");
 
 suite.addBatch({
   "max": {
-    topic: load("arrays/max").expression("d3.max"),
+    topic: load("arrays/max").expression("d4.max"),
     "returns the greatest numeric value for numbers": function(max) {
       assert.equal(max([1]), 1);
       assert.equal(max([5, 1, 2, 3, 4]), 5);

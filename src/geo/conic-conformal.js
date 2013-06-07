@@ -3,13 +3,13 @@ import "conic";
 import "geo";
 import "projection";
 
-function d3_geo_conicConformal(φ0, φ1) {
+function d4_geo_conicConformal(φ0, φ1) {
   var cosφ0 = Math.cos(φ0),
       t = function(φ) { return Math.tan(π / 4 + φ / 2); },
       n = φ0 === φ1 ? Math.sin(φ0) : Math.log(cosφ0 / Math.cos(φ1)) / Math.log(t(φ1) / t(φ0)),
       F = cosφ0 * Math.pow(t(φ0), n) / n;
 
-  if (!n) return d3_geo_mercator;
+  if (!n) return d4_geo_mercator;
 
   function forward(λ, φ) {
     var ρ = Math.abs(Math.abs(φ) - π / 2) < ε ? 0 : F / Math.pow(t(φ), n);
@@ -21,7 +21,7 @@ function d3_geo_conicConformal(φ0, φ1) {
 
   forward.invert = function(x, y) {
     var ρ0_y = F - y,
-        ρ = d3_sgn(n) * Math.sqrt(x * x + ρ0_y * ρ0_y);
+        ρ = d4_sgn(n) * Math.sqrt(x * x + ρ0_y * ρ0_y);
     return [
       Math.atan2(x, ρ0_y) / n,
       2 * Math.atan(Math.pow(F / ρ, 1 / n)) - π / 2
@@ -31,6 +31,6 @@ function d3_geo_conicConformal(φ0, φ1) {
   return forward;
 }
 
-(d3.geo.conicConformal = function() {
-  return d3_geo_conic(d3_geo_conicConformal);
-}).raw = d3_geo_conicConformal;
+(d4.geo.conicConformal = function() {
+  return d4_geo_conic(d4_geo_conicConformal);
+}).raw = d4_geo_conicConformal;

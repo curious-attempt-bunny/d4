@@ -1,8 +1,8 @@
 var assert = require("../assert");
 
 module.exports = {
-  topic: function(d3) {
-    return d3.select("body").append("div").text("foo").transition().text("bar");
+  topic: function(d4) {
+    return d4.select("body").append("div").text("foo").transition().text("bar");
   },
   "sets the text tween": function(div) {
     assert.typeOf(div.tween("text"), "function");

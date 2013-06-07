@@ -1,14 +1,14 @@
 var assert = require("../assert");
 
 module.exports = {
-  topic: function(d3) {
-    var s = d3.select("body").append("div")
+  topic: function(d4) {
+    var s = d4.select("body").append("div")
         .attr("display", "none")
         .attr("font-size", "20px")
         .attr("width", 20)
         .attr("color", "red")
         .attr("xlink:type", "simple")
-        .attr("xlink:href", "http://mbostock.github.com/d3/");
+        .attr("xlink:href", "http://mbostock.github.com/d4/");
 
     var t = s.transition()
         .attr("display", null)

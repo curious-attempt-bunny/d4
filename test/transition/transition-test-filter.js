@@ -4,8 +4,8 @@ var assert = require("../assert"),
 var datum = {};
 
 module.exports = {
-  topic: function(d3) {
-    return d3.select("body").html("").selectAll("div")
+  topic: function(d4) {
+    return d4.select("body").html("").selectAll("div")
         .data([0, 1])
       .enter().append("div")
       .selectAll("span")

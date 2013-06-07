@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.scale.category");
+var suite = vows.describe("d4.scale.category");
 
 suite.addBatch({
   "category": {
-    topic: load("scale/category").expression("d3.scale"),
+    topic: load("scale/category").expression("d4.scale"),
     "category10": category("category10", 10),
     "category20": category("category20", 20),
     "category20b": category("category20b", 20),

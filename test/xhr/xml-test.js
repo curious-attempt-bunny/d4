@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.xml");
+var suite = vows.describe("d4.xml");
 
 suite.addBatch({
   "xml": {
-    topic: load("xhr/xml").expression("d3.xml").document(),
+    topic: load("xhr/xml").expression("d4.xml").document(),
 
     "on a sample file": {
       topic: function(xml) {

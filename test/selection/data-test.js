@@ -8,8 +8,8 @@ suite.addBatch({
   "select(body)": {
     topic: load("selection/selection").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "assigns data as an array": function(body) {
         var data = new Object();
@@ -54,8 +54,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/data").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div").data([0, 1]).enter().append("div");
+      topic: function(d4) {
+        return d4.select("body").selectAll("div").data([0, 1]).enter().append("div");
       },
       "assigns data as an array": function(div) {
         var a = new Object(), b = new Object();
@@ -112,8 +112,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/data").document(),
     "on a simple page": {
-      "ignores duplicate keys in both data and selection": function(d3) {
-        var div = d3.select("body").html("").selectAll("div")
+      "ignores duplicate keys in both data and selection": function(d4) {
+        var div = d4.select("body").html("").selectAll("div")
             .data(["aa", "ab", "ac", "ba", "bb", "bc"])
           .enter().append("div")
             .text(function(d) { return d; });
@@ -155,8 +155,8 @@ suite.addBatch({
   "selectAll(div).selectAll(span)": {
     topic: load("selection/data").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div")
+      topic: function(d4) {
+        return d4.select("body").selectAll("div")
             .data([0, 1])
           .enter().append("div").selectAll("span")
             .data([0, 1])

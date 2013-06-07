@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.rotation");
+var suite = vows.describe("d4.geo.rotation");
 
 suite.addBatch({
   "rotation": {
-    topic: load("geo/rotation").expression("d3.geo.rotation"),
+    topic: load("geo/rotation").expression("d4.geo.rotation"),
     "a rotation of [+90°, 0°]": {
       topic: function(rotation) {
         return rotation([90, 0]);

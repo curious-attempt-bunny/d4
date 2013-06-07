@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.svg.arc");
+var suite = vows.describe("d4.svg.arc");
 
 suite.addBatch({
   "arc": {
-    topic: load("svg/arc").expression("d3.svg.arc"),
+    topic: load("svg/arc").expression("d4.svg.arc"),
 
     "innerRadius defaults to a function accessor": function(arc) {
       var a = arc().outerRadius(100).startAngle(0).endAngle(Math.PI);

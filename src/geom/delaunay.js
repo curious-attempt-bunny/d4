@@ -5,12 +5,12 @@ import "voronoi";
 * @param vertices [[x1, y1], [x2, y2], …]
 * @returns triangles [[[x1, y1], [x2, y2], [x3, y3]], …]
  */
-d3.geom.delaunay = function(vertices) {
+d4.geom.delaunay = function(vertices) {
   var edges = vertices.map(function() { return []; }),
       triangles = [];
 
   // Use the Voronoi tessellation to determine Delaunay edges.
-  d3_geom_voronoiTessellate(vertices, function(e) {
+  d4_geom_voronoiTessellate(vertices, function(e) {
     edges[e.region.l.index].push(vertices[e.region.r.index]);
   });
 

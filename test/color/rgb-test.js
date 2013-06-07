@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.rgb");
+var suite = vows.describe("d4.rgb");
 
 suite.addBatch({
   "rgb": {
-    topic: load("color/rgb").expression("d3.rgb"),
+    topic: load("color/rgb").expression("d4.rgb"),
     "floors channel values": function(rgb) {
       assert.rgbEqual(rgb(1.2, 2.6, 42.9), 1, 2, 42);
     },

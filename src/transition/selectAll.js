@@ -1,7 +1,7 @@
 import "../selection/select";
 import "transition";
 
-d3_transitionPrototype.selectAll = function(selector) {
+d4_transitionPrototype.selectAll = function(selector) {
   var id = this.id,
       subgroups = [],
       subgroup,
@@ -10,7 +10,7 @@ d3_transitionPrototype.selectAll = function(selector) {
       subnode,
       transition;
 
-  if (typeof selector !== "function") selector = d3_selection_selectorAll(selector);
+  if (typeof selector !== "function") selector = d4_selection_selectorAll(selector);
 
   for (var j = -1, m = this.length; ++j < m;) {
     for (var group = this[j], i = -1, n = group.length; ++i < n;) {
@@ -19,12 +19,12 @@ d3_transitionPrototype.selectAll = function(selector) {
         subnodes = selector.call(node, node.__data__, i);
         subgroups.push(subgroup = []);
         for (var k = -1, o = subnodes.length; ++k < o;) {
-          d3_transitionNode(subnode = subnodes[k], k, id, transition);
+          d4_transitionNode(subnode = subnodes[k], k, id, transition);
           subgroup.push(subnode);
         }
       }
     }
   }
 
-  return d3_transition(subgroups, id);
+  return d4_transition(subgroups, id);
 };

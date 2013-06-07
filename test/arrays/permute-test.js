@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.permute");
+var suite = vows.describe("d4.permute");
 
 suite.addBatch({
   "permute": {
-    topic: load("arrays/permute").expression("d3.permute"),
+    topic: load("arrays/permute").expression("d4.permute"),
     "permutes according to the specified index": function(permute) {
       assert.deepEqual(permute([3, 4, 5], [2, 1, 0]), [5, 4, 3]);
       assert.deepEqual(permute([3, 4, 5], [2, 0, 1]), [5, 3, 4]);

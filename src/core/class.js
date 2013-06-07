@@ -1,4 +1,4 @@
-function d3_class(ctor, properties) {
+function d4_class(ctor, properties) {
   try {
     for (var key in properties) {
       Object.defineProperty(ctor.prototype, key, {

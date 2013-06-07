@@ -1,6 +1,6 @@
 import "selection";
 
-d3_selectionPrototype.property = function(name, value) {
+d4_selectionPrototype.property = function(name, value) {
   if (arguments.length < 2) {
 
     // For property(string), return the property value for the first node.
@@ -9,15 +9,15 @@ d3_selectionPrototype.property = function(name, value) {
     // For property(object), the object specifies the names and values of the
     // properties to set or remove. The values may be functions that are
     // evaluated for each element.
-    for (value in name) this.each(d3_selection_property(value, name[value]));
+    for (value in name) this.each(d4_selection_property(value, name[value]));
     return this;
   }
 
   // Otherwise, both a name and a value are specified, and are handled as below.
-  return this.each(d3_selection_property(name, value));
+  return this.each(d4_selection_property(name, value));
 };
 
-function d3_selection_property(name, value) {
+function d4_selection_property(name, value) {
 
   // For property(name, null), remove the property with the specified name.
   function propertyNull() {

@@ -2,7 +2,7 @@ var assert = require("../assert"),
     _ = require("../../");
 
 module.exports = {
-  topic: function(d3) {
+  topic: function(d4) {
     var cb = this.callback,
         dd = [],
         ii = [],
@@ -10,10 +10,10 @@ module.exports = {
         vv = [],
         fails = 0;
 
-    var s = d3.select("body").html("").append("div").selectAll("div")
+    var s = d4.select("body").html("").append("div").selectAll("div")
         .data(["red", "green"])
       .enter().append("div")
-        .style("background-color", function(d) { return d3.rgb(d)+""; });
+        .style("background-color", function(d) { return d4.rgb(d)+""; });
 
     var t = s.transition()
         .styleTween("background-color", function() { ++fails; })

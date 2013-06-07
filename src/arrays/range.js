@@ -1,4 +1,4 @@
-d3.range = function(start, stop, step) {
+d4.range = function(start, stop, step) {
   if (arguments.length < 3) {
     step = 1;
     if (arguments.length < 2) {
@@ -8,7 +8,7 @@ d3.range = function(start, stop, step) {
   }
   if ((stop - start) / step === Infinity) throw new Error("infinite range");
   var range = [],
-       k = d3_range_integerScale(Math.abs(step)),
+       k = d4_range_integerScale(Math.abs(step)),
        i = -1,
        j;
   start *= k, stop *= k, step *= k;
@@ -17,7 +17,7 @@ d3.range = function(start, stop, step) {
   return range;
 };
 
-function d3_range_integerScale(x) {
+function d4_range_integerScale(x) {
   var k = 1;
   while (x * k % 1) k *= 10;
   return k;

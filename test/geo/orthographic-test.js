@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     projectionTestSuite = require("./projection-test-suite");
 
-var suite = vows.describe("d3.geo.orthographic");
+var suite = vows.describe("d4.geo.orthographic");
 
 suite.addBatch({
   "orthographic": {
-    topic: load("geo/orthographic").expression("d3.geo.orthographic"),
+    topic: load("geo/orthographic").expression("d4.geo.orthographic"),
     "default": projectionTestSuite(function(projection) { return projection(); }, {
       "Null Island":       [[   0.00000000,    0.00000000], [ 480.00000000,  250.00000000]],
       "Honolulu, HI":      [[ -21.01262744,   82.63349103], [ 473.10377192,  101.23805835]],

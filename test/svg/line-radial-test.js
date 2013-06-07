@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.svg.line.radial");
+var suite = vows.describe("d4.svg.line.radial");
 
 suite.addBatch({
   "line.radial": {
-    topic: load("svg/line-radial").expression("d3.svg.line.radial"),
+    topic: load("svg/line-radial").expression("d4.svg.line.radial"),
 
     "radius defaults to a function accessor": function(line) {
       var l = line();

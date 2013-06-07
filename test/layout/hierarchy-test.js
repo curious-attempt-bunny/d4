@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.layout.hierarchy");
+var suite = vows.describe("d4.layout.hierarchy");
 
 suite.addBatch({
   "hierarchy": {
-    topic: load("layout/treemap").expression("d3.layout.treemap"), // hierarchy is abstract, so test a subclass
+    topic: load("layout/treemap").expression("d4.layout.treemap"), // hierarchy is abstract, so test a subclass
     "doesn't overwrite the value of a node that has an empty children array": function(hierarchy) {
       var h = hierarchy(),
           nodes = h.sticky(true).nodes({value: 1, children: []});

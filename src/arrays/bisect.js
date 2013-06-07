@@ -1,4 +1,4 @@
-d3.bisector = function(f) {
+d4.bisector = function(f) {
   return {
     left: function(a, x, lo, hi) {
       if (arguments.length < 3) lo = 0;
@@ -23,6 +23,6 @@ d3.bisector = function(f) {
   };
 };
 
-var d3_bisector = d3.bisector(function(d) { return d; });
-d3.bisectLeft = d3_bisector.left;
-d3.bisect = d3.bisectRight = d3_bisector.right;
+var d4_bisector = d4.bisector(function(d) { return d; });
+d4.bisectLeft = d4_bisector.left;
+d4.bisect = d4.bisectRight = d4_bisector.right;

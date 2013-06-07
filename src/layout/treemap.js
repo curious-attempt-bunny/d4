@@ -3,12 +3,12 @@ import "hierarchy";
 
 // Squarified Treemaps by Mark Bruls, Kees Huizing, and Jarke J. van Wijk
 // Modified to support a target aspect ratio by Jeff Heer
-d3.layout.treemap = function() {
-  var hierarchy = d3.layout.hierarchy(),
+d4.layout.treemap = function() {
+  var hierarchy = d4.layout.hierarchy(),
       round = Math.round,
       size = [1, 1], // width, height
       padding = null,
-      pad = d3_layout_treemapPadNull,
+      pad = d4_layout_treemapPadNull,
       sticky = false,
       stickies,
       mode = "squarify",
@@ -171,16 +171,16 @@ d3.layout.treemap = function() {
     function padFunction(node) {
       var p = x.call(treemap, node, node.depth);
       return p == null
-          ? d3_layout_treemapPadNull(node)
-          : d3_layout_treemapPad(node, typeof p === "number" ? [p, p, p, p] : p);
+          ? d4_layout_treemapPadNull(node)
+          : d4_layout_treemapPad(node, typeof p === "number" ? [p, p, p, p] : p);
     }
 
     function padConstant(node) {
-      return d3_layout_treemapPad(node, x);
+      return d4_layout_treemapPad(node, x);
     }
 
     var type;
-    pad = (padding = x) == null ? d3_layout_treemapPadNull
+    pad = (padding = x) == null ? d4_layout_treemapPadNull
         : (type = typeof x) === "function" ? padFunction
         : type === "number" ? (x = [x, x, x, x], padConstant)
         : padConstant;
@@ -212,14 +212,14 @@ d3.layout.treemap = function() {
     return treemap;
   };
 
-  return d3_layout_hierarchyRebind(treemap, hierarchy);
+  return d4_layout_hierarchyRebind(treemap, hierarchy);
 };
 
-function d3_layout_treemapPadNull(node) {
+function d4_layout_treemapPadNull(node) {
   return {x: node.x, y: node.y, dx: node.dx, dy: node.dy};
 }
 
-function d3_layout_treemapPad(node, padding) {
+function d4_layout_treemapPad(node, padding) {
   var x = node.x + padding[3],
       y = node.y + padding[0],
       dx = node.dx - padding[1] - padding[3],

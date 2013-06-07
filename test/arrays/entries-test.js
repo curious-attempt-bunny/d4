@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.entries");
+var suite = vows.describe("d4.entries");
 
 suite.addBatch({
   "entries": {
-    topic: load("arrays/entries").expression("d3.entries"),
+    topic: load("arrays/entries").expression("d4.entries"),
     "enumerates every entry": function(entries) {
       assert.deepEqual(entries({a: 1, b: 2}), [
         {key: "a", value: 1},

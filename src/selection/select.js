@@ -1,13 +1,13 @@
 import "selection";
 
-d3_selectionPrototype.select = function(selector) {
+d4_selectionPrototype.select = function(selector) {
   var subgroups = [],
       subgroup,
       subnode,
       group,
       node;
 
-  if (typeof selector !== "function") selector = d3_selection_selector(selector);
+  if (typeof selector !== "function") selector = d4_selection_selector(selector);
 
   for (var j = -1, m = this.length; ++j < m;) {
     subgroups.push(subgroup = []);
@@ -22,11 +22,11 @@ d3_selectionPrototype.select = function(selector) {
     }
   }
 
-  return d3_selection(subgroups);
+  return d4_selection(subgroups);
 };
 
-function d3_selection_selector(selector) {
+function d4_selection_selector(selector) {
   return function() {
-    return d3_select(selector, this);
+    return d4_select(selector, this);
   };
 }

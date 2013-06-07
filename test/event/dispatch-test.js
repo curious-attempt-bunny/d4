@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.dispatch");
+var suite = vows.describe("d4.dispatch");
 
 suite.addBatch({
   "dispatch": {
-    topic: load("event/dispatch").expression("d3.dispatch"),
+    topic: load("event/dispatch").expression("d4.dispatch"),
     "returns a map of dispatchers for each event type": function(dispatch) {
       assert.deepEqual(dispatch(), {});
       var d = dispatch("foo");

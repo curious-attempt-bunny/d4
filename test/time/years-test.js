@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.time.years");
+var suite = vows.describe("d4.time.years");
 
 suite.addBatch({
   "years": {
-    topic: load("time/year").expression("d3.time.years"),
+    topic: load("time/year").expression("d4.time.years"),
     "returns years": function(range) {
       assert.deepEqual(range(local(2010, 0, 1), local(2013, 0, 1)), [
         local(2010, 0, 1),

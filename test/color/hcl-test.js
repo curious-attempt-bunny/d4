@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.hcl");
+var suite = vows.describe("d4.hcl");
 
 suite.addBatch({
   "hcl": {
-    topic: load("color/hcl").expression("d3.hcl"),
+    topic: load("color/hcl").expression("d4.hcl"),
     "converts string channel values to numbers": function(hcl) {
       assertHclEqual(hcl("50", "-4", "32"), 50, -4, 32);
     },

@@ -3,10 +3,10 @@ import "../core/source";
 import "../core/target";
 import "svg";
 
-d3.svg.diagonal = function() {
-  var source = d3_source,
-      target = d3_target,
-      projection = d3_svg_diagonalProjection;
+d4.svg.diagonal = function() {
+  var source = d4_source,
+      target = d4_target,
+      projection = d4_svg_diagonalProjection;
 
   function diagonal(d, i) {
     var p0 = source.call(this, d, i),
@@ -19,13 +19,13 @@ d3.svg.diagonal = function() {
 
   diagonal.source = function(x) {
     if (!arguments.length) return source;
-    source = d3_functor(x);
+    source = d4_functor(x);
     return diagonal;
   };
 
   diagonal.target = function(x) {
     if (!arguments.length) return target;
-    target = d3_functor(x);
+    target = d4_functor(x);
     return diagonal;
   };
 
@@ -38,6 +38,6 @@ d3.svg.diagonal = function() {
   return diagonal;
 };
 
-function d3_svg_diagonalProjection(d) {
+function d4_svg_diagonalProjection(d) {
   return [d.x, d.y];
 }

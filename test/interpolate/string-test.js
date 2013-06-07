@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.interpolateString");
+var suite = vows.describe("d4.interpolateString");
 
 suite.addBatch({
   "interpolateString": {
-    topic: load("interpolate/string").expression("d3.interpolateString"),
+    topic: load("interpolate/string").expression("d4.interpolateString"),
     "interpolates matching numbers in both strings": function(interpolate) {
       assert.strictEqual(interpolate(" 10/20 30", "50/10 100 ")(.2), "18/18 44 ");
       assert.strictEqual(interpolate(" 10/20 30", "50/10 100 ")(.4), "26/16 58 ");

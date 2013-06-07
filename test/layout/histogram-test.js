@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.layout.histogram");
+var suite = vows.describe("d4.layout.histogram");
 
 suite.addBatch({
   "histogram": {
-    topic: load("layout/histogram").expression("d3.layout.histogram"),
+    topic: load("layout/histogram").expression("d4.layout.histogram"),
     "defaults to frequencies": function(histogram) {
       var h = histogram();
       assert.deepEqual(h([0,0,0,1,2,2]).map(elements), [[0, 0, 0], [], [1], [2, 2]]);

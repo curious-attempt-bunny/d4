@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.json");
+var suite = vows.describe("d4.json");
 
 suite.addBatch({
   "json": {
-    topic: load("xhr/json").expression("d3.json").document(),
+    topic: load("xhr/json").expression("d4.json").document(),
 
     "on a sample file": {
       topic: function(json) {

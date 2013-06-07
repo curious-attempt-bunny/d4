@@ -20,23 +20,23 @@ svg {
 
 </style>
 <body>
-<script src="../../d3.js"></script>
+<script src="../../d4.js"></script>
 <script>
 
-var color = d3.scale.category10();
+var color = d4.scale.category10();
 
-var svg = d3.select("body").append("svg");
+var svg = d4.select("body").append("svg");
 
-d3.select("body")
+d4.select("body")
     .on("touchstart", touch)
     .on("touchmove", touch)
     .on("touchend", touch);
 
 function touch() {
-  d3.event.preventDefault();
+  d4.event.preventDefault();
 
   var circle = svg.selectAll("circle.touch")
-      .data(d3.touches(svg.node()), function(d) { return d.identifier; })
+      .data(d4.touches(svg.node()), function(d) { return d.identifier; })
       .attr("cx", function(d) { return d[0]; })
       .attr("cy", function(d) { return d[1]; });
 

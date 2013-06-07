@@ -1,26 +1,26 @@
 import "../core/document";
 
-d3.mouse = function(container) {
-  return d3_mousePoint(container, d3_eventSource());
+d4.mouse = function(container) {
+  return d4_mousePoint(container, d4_eventSource());
 };
 
 // https://bugs.webkit.org/show_bug.cgi?id=44083
-var d3_mouse_bug44083 = /WebKit/.test(d3_window.navigator.userAgent) ? -1 : 0;
+var d4_mouse_bug44083 = /WebKit/.test(d4_window.navigator.userAgent) ? -1 : 0;
 
-function d3_mousePoint(container, e) {
+function d4_mousePoint(container, e) {
   var svg = container.ownerSVGElement || container;
   if (svg.createSVGPoint) {
     var point = svg.createSVGPoint();
-    if (d3_mouse_bug44083 < 0 && (d3_window.scrollX || d3_window.scrollY)) {
-      svg = d3.select(d3_document.body).append("svg")
+    if (d4_mouse_bug44083 < 0 && (d4_window.scrollX || d4_window.scrollY)) {
+      svg = d4.select(d4_document.body).append("svg")
           .style("position", "absolute")
           .style("top", 0)
           .style("left", 0);
       var ctm = svg[0][0].getScreenCTM();
-      d3_mouse_bug44083 = !(ctm.f || ctm.e);
+      d4_mouse_bug44083 = !(ctm.f || ctm.e);
       svg.remove();
     }
-    if (d3_mouse_bug44083) {
+    if (d4_mouse_bug44083) {
       point.x = e.pageX;
       point.y = e.pageY;
     } else {

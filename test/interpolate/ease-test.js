@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.ease");
+var suite = vows.describe("d4.ease");
 
 suite.addBatch({
   "ease": {
-    topic: load("interpolate/ease").expression("d3.ease"),
+    topic: load("interpolate/ease").expression("d4.ease"),
     "supports linear easing": function(ease) {
       var e = ease("linear");
       assert.inDelta(e(.5), .5, 1e-6);

@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.scale.ordinal");
+var suite = vows.describe("d4.scale.ordinal");
 
 suite.addBatch({
   "ordinal": {
-    topic: load("scale/ordinal").expression("d3.scale.ordinal"),
+    topic: load("scale/ordinal").expression("d4.scale.ordinal"),
 
     "domain": {
       "defaults to the empty array": function(ordinal) {

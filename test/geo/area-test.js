@@ -3,13 +3,13 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.area");
+var suite = vows.describe("d4.geo.area");
 
 var π = Math.PI;
 
 suite.addBatch({
   "area": {
-    topic: load("geo/area").expression("d3.geo.area"),
+    topic: load("geo/area").expression("d4.geo.area"),
     "Point": function(area) {
       assert.equal(area({type: "Point", coordinates: [0, 0]}), 0);
     },

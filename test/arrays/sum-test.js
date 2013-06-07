@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.sum");
+var suite = vows.describe("d4.sum");
 
 suite.addBatch({
   "sum": {
-    topic: load("arrays/sum").expression("d3.sum"),
+    topic: load("arrays/sum").expression("d4.sum"),
     "sums numbers": function(sum) {
       assert.equal(sum([1]), 1);
       assert.equal(sum([5, 1, 2, 3, 4]), 15);

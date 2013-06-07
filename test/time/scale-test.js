@@ -6,11 +6,11 @@ var vows = require("vows"),
     local = time.local,
     utc = time.utc;
 
-var suite = vows.describe("d3.time.scale");
+var suite = vows.describe("d4.time.scale");
 
 suite.addBatch({
   "scale": {
-    topic: load("time/scale").expression("d3.time.scale").document(),
+    topic: load("time/scale").expression("d4.time.scale").document(),
 
     "nice": {
       "rounds using the specified time interval": function(scale) {
@@ -327,7 +327,7 @@ suite.addBatch({
 
 suite.addBatch({
   "scale.utc": {
-    topic: load("time/scale-utc").expression("d3.time.scale.utc").document(),
+    topic: load("time/scale-utc").expression("d4.time.scale.utc").document(),
 
     "ticks": {
       "observes explicit tick interval": function(scale) {

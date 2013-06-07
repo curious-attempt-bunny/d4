@@ -1,6 +1,6 @@
-d3.interpolateRound = d3_interpolateRound;
+d4.interpolateRound = d4_interpolateRound;
 
-function d3_interpolateRound(a, b) {
+function d4_interpolateRound(a, b) {
   b -= a;
   return function(t) { return Math.round(a + b * t); };
 }

@@ -4,20 +4,20 @@ import "../core/identity";
 import "../core/rebind";
 import "../event/dispatch";
 
-d3.xhr = d3_xhrType(d3_identity);
+d4.xhr = d4_xhrType(d4_identity);
 
-function d3_xhrType(response) {
+function d4_xhrType(response) {
   return function(url, mimeType, callback) {
     if (arguments.length === 2 && typeof mimeType === "function") callback = mimeType, mimeType = null;
-    return d3_xhr(url, mimeType, response, callback);
+    return d4_xhr(url, mimeType, response, callback);
   };
 }
 
-function d3_xhr(url, mimeType, response, callback) {
+function d4_xhr(url, mimeType, response, callback) {
   var xhr = {},
-      dispatch = d3.dispatch("progress", "load", "error"),
+      dispatch = d4.dispatch("progress", "load", "error"),
       headers = {},
-      request = new (d3_window.XDomainRequest && /^(http(s)?:)?\/\//.test(url) ? XDomainRequest : XMLHttpRequest);
+      request = new (d4_window.XDomainRequest && /^(http(s)?:)?\/\//.test(url) ? XDomainRequest : XMLHttpRequest);
 
   "onload" in request
       ? request.onload = request.onerror = respond
@@ -39,10 +39,10 @@ function d3_xhr(url, mimeType, response, callback) {
   }
 
   request.onprogress = function(event) {
-    var o = d3.event;
-    d3.event = event;
+    var o = d4.event;
+    d4.event = event;
     try { dispatch.progress.call(xhr, request); }
-    finally { d3.event = o; }
+    finally { d4.event = o; }
   };
 
   xhr.header = function(name, value) {
@@ -70,7 +70,7 @@ function d3_xhr(url, mimeType, response, callback) {
   // Convenience methods.
   ["get", "post"].forEach(function(method) {
     xhr[method] = function() {
-      return xhr.send.apply(xhr, [method].concat(d3_array(arguments)));
+      return xhr.send.apply(xhr, [method].concat(d4_array(arguments)));
     };
   });
 
@@ -91,12 +91,12 @@ function d3_xhr(url, mimeType, response, callback) {
     return xhr;
   };
 
-  d3.rebind(xhr, dispatch, "on");
+  d4.rebind(xhr, dispatch, "on");
 
-  return callback == null ? xhr : xhr.get(d3_xhr_fixCallback(callback));
+  return callback == null ? xhr : xhr.get(d4_xhr_fixCallback(callback));
 };
 
-function d3_xhr_fixCallback(callback) {
+function d4_xhr_fixCallback(callback) {
   return callback.length === 1
       ? function(error, request) { callback(error == null ? request : null); }
       : callback;

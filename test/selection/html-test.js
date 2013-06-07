@@ -8,8 +8,8 @@ suite.addBatch({
   "select(body)": {
     topic: load("selection/selection").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "sets the inner HTML as a string": function(body) {
         body.html("<h1>Hello, world!</h1>");
@@ -76,8 +76,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/selection").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div").data([0, 1]).enter().append("div");
+      topic: function(d4) {
+        return d4.select("body").selectAll("div").data([0, 1]).enter().append("div");
       },
       "sets the inner HTML as a string": function(div) {
         div.html("<h1>Hello, world!</h1>");

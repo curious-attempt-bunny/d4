@@ -1,8 +1,8 @@
 var assert = require("../assert");
 
 module.exports = {
-  topic: function(d3) {
-    return d3.select("body").append("div").transition()
+  topic: function(d4) {
+    return d4.select("body").append("div").transition()
         .delay(101)
         .duration(152)
         .ease("bounce");

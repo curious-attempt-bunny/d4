@@ -1,2 +1,2 @@
-var d3_document = document,
-    d3_window = window;
+var d4_document = document,
+    d4_window = window;

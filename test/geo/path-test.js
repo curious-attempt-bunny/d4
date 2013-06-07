@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.path");
+var suite = vows.describe("d4.geo.path");
 
 suite.addBatch({
   "path": {
-    topic: load("geo/path").expression("d3.geo.path"),
+    topic: load("geo/path").expression("d4.geo.path"),
 
     "with an equirectangular projection": {
       topic: function(path) {

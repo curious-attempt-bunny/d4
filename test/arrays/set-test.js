@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("assert");
 
-var suite = vows.describe("d3.set");
+var suite = vows.describe("d4.set");
 
 suite.addBatch({
   "set": {
-    topic: load("arrays/set").expression("d3.set"),
+    topic: load("arrays/set").expression("d4.set"),
     "constructor": {
       "set() returns an empty set": function(set) {
         var s = set();

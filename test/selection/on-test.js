@@ -8,8 +8,8 @@ suite.addBatch({
   "select(body)": {
     topic: load("selection/on").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "registers an event listener for the specified type": function(body) {
         var form = body.append("form"), count = 0;
@@ -116,18 +116,18 @@ suite.addBatch({
         }
       }
     },
-    "sets the current event as d3.event": function(d3) {
-      var form = d3.select("body").append("form"), event;
-      form.on("submit", function() { event = d3.event; });
+    "sets the current event as d4.event": function(d4) {
+      var form = d4.select("body").append("form"), event;
+      form.on("submit", function() { event = d4.event; });
       form.append("input").attr("type", "submit").node().click();
       assert.equal(event.type, "submit");
       assert.domEqual(event.target, form[0][0]);
     },
-    "restores the original event after notifying listeners": function(d3) {
-      var form = d3.select("body").append("form"), event = d3.event = new Object();
+    "restores the original event after notifying listeners": function(d4) {
+      var form = d4.select("body").append("form"), event = d4.event = new Object();
       form.on("submit", function() {});
       form.append("input").attr("type", "submit").node().click();
-      assert.equal(d3.event, event);
+      assert.equal(d4.event, event);
     }
   }
 });

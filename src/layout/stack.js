@@ -4,13 +4,13 @@ import "../arrays/range";
 import "layout";
 
 // data is two-dimensional array of x,y; we populate y0
-d3.layout.stack = function() {
-  var values = d3_identity,
-      order = d3_layout_stackOrderDefault,
-      offset = d3_layout_stackOffsetZero,
-      out = d3_layout_stackOut,
-      x = d3_layout_stackX,
-      y = d3_layout_stackY;
+d4.layout.stack = function() {
+  var values = d4_identity,
+      order = d4_layout_stackOrderDefault,
+      offset = d4_layout_stackOffsetZero,
+      out = d4_layout_stackOut,
+      x = d4_layout_stackX,
+      y = d4_layout_stackY;
 
   function stack(data, index) {
 
@@ -28,8 +28,8 @@ d3.layout.stack = function() {
 
     // Compute the order of series, and permute them.
     var orders = order.call(stack, points, index);
-    series = d3.permute(series, orders);
-    points = d3.permute(points, orders);
+    series = d4.permute(series, orders);
+    points = d4.permute(points, orders);
 
     // Compute the baseline…
     var offsets = offset.call(stack, points, index);
@@ -58,13 +58,13 @@ d3.layout.stack = function() {
 
   stack.order = function(x) {
     if (!arguments.length) return order;
-    order = typeof x === "function" ? x : d3_layout_stackOrders.get(x) || d3_layout_stackOrderDefault;
+    order = typeof x === "function" ? x : d4_layout_stackOrders.get(x) || d4_layout_stackOrderDefault;
     return stack;
   };
 
   stack.offset = function(x) {
     if (!arguments.length) return offset;
-    offset = typeof x === "function" ? x : d3_layout_stackOffsets.get(x) || d3_layout_stackOffsetZero;
+    offset = typeof x === "function" ? x : d4_layout_stackOffsets.get(x) || d4_layout_stackOffsetZero;
     return stack;
   };
 
@@ -89,28 +89,28 @@ d3.layout.stack = function() {
   return stack;
 };
 
-function d3_layout_stackX(d) {
+function d4_layout_stackX(d) {
   return d.x;
 }
 
-function d3_layout_stackY(d) {
+function d4_layout_stackY(d) {
   return d.y;
 }
 
-function d3_layout_stackOut(d, y0, y) {
+function d4_layout_stackOut(d, y0, y) {
   d.y0 = y0;
   d.y = y;
 }
 
-var d3_layout_stackOrders = d3.map({
+var d4_layout_stackOrders = d4.map({
 
   "inside-out": function(data) {
     var n = data.length,
         i,
         j,
-        max = data.map(d3_layout_stackMaxIndex),
-        sums = data.map(d3_layout_stackReduceSum),
-        index = d3.range(n).sort(function(a, b) { return max[a] - max[b]; }),
+        max = data.map(d4_layout_stackMaxIndex),
+        sums = data.map(d4_layout_stackReduceSum),
+        index = d4.range(n).sort(function(a, b) { return max[a] - max[b]; }),
         top = 0,
         bottom = 0,
         tops = [],
@@ -129,14 +129,14 @@ var d3_layout_stackOrders = d3.map({
   },
 
   "reverse": function(data) {
-    return d3.range(data.length).reverse();
+    return d4.range(data.length).reverse();
   },
 
-  "default": d3_layout_stackOrderDefault
+  "default": d4_layout_stackOrderDefault
 
 });
 
-var d3_layout_stackOffsets = d3.map({
+var d4_layout_stackOffsets = d4.map({
 
   "silhouette": function(data) {
     var n = data.length,
@@ -205,15 +205,15 @@ var d3_layout_stackOffsets = d3.map({
     return y0;
   },
 
-  "zero": d3_layout_stackOffsetZero
+  "zero": d4_layout_stackOffsetZero
 
 });
 
-function d3_layout_stackOrderDefault(data) {
-  return d3.range(data.length);
+function d4_layout_stackOrderDefault(data) {
+  return d4.range(data.length);
 }
 
-function d3_layout_stackOffsetZero(data) {
+function d4_layout_stackOffsetZero(data) {
   var j = -1,
       m = data[0].length,
       y0 = [];
@@ -221,7 +221,7 @@ function d3_layout_stackOffsetZero(data) {
   return y0;
 }
 
-function d3_layout_stackMaxIndex(array) {
+function d4_layout_stackMaxIndex(array) {
   var i = 1,
       j = 0,
       v = array[0][1],
@@ -236,10 +236,10 @@ function d3_layout_stackMaxIndex(array) {
   return j;
 }
 
-function d3_layout_stackReduceSum(d) {
-  return d.reduce(d3_layout_stackSum, 0);
+function d4_layout_stackReduceSum(d) {
+  return d.reduce(d4_layout_stackSum, 0);
 }
 
-function d3_layout_stackSum(p, d) {
+function d4_layout_stackSum(p, d) {
   return p + d[1];
 }

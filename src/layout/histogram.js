@@ -4,11 +4,11 @@ import "../arrays/max";
 import "../core/functor";
 import "layout";
 
-d3.layout.histogram = function() {
+d4.layout.histogram = function() {
   var frequency = true,
       valuer = Number,
-      ranger = d3_layout_histogramRange,
-      binner = d3_layout_histogramBinSturges;
+      ranger = d4_layout_histogramRange,
+      binner = d4_layout_histogramBinSturges;
 
   function histogram(data, i) {
     var bins = [],
@@ -34,7 +34,7 @@ d3.layout.histogram = function() {
       i = -1; while(++i < n) {
         x = values[i];
         if (x >= range[0] && x <= range[1]) {
-          bin = bins[d3.bisect(thresholds, x, 1, m) - 1];
+          bin = bins[d4.bisect(thresholds, x, 1, m) - 1];
           bin.y += k;
           bin.push(data[i]);
         }
@@ -60,7 +60,7 @@ d3.layout.histogram = function() {
   // values.
   histogram.range = function(x) {
     if (!arguments.length) return ranger;
-    ranger = d3_functor(x);
+    ranger = d4_functor(x);
     return histogram;
   };
 
@@ -76,8 +76,8 @@ d3.layout.histogram = function() {
   histogram.bins = function(x) {
     if (!arguments.length) return binner;
     binner = typeof x === "number"
-        ? function(range) { return d3_layout_histogramBinFixed(range, x); }
-        : d3_functor(x);
+        ? function(range) { return d4_layout_histogramBinFixed(range, x); }
+        : d4_functor(x);
     return histogram;
   };
 
@@ -92,11 +92,11 @@ d3.layout.histogram = function() {
   return histogram;
 };
 
-function d3_layout_histogramBinSturges(range, values) {
-  return d3_layout_histogramBinFixed(range, Math.ceil(Math.log(values.length) / Math.LN2 + 1));
+function d4_layout_histogramBinSturges(range, values) {
+  return d4_layout_histogramBinFixed(range, Math.ceil(Math.log(values.length) / Math.LN2 + 1));
 }
 
-function d3_layout_histogramBinFixed(range, n) {
+function d4_layout_histogramBinFixed(range, n) {
   var x = -1,
       b = +range[0],
       m = (range[1] - b) / n,
@@ -105,6 +105,6 @@ function d3_layout_histogramBinFixed(range, n) {
   return f;
 }
 
-function d3_layout_histogramRange(values) {
-  return [d3.min(values), d3.max(values)];
+function d4_layout_histogramRange(values) {
+  return [d4.min(values), d4.max(values)];
 }

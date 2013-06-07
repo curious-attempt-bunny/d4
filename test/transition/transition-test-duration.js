@@ -1,8 +1,8 @@
 var assert = require("../assert");
 
 module.exports = {
-  topic: function(d3) {
-    return d3.select("body").html("").selectAll()
+  topic: function(d4) {
+    return d4.select("body").html("").selectAll()
         .data(["foo", "bar"])
       .enter().append("div")
         .attr("class", String);

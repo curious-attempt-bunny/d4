@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.text");
+var suite = vows.describe("d4.text");
 
 suite.addBatch({
   "text": {
-    topic: load("xhr/text").expression("d3.text").document(),
+    topic: load("xhr/text").expression("d4.text").document(),
 
     "on a sample file": {
       topic: function(text) {

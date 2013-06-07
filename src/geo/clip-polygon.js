@@ -4,7 +4,7 @@ import "spherical";
 // General spherical polygon clipping algorithm: takes a polygon, cuts it into
 // visible line segments and rejoins the segments by interpolating along the
 // clip edge.
-function d3_geo_clipPolygon(segments, compare, inside, interpolate, listener) {
+function d4_geo_clipPolygon(segments, compare, inside, interpolate, listener) {
   var subject = [],
       clip = [];
 
@@ -16,7 +16,7 @@ function d3_geo_clipPolygon(segments, compare, inside, interpolate, listener) {
     // a closed ring.
     // TODO if all rings are closed, then the winding order of the exterior
     // ring should be checked.
-    if (d3_geo_sphericalEqual(p0, p1)) {
+    if (d4_geo_sphericalEqual(p0, p1)) {
       listener.lineStart();
       for (var i = 0; i < n; ++i) listener.point((p0 = segment[i])[0], p0[1]);
       listener.lineEnd();
@@ -35,8 +35,8 @@ function d3_geo_clipPolygon(segments, compare, inside, interpolate, listener) {
     clip.push(b);
   });
   clip.sort(compare);
-  d3_geo_clipPolygonLinkCircular(subject);
-  d3_geo_clipPolygonLinkCircular(clip);
+  d4_geo_clipPolygonLinkCircular(subject);
+  d4_geo_clipPolygonLinkCircular(clip);
   if (!subject.length) return;
 
   if (inside) for (var i = 1, e = !inside(clip[0].point), n = clip.length; i < n; ++i) {
@@ -78,7 +78,7 @@ function d3_geo_clipPolygon(segments, compare, inside, interpolate, listener) {
   }
 }
 
-function d3_geo_clipPolygonLinkCircular(array) {
+function d4_geo_clipPolygonLinkCircular(array) {
   if (!(n = array.length)) return;
   var n,
       i = 0,

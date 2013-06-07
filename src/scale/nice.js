@@ -1,4 +1,4 @@
-function d3_scale_nice(domain, nice) {
+function d4_scale_nice(domain, nice) {
   var i0 = 0,
       i1 = domain.length - 1,
       x0 = domain[i0],

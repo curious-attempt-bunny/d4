@@ -4,20 +4,20 @@ import "layout";
 // input link, a path is computed that travels through the tree, up the parent
 // hierarchy to the least common ancestor, and then back down to the destination
 // node. Each path is simply an array of nodes.
-d3.layout.bundle = function() {
+d4.layout.bundle = function() {
   return function(links) {
     var paths = [],
         i = -1,
         n = links.length;
-    while (++i < n) paths.push(d3_layout_bundlePath(links[i]));
+    while (++i < n) paths.push(d4_layout_bundlePath(links[i]));
     return paths;
   };
 };
 
-function d3_layout_bundlePath(link) {
+function d4_layout_bundlePath(link) {
   var start = link.source,
       end = link.target,
-      lca = d3_layout_bundleLeastCommonAncestor(start, end),
+      lca = d4_layout_bundleLeastCommonAncestor(start, end),
       points = [start];
   while (start !== lca) {
     start = start.parent;
@@ -31,7 +31,7 @@ function d3_layout_bundlePath(link) {
   return points;
 }
 
-function d3_layout_bundleAncestors(node) {
+function d4_layout_bundleAncestors(node) {
   var ancestors = [],
       parent = node.parent;
   while (parent != null) {
@@ -43,10 +43,10 @@ function d3_layout_bundleAncestors(node) {
   return ancestors;
 }
 
-function d3_layout_bundleLeastCommonAncestor(a, b) {
+function d4_layout_bundleLeastCommonAncestor(a, b) {
   if (a === b) return a;
-  var aNodes = d3_layout_bundleAncestors(a),
-      bNodes = d3_layout_bundleAncestors(b),
+  var aNodes = d4_layout_bundleAncestors(a),
+      bNodes = d4_layout_bundleAncestors(b),
       aNode = aNodes.pop(),
       bNode = bNodes.pop(),
       sharedNode = null;

@@ -1,3 +1,3 @@
-function d3_true() {
+function d4_true() {
   return true;
 }

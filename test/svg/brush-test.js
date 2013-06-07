@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.svg.brush");
+var suite = vows.describe("d4.svg.brush");
 
 suite.addBatch({
   "brush": {
-    topic: load("svg/brush").expression("d3.svg.brush").document(),
+    topic: load("svg/brush").expression("d4.svg.brush").document(),
 
     "x": {
       "defaults to null": function(brush) {

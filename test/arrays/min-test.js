@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.min");
+var suite = vows.describe("d4.min");
 
 suite.addBatch({
   "min": {
-    topic: load("arrays/min").expression("d3.min"),
+    topic: load("arrays/min").expression("d4.min"),
     "returns the least numeric value for numbers": function(min) {
       assert.equal(min([1]), 1);
       assert.equal(min([5, 1, 2, 3, 4]), 1);

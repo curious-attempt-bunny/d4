@@ -3,11 +3,11 @@ var vows = require("vows"),
     assert = require("../assert"),
     projectionTestSuite = require("./projection-test-suite");
 
-var suite = vows.describe("d3.geo.mercator");
+var suite = vows.describe("d4.geo.mercator");
 
 suite.addBatch({
   "mercator": {
-    topic: load("geo/mercator").expression("d3.geo.mercator"),
+    topic: load("geo/mercator").expression("d4.geo.mercator"),
     "default": projectionTestSuite({
       topic: function(projection) { return projection(); }
     }, {

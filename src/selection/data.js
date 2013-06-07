@@ -1,7 +1,7 @@
 import "../arrays/map";
 import "selection";
 
-d3_selectionPrototype.data = function(value, key) {
+d4_selectionPrototype.data = function(value, key) {
   var i = -1,
       n = this.length,
       group,
@@ -30,8 +30,8 @@ d3_selectionPrototype.data = function(value, key) {
         nodeData;
 
     if (key) {
-      var nodeByKeyValue = new d3_Map,
-          dataByKeyValue = new d3_Map,
+      var nodeByKeyValue = new d4_Map,
+          dataByKeyValue = new d4_Map,
           keyValues = [],
           keyValue;
 
@@ -51,7 +51,7 @@ d3_selectionPrototype.data = function(value, key) {
           updateNodes[i] = node;
           node.__data__ = nodeData;
         } else if (!dataByKeyValue.has(keyValue)) { // no duplicate data key
-          enterNodes[i] = d3_selection_dataNode(nodeData);
+          enterNodes[i] = d4_selection_dataNode(nodeData);
         }
         dataByKeyValue.set(keyValue, nodeData);
         nodeByKeyValue.remove(keyValue);
@@ -70,11 +70,11 @@ d3_selectionPrototype.data = function(value, key) {
           node.__data__ = nodeData;
           updateNodes[i] = node;
         } else {
-          enterNodes[i] = d3_selection_dataNode(nodeData);
+          enterNodes[i] = d4_selection_dataNode(nodeData);
         }
       }
       for (; i < m; ++i) {
-        enterNodes[i] = d3_selection_dataNode(groupData[i]);
+        enterNodes[i] = d4_selection_dataNode(groupData[i]);
       }
       for (; i < n; ++i) {
         exitNodes[i] = group[i];
@@ -94,9 +94,9 @@ d3_selectionPrototype.data = function(value, key) {
     exit.push(exitNodes);
   }
 
-  var enter = d3_selection_enter([]),
-      update = d3_selection([]),
-      exit = d3_selection([]);
+  var enter = d4_selection_enter([]),
+      update = d4_selection([]),
+      exit = d4_selection([]);
 
   if (typeof value === "function") {
     while (++i < n) {
@@ -113,6 +113,6 @@ d3_selectionPrototype.data = function(value, key) {
   return update;
 };
 
-function d3_selection_dataNode(data) {
+function d4_selection_dataNode(data) {
   return {__data__: data};
 }

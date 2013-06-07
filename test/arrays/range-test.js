@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.range");
+var suite = vows.describe("d4.range");
 
 suite.addBatch({
   "range": {
-    topic: load("arrays/range").expression("d3.range"),
+    topic: load("arrays/range").expression("d4.range"),
     "start is an inclusive lower bound": function(range) {
       assert.equal(range(5)[0], 0);
       assert.equal(range(1, 5)[0], 1);

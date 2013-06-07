@@ -1,8 +1,8 @@
 import "layout";
 import "hierarchy";
 
-d3.layout.partition = function() {
-  var hierarchy = d3.layout.hierarchy(),
+d4.layout.partition = function() {
+  var hierarchy = d4.layout.hierarchy(),
       size = [1, 1]; // width, height
 
   function position(node, x, dx, dy) {
@@ -47,5 +47,5 @@ d3.layout.partition = function() {
     return partition;
   };
 
-  return d3_layout_hierarchyRebind(partition, hierarchy);
+  return d4_layout_hierarchyRebind(partition, hierarchy);
 };

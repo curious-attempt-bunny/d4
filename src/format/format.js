@@ -4,8 +4,8 @@ import "format-localized";
 import "formatPrefix";
 import "round";
 
-d3.format = function(specifier) {
-  var match = d3_format_re.exec(specifier),
+d4.format = function(specifier) {
+  var match = d4_format_re.exec(specifier),
       fill = match[1] || " ",
       align = match[2] || ">",
       sign = match[3] || "",
@@ -51,7 +51,7 @@ d3.format = function(specifier) {
     else if (type == "e" || type == "f") precision = Math.max(0, Math.min(20, precision));
   }
 
-  type = d3_format_types.get(type) || d3_format_typeDefault;
+  type = d4_format_types.get(type) || d4_format_typeDefault;
 
   var zcomma = zfill && comma;
 
@@ -65,7 +65,7 @@ d3.format = function(specifier) {
 
     // Apply the scale, computing it from the value's exponent for si format.
     if (scale < 0) {
-      var prefix = d3.formatPrefix(value, precision);
+      var prefix = d4.formatPrefix(value, precision);
       value = prefix.scale(value);
       suffix = prefix.symbol;
     } else {
@@ -76,15 +76,15 @@ d3.format = function(specifier) {
     value = type(value, precision);
 
      // If the fill character is not "0", grouping is applied before padding.
-    if (!zfill && comma) value = d3_format_group(value);
+    if (!zfill && comma) value = d4_format_group(value);
 
     var length = basePrefix.length + value.length + (zcomma ? 0 : negative.length),
         padding = length < width ? new Array(length = width - length + 1).join(fill) : "";
 
     // If the fill character is "0", grouping is applied after padding.
-    if (zcomma) value = d3_format_group(padding + value);
+    if (zcomma) value = d4_format_group(padding + value);
 
-    if (d3_format_decimalPoint) value.replace(".", d3_format_decimalPoint);
+    if (d4_format_decimalPoint) value.replace(".", d4_format_decimalPoint);
 
     negative += basePrefix;
 
@@ -96,9 +96,9 @@ d3.format = function(specifier) {
 };
 
 // [[fill]align][sign][#][0][width][,][.precision][type]
-var d3_format_re = /(?:([^{])?([<>=^]))?([+\- ])?(#)?(0)?(\d+)?(,)?(\.-?\d+)?([a-z%])?/i;
+var d4_format_re = /(?:([^{])?([<>=^]))?([+\- ])?(#)?(0)?(\d+)?(,)?(\.-?\d+)?([a-z%])?/i;
 
-var d3_format_types = d3.map({
+var d4_format_types = d4.map({
   b: function(x) { return x.toString(2); },
   c: function(x) { return String.fromCharCode(x); },
   o: function(x) { return x.toString(8); },
@@ -107,31 +107,31 @@ var d3_format_types = d3.map({
   g: function(x, p) { return x.toPrecision(p); },
   e: function(x, p) { return x.toExponential(p); },
   f: function(x, p) { return x.toFixed(p); },
-  r: function(x, p) { return (x = d3.round(x, d3_format_precision(x, p))).toFixed(Math.max(0, Math.min(20, d3_format_precision(x * (1 + 1e-15), p)))); }
+  r: function(x, p) { return (x = d4.round(x, d4_format_precision(x, p))).toFixed(Math.max(0, Math.min(20, d4_format_precision(x * (1 + 1e-15), p)))); }
 });
 
-function d3_format_precision(x, p) {
+function d4_format_precision(x, p) {
   return p - (x ? Math.ceil(Math.log(x) / Math.LN10) : 1);
 }
 
-function d3_format_typeDefault(x) {
+function d4_format_typeDefault(x) {
   return x + "";
 }
 
 // Apply comma grouping for thousands.
-var d3_format_group = d3_identity;
-if (d3_format_grouping) {
-  var d3_format_groupingLength = d3_format_grouping.length;
-  d3_format_group = function(value) {
+var d4_format_group = d4_identity;
+if (d4_format_grouping) {
+  var d4_format_groupingLength = d4_format_grouping.length;
+  d4_format_group = function(value) {
     var i = value.lastIndexOf("."),
         f = i >= 0 ? "." + value.substring(i + 1) : (i = value.length, ""),
         t = [],
         j = 0,
-        g = d3_format_grouping[0];
+        g = d4_format_grouping[0];
     while (i > 0 && g > 0) {
       t.push(value.substring(i -= g, i + g));
-      g = d3_format_grouping[j = (j + 1) % d3_format_groupingLength];
+      g = d4_format_grouping[j = (j + 1) % d4_format_groupingLength];
     }
-    return t.reverse().join(d3_format_thousandsSeparator || "") + f;
+    return t.reverse().join(d4_format_thousandsSeparator || "") + f;
   };
 }

@@ -8,8 +8,8 @@ suite.addBatch({
   "select(body)": {
     topic: load("selection/datum").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "updates the data according to the specified function": function(body) {
         body.data([42]).datum(function(d, i) { return d + i; });
@@ -43,8 +43,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/datum").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div").data([0, 1]).enter().append("div");
+      topic: function(d4) {
+        return d4.select("body").selectAll("div").data([0, 1]).enter().append("div");
       },
       "updates the data according to the specified function": function(div) {
         div.data([42, 43]).datum(function(d, i) { return d + i; });

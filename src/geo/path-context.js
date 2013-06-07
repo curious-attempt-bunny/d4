@@ -1,7 +1,7 @@
 import "../core/noop";
 import "../math/trigonometry";
 
-function d3_geo_pathContext(context) {
+function d4_geo_pathContext(context) {
   var pointRadius = 4.5;
 
   var stream = {
@@ -20,7 +20,7 @@ function d3_geo_pathContext(context) {
       return stream;
     },
 
-    result: d3_noop
+    result: d4_noop
   };
 
   function point(x, y) {

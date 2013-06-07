@@ -9,8 +9,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/filter").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div")
+      topic: function(d4) {
+        return d4.select("body").selectAll("div")
             .data([0, 1])
           .enter().append("div")
           .selectAll("span")

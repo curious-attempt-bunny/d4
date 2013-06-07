@@ -6,7 +6,7 @@ import "area";
 import "cartesian";
 import "spherical";
 
-d3.geo.bounds = (function() {
+d4.geo.bounds = (function() {
   var λ0, φ0, λ1, φ1, // bounds
       λ_, // previous λ-coordinate
       λ__, φ__, // first point
@@ -25,14 +25,14 @@ d3.geo.bounds = (function() {
       bound.lineStart = ringStart;
       bound.lineEnd = ringEnd;
       dλSum = 0;
-      d3_geo_area.polygonStart();
+      d4_geo_area.polygonStart();
     },
     polygonEnd: function() {
-      d3_geo_area.polygonEnd();
+      d4_geo_area.polygonEnd();
       bound.point = point;
       bound.lineStart = lineStart;
       bound.lineEnd = lineEnd;
-      if (d3_geo_areaRingSum < 0) λ0 = -(λ1 = 180), φ0 = -(φ1 = 90);
+      if (d4_geo_areaRingSum < 0) λ0 = -(λ1 = 180), φ0 = -(φ1 = 90);
       else if (dλSum > ε) φ1 = 90;
       else if (dλSum < -ε) φ0 = -90;
       range[0] = λ0, range[1] = λ1;
@@ -46,22 +46,22 @@ d3.geo.bounds = (function() {
   }
 
   function linePoint(λ, φ) {
-    var p = d3_geo_cartesian([λ * d3_radians, φ * d3_radians]);
+    var p = d4_geo_cartesian([λ * d4_radians, φ * d4_radians]);
     if (p0) {
-      var normal = d3_geo_cartesianCross(p0, p),
+      var normal = d4_geo_cartesianCross(p0, p),
           equatorial = [normal[1], -normal[0], 0],
-          inflection = d3_geo_cartesianCross(equatorial, normal);
-      d3_geo_cartesianNormalize(inflection);
-      inflection = d3_geo_spherical(inflection);
+          inflection = d4_geo_cartesianCross(equatorial, normal);
+      d4_geo_cartesianNormalize(inflection);
+      inflection = d4_geo_spherical(inflection);
       var dλ = λ - λ_,
           s = dλ > 0 ? 1 : -1,
-          λi = inflection[0] * d3_degrees * s,
+          λi = inflection[0] * d4_degrees * s,
           antimeridian = Math.abs(dλ) > 180;
       if (antimeridian ^ (s * λ_ < λi && λi < s * λ)) {
-        var φi = inflection[1] * d3_degrees;
+        var φi = inflection[1] * d4_degrees;
         if (φi > φ1) φ1 = φi;
       } else if (λi = (λi + 360) % 360 - 180, antimeridian ^ (s * λ_ < λi && λi < s * λ)) {
-        var φi = -inflection[1] * d3_degrees;
+        var φi = -inflection[1] * d4_degrees;
         if (φi < φ0) φ0 = φi;
       } else {
         if (φ < φ0) φ0 = φ;
@@ -103,17 +103,17 @@ d3.geo.bounds = (function() {
       var dλ = λ - λ_;
       dλSum += Math.abs(dλ) > 180 ? dλ + (dλ > 0 ? 360 : -360) : dλ;
     } else λ__ = λ, φ__ = φ;
-    d3_geo_area.point(λ, φ);
+    d4_geo_area.point(λ, φ);
     linePoint(λ, φ);
   }
 
   function ringStart() {
-    d3_geo_area.lineStart();
+    d4_geo_area.lineStart();
   }
 
   function ringEnd() {
     ringPoint(λ__, φ__);
-    d3_geo_area.lineEnd();
+    d4_geo_area.lineEnd();
     if (Math.abs(dλSum) > ε) λ0 = -(λ1 = 180);
     range[0] = λ0, range[1] = λ1;
     p0 = null;
@@ -134,7 +134,7 @@ d3.geo.bounds = (function() {
     φ1 = λ1 = -(λ0 = φ0 = Infinity);
     ranges = [];
 
-    d3.geo.stream(feature, bound);
+    d4.geo.stream(feature, bound);
 
     // First, sort ranges by their minimum longitudes.
     ranges.sort(compareRanges);

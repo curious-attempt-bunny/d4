@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.nest");
+var suite = vows.describe("d4.nest");
 
 suite.addBatch({
   "entries": {
-    topic: load("arrays/nest").expression("d3.nest"),
+    topic: load("arrays/nest").expression("d4.nest"),
     "returns an array of each distinct key in arbitrary order": function(nest) {
       var keys = nest()
           .key(function(d) { return d.foo; })
@@ -141,7 +141,7 @@ suite.addBatch({
 
 suite.addBatch({
   "map": {
-    topic: load("arrays/nest").expression("d3.nest"),
+    topic: load("arrays/nest").expression("d4.nest"),
     "returns a map of each distinct key": function(nest) {
       var map = nest()
           .key(function(d) { return d.foo; })

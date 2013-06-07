@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.layout.force");
+var suite = vows.describe("d4.layout.force");
 
 suite.addBatch({
   "force": {
-    topic: load("layout/force").expression("d3.layout.force").document(),
+    topic: load("layout/force").expression("d4.layout.force").document(),
 
     "default instance": {
       topic: function(force) {

@@ -1,14 +1,14 @@
 import "interpolate";
 
-d3.interpolateObject = d3_interpolateObject;
+d4.interpolateObject = d4_interpolateObject;
 
-function d3_interpolateObject(a, b) {
+function d4_interpolateObject(a, b) {
   var i = {},
       c = {},
       k;
   for (k in a) {
     if (k in b) {
-      i[k] = d3_interpolateByName(k)(a[k], b[k]);
+      i[k] = d4_interpolateByName(k)(a[k], b[k]);
     } else {
       c[k] = a[k];
     }

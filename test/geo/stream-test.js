@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.stream");
+var suite = vows.describe("d4.geo.stream");
 
 suite.addBatch({
   "stream": {
-    topic: load("geo/stream").expression("d3.geo.stream"),
+    topic: load("geo/stream").expression("d4.geo.stream"),
     "does not allow null input": function(stream) {
       try {
         stream(null);

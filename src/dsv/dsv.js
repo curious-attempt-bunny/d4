@@ -1,13 +1,13 @@
 import "../arrays/set";
 import "../xhr/xhr";
 
-function d3_dsv(delimiter, mimeType) {
+function d4_dsv(delimiter, mimeType) {
   var reFormat = new RegExp("[\"" + delimiter + "\n]"),
       delimiterCode = delimiter.charCodeAt(0);
 
   function dsv(url, row, callback) {
     if (arguments.length < 3) callback = row, row = null;
-    var xhr = d3.xhr(url, mimeType, callback);
+    var xhr = d4.xhr(url, mimeType, callback);
 
     xhr.row = function(_) {
       return arguments.length
@@ -102,7 +102,7 @@ function d3_dsv(delimiter, mimeType) {
 
   dsv.format = function(rows) {
     if (Array.isArray(rows[0])) return dsv.formatRows(rows); // deprecated; use formatRows
-    var fieldSet = new d3_Set, fields = [];
+    var fieldSet = new d4_Set, fields = [];
 
     // Compute unique fields in order of discovery.
     rows.forEach(function(row) {

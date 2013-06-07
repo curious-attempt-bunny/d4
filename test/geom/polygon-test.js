@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geom.polygon");
+var suite = vows.describe("d4.geom.polygon");
 
 suite.addBatch({
   "polygon": {
-    topic: load("geom/polygon").expression("d3.geom.polygon"),
+    topic: load("geom/polygon").expression("d4.geom.polygon"),
     "closed counterclockwise unit square": {
       topic: function(polygon) {
         return polygon([[0, 0], [0, 1], [1, 1], [1, 0], [0, 0]]);

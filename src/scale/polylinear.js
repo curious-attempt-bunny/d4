@@ -1,6 +1,6 @@
 import "../arrays/bisect";
 
-function d3_scale_polylinear(domain, range, uninterpolate, interpolate) {
+function d4_scale_polylinear(domain, range, uninterpolate, interpolate) {
   var u = [],
       i = [],
       j = 0,
@@ -18,7 +18,7 @@ function d3_scale_polylinear(domain, range, uninterpolate, interpolate) {
   }
 
   return function(x) {
-    var j = d3.bisect(domain, x, 1, k) - 1;
+    var j = d4.bisect(domain, x, 1, k) - 1;
     return i[j](u[j](x));
   };
 }

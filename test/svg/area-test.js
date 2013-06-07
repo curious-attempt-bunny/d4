@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.svg.area");
+var suite = vows.describe("d4.svg.area");
 
 suite.addBatch({
   "area": {
-    topic: load("svg/area").expression("d3.svg.area"),
+    topic: load("svg/area").expression("d4.svg.area"),
 
     "x is an alias for setting x0 and x1": function(area) {
       var a = area().x(f);

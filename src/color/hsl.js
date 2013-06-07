@@ -1,40 +1,40 @@
 import "color";
 import "rgb";
 
-d3.hsl = function(h, s, l) {
+d4.hsl = function(h, s, l) {
   return arguments.length === 1
-      ? (h instanceof d3_Hsl ? d3_hsl(h.h, h.s, h.l)
-      : d3_rgb_parse("" + h, d3_rgb_hsl, d3_hsl))
-      : d3_hsl(+h, +s, +l);
+      ? (h instanceof d4_Hsl ? d4_hsl(h.h, h.s, h.l)
+      : d4_rgb_parse("" + h, d4_rgb_hsl, d4_hsl))
+      : d4_hsl(+h, +s, +l);
 };
 
-function d3_hsl(h, s, l) {
-  return new d3_Hsl(h, s, l);
+function d4_hsl(h, s, l) {
+  return new d4_Hsl(h, s, l);
 }
 
-function d3_Hsl(h, s, l) {
+function d4_Hsl(h, s, l) {
   this.h = h;
   this.s = s;
   this.l = l;
 }
 
-var d3_hslPrototype = d3_Hsl.prototype = new d3_Color;
+var d4_hslPrototype = d4_Hsl.prototype = new d4_Color;
 
-d3_hslPrototype.brighter = function(k) {
+d4_hslPrototype.brighter = function(k) {
   k = Math.pow(0.7, arguments.length ? k : 1);
-  return d3_hsl(this.h, this.s, this.l / k);
+  return d4_hsl(this.h, this.s, this.l / k);
 };
 
-d3_hslPrototype.darker = function(k) {
+d4_hslPrototype.darker = function(k) {
   k = Math.pow(0.7, arguments.length ? k : 1);
-  return d3_hsl(this.h, this.s, k * this.l);
+  return d4_hsl(this.h, this.s, k * this.l);
 };
 
-d3_hslPrototype.rgb = function() {
-  return d3_hsl_rgb(this.h, this.s, this.l);
+d4_hslPrototype.rgb = function() {
+  return d4_hsl_rgb(this.h, this.s, this.l);
 };
 
-function d3_hsl_rgb(h, s, l) {
+function d4_hsl_rgb(h, s, l) {
   var m1,
       m2;
 
@@ -60,5 +60,5 @@ function d3_hsl_rgb(h, s, l) {
     return Math.round(v(h) * 255);
   }
 
-  return d3_rgb(vv(h + 120), vv(h), vv(h - 120));
+  return d4_rgb(vv(h + 120), vv(h), vv(h - 120));
 }

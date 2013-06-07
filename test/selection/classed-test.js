@@ -8,8 +8,8 @@ suite.addBatch({
   "select(body)": {
     topic: load("selection/classed").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "adds a missing class as true": function(body) {
         body.attr("class", null);
@@ -156,8 +156,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/classed").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body").selectAll("div").data([0, 1]).enter().append("div");
+      topic: function(d4) {
+        return d4.select("body").selectAll("div").data([0, 1]).enter().append("div");
       },
       "adds a missing class as true": function(div) {
         div.attr("class", null);

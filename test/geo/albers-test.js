@@ -3,11 +3,11 @@ var vows = require("vows"),
     assert = require("../assert"),
     projectionTestSuite = require("./projection-test-suite");
 
-var suite = vows.describe("d3.geo.albers");
+var suite = vows.describe("d4.geo.albers");
 
 suite.addBatch({
   "albers": {
-    topic: load("geo/albers").expression("d3.geo.albers"),
+    topic: load("geo/albers").expression("d4.geo.albers"),
     "default": projectionTestSuite({
       topic: function(projection) { return projection(); },
       "has the parallels 29.5°, 45.5°": function(p) {

@@ -3,10 +3,10 @@ import "../core/target";
 import "geo";
 import "distance";
 
-// @deprecated use {type: "LineString"} or d3.geo.distance instead.
-d3.geo.greatArc = function() {
-  var source = d3_source, source_,
-      target = d3_target, target_;
+// @deprecated use {type: "LineString"} or d4.geo.distance instead.
+d4.geo.greatArc = function() {
+  var source = d4_source, source_,
+      target = d4_target, target_;
 
   function greatArc() {
     return {type: "LineString", coordinates: [
@@ -16,7 +16,7 @@ d3.geo.greatArc = function() {
   }
 
   greatArc.distance = function() {
-    return d3.geo.distance(
+    return d4.geo.distance(
       source_ || source.apply(this, arguments),
       target_ || target.apply(this, arguments)
     );

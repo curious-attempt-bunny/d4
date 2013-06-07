@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.svg.line");
+var suite = vows.describe("d4.svg.line");
 
 suite.addBatch({
   "line": {
-    topic: load("svg/line").expression("d3.svg.line"),
+    topic: load("svg/line").expression("d4.svg.line"),
 
     "x defaults to a function accessor": function(line) {
       var l = line();

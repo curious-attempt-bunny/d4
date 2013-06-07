@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geo.projection");
+var suite = vows.describe("d4.geo.projection");
 
 suite.addBatch({
   "projection": {
-    topic: load("geo/projection").expression("d3.geo.projection"),
+    topic: load("geo/projection").expression("d4.geo.projection"),
     "a custom invertible projection": {
       topic: function(projection) {
         function forward(λ, φ) { return [λ, φ]; }

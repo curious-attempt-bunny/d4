@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.requote");
+var suite = vows.describe("d4.requote");
 
 suite.addBatch({
   "requote": {
-    topic: load("format/requote").expression("d3.requote"),
+    topic: load("format/requote").expression("d4.requote"),
     "quotes backslashes": function(requote) {
       assert.equal(requote("\\"), "\\\\");
     },

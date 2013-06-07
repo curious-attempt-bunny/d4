@@ -8,8 +8,8 @@ suite.addBatch({
   "select(body)": {
     topic: load("selection/node").document(),
     "on a simple page": {
-      topic: function(d3) {
-        return d3.select("body");
+      topic: function(d4) {
+        return d4.select("body");
       },
       "returns null for empty selections": function(body) {
         assert.isNull(body.select("foo").node());
@@ -30,8 +30,8 @@ suite.addBatch({
   "selectAll(div)": {
     topic: load("selection/node").document(),
     "on a simple page": {
-      topic: function(d3) {
-        var body = d3.select("body");
+      topic: function(d4) {
+        var body = d4.select("body");
         body.append("div").append("span");
         body.append("div");
         return body.selectAll("div");

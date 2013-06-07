@@ -9,19 +9,19 @@ import "nice";
 import "polylinear";
 import "scale";
 
-d3.scale.linear = function() {
-  return d3_scale_linear([0, 1], [0, 1], d3_interpolate, false);
+d4.scale.linear = function() {
+  return d4_scale_linear([0, 1], [0, 1], d4_interpolate, false);
 };
 
-function d3_scale_linear(domain, range, interpolate, clamp) {
+function d4_scale_linear(domain, range, interpolate, clamp) {
   var output,
       input;
 
   function rescale() {
-    var linear = Math.min(domain.length, range.length) > 2 ? d3_scale_polylinear : d3_scale_bilinear,
-        uninterpolate = clamp ? d3_uninterpolateClamp : d3_uninterpolateNumber;
+    var linear = Math.min(domain.length, range.length) > 2 ? d4_scale_polylinear : d4_scale_bilinear,
+        uninterpolate = clamp ? d4_uninterpolateClamp : d4_uninterpolateNumber;
     output = linear(domain, range, uninterpolate, interpolate);
-    input = linear(range, domain, uninterpolate, d3_interpolate);
+    input = linear(range, domain, uninterpolate, d4_interpolate);
     return scale;
   }
 
@@ -47,7 +47,7 @@ function d3_scale_linear(domain, range, interpolate, clamp) {
   };
 
   scale.rangeRound = function(x) {
-    return scale.range(x).interpolate(d3_interpolateRound);
+    return scale.range(x).interpolate(d4_interpolateRound);
   };
 
   scale.clamp = function(x) {
@@ -63,30 +63,30 @@ function d3_scale_linear(domain, range, interpolate, clamp) {
   };
 
   scale.ticks = function(m) {
-    return d3_scale_linearTicks(domain, m);
+    return d4_scale_linearTicks(domain, m);
   };
 
   scale.tickFormat = function(m, format) {
-    return d3_scale_linearTickFormat(domain, m, format);
+    return d4_scale_linearTickFormat(domain, m, format);
   };
 
   scale.nice = function() {
-    d3_scale_nice(domain, d3_scale_linearNice);
+    d4_scale_nice(domain, d4_scale_linearNice);
     return rescale();
   };
 
   scale.copy = function() {
-    return d3_scale_linear(domain, range, interpolate, clamp);
+    return d4_scale_linear(domain, range, interpolate, clamp);
   };
 
   return rescale();
 }
 
-function d3_scale_linearRebind(scale, linear) {
-  return d3.rebind(scale, linear, "range", "rangeRound", "interpolate", "clamp");
+function d4_scale_linearRebind(scale, linear) {
+  return d4.rebind(scale, linear, "range", "rangeRound", "interpolate", "clamp");
 }
 
-function d3_scale_linearNice(dx) {
+function d4_scale_linearNice(dx) {
   dx = Math.pow(10, Math.round(Math.log(dx) / Math.LN10) - 1);
   return dx && {
     floor: function(x) { return Math.floor(x / dx) * dx; },
@@ -94,8 +94,8 @@ function d3_scale_linearNice(dx) {
   };
 }
 
-function d3_scale_linearTickRange(domain, m) {
-  var extent = d3_scaleExtent(domain),
+function d4_scale_linearTickRange(domain, m) {
+  var extent = d4_scaleExtent(domain),
       span = extent[1] - extent[0],
       step = Math.pow(10, Math.floor(Math.log(span / m) / Math.LN10)),
       err = m / span * step;
@@ -112,13 +112,13 @@ function d3_scale_linearTickRange(domain, m) {
   return extent;
 }
 
-function d3_scale_linearTicks(domain, m) {
-  return d3.range.apply(d3, d3_scale_linearTickRange(domain, m));
+function d4_scale_linearTicks(domain, m) {
+  return d4.range.apply(d4, d4_scale_linearTickRange(domain, m));
 }
 
-function d3_scale_linearTickFormat(domain, m, format) {
-  var precision = -Math.floor(Math.log(d3_scale_linearTickRange(domain, m)[2]) / Math.LN10 + .01);
-  return d3.format(format
-      ? format.replace(d3_format_re, function(a, b, c, d, e, f, g, h, i, j) { return [b, c, d, e, f, g, h, i || "." + (precision - (j === "%") * 2), j].join(""); })
+function d4_scale_linearTickFormat(domain, m, format) {
+  var precision = -Math.floor(Math.log(d4_scale_linearTickRange(domain, m)[2]) / Math.LN10 + .01);
+  return d4.format(format
+      ? format.replace(d4_format_re, function(a, b, c, d, e, f, g, h, i, j) { return [b, c, d, e, f, g, h, i || "." + (precision - (j === "%") * 2), j].join(""); })
       : ",." + precision + "f");
 }

@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.format");
+var suite = vows.describe("d4.format");
 
 suite.addBatch({
   "format": {
-    topic: load("format/format").expression("d3.format"),
+    topic: load("format/format").expression("d4.format"),
     "returns a string": function(format) {
       assert.isString(format("d")(0));
     },

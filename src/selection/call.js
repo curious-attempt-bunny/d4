@@ -1,8 +1,8 @@
 import "../core/array";
 import "selection";
 
-d3_selectionPrototype.call = function(callback) {
-  var args = d3_array(arguments);
+d4_selectionPrototype.call = function(callback) {
+  var args = d4_array(arguments);
   callback.apply(args[0] = this, args);
   return this;
 };

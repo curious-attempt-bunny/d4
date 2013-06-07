@@ -5,30 +5,30 @@ import "../event/timer";
 import "../interpolate/ease";
 import "../selection/selection";
 
-function d3_transition(groups, id) {
-  d3_arraySubclass(groups, d3_transitionPrototype);
+function d4_transition(groups, id) {
+  d4_arraySubclass(groups, d4_transitionPrototype);
 
   groups.id = id; // Note: read-only!
 
   return groups;
 }
 
-var d3_transitionPrototype = [],
-    d3_transitionId = 0,
-    d3_transitionInheritId,
-    d3_transitionInherit = {ease: d3_ease_cubicInOut, delay: 0, duration: 250};
+var d4_transitionPrototype = [],
+    d4_transitionId = 0,
+    d4_transitionInheritId,
+    d4_transitionInherit = {ease: d4_ease_cubicInOut, delay: 0, duration: 250};
 
-d3_transitionPrototype.call = d3_selectionPrototype.call;
-d3_transitionPrototype.empty = d3_selectionPrototype.empty;
-d3_transitionPrototype.node = d3_selectionPrototype.node;
+d4_transitionPrototype.call = d4_selectionPrototype.call;
+d4_transitionPrototype.empty = d4_selectionPrototype.empty;
+d4_transitionPrototype.node = d4_selectionPrototype.node;
 
-d3.transition = function(selection) {
+d4.transition = function(selection) {
   return arguments.length
-      ? (d3_transitionInheritId ? selection.transition() : selection)
-      : d3_selectionRoot.transition();
+      ? (d4_transitionInheritId ? selection.transition() : selection)
+      : d4_selectionRoot.transition();
 };
 
-d3.transition.prototype = d3_transitionPrototype;
+d4.transition.prototype = d4_transitionPrototype;
 
 import "select";
 import "selectAll";
@@ -44,7 +44,7 @@ import "each";
 import "subtransition";
 import "tween";
 
-function d3_transitionNode(node, i, id, inherit) {
+function d4_transitionNode(node, i, id, inherit) {
   var lock = node.__transition__ || (node.__transition__ = {active: 0, count: 0}),
       transition = lock[id];
 
@@ -52,8 +52,8 @@ function d3_transitionNode(node, i, id, inherit) {
     var time = inherit.time;
 
     transition = lock[id] = {
-      tween: new d3_Map,
-      event: d3.dispatch("start", "end"), // TODO construct lazily?
+      tween: new d4_Map,
+      event: d4.dispatch("start", "end"), // TODO construct lazily?
       time: time,
       ease: inherit.ease,
       delay: inherit.delay,
@@ -62,7 +62,7 @@ function d3_transitionNode(node, i, id, inherit) {
 
     ++lock.count;
 
-    d3.timer(function(elapsed) {
+    d4.timer(function(elapsed) {
       var d = node.__data__,
           ease = transition.ease,
           event = transition.event,
@@ -72,7 +72,7 @@ function d3_transitionNode(node, i, id, inherit) {
 
       return delay <= elapsed
           ? start(elapsed)
-          : d3.timer(start, delay, time), 1;
+          : d4.timer(start, delay, time), 1;
 
       function start(elapsed) {
         if (lock.active > id) return stop();
@@ -85,7 +85,7 @@ function d3_transitionNode(node, i, id, inherit) {
           }
         });
 
-        if (!tick(elapsed)) d3.timer(tick, 0, time);
+        if (!tick(elapsed)) d4.timer(tick, 0, time);
         return 1;
       }
 

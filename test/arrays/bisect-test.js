@@ -2,13 +2,13 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.bisect");
+var suite = vows.describe("d4.bisect");
 
 var i30 = 1 << 30;
 
 suite.addBatch({
   "bisectLeft": {
-    topic: load("arrays/bisect").expression("d3.bisectLeft"),
+    topic: load("arrays/bisect").expression("d4.bisectLeft"),
     "finds the index of an exact match": function(bisect) {
       var array = [1, 2, 3];
       assert.equal(bisect(array, 1), 0);
@@ -66,7 +66,7 @@ suite.addBatch({
     }
   },
   "bisectRight": {
-    topic: load("arrays/bisect").expression("d3.bisectRight"),
+    topic: load("arrays/bisect").expression("d4.bisectRight"),
     "finds the index after an exact match": function(bisect) {
       var array = [1, 2, 3];
       assert.equal(bisect(array, 1), 1);
@@ -124,7 +124,7 @@ suite.addBatch({
     }
   },
   "bisector(key)": {
-    topic: load("arrays/bisect").expression("d3.bisector"),
+    topic: load("arrays/bisect").expression("d4.bisector"),
     "left": {
       topic: function(bisector) {
         return bisector(function(d) { return d.key; }).left;

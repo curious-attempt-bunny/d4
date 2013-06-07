@@ -1,29 +1,29 @@
 import "../core/array";
 import "../core/document";
 
-function d3_selection(groups) {
-  d3_arraySubclass(groups, d3_selectionPrototype);
+function d4_selection(groups) {
+  d4_arraySubclass(groups, d4_selectionPrototype);
   return groups;
 }
 
-var d3_select = function(s, n) { return n.querySelector(s); },
-    d3_selectAll = function(s, n) { return n.querySelectorAll(s); },
-    d3_selectRoot = d3_document.documentElement,
-    d3_selectMatcher = d3_selectRoot.matchesSelector || d3_selectRoot.webkitMatchesSelector || d3_selectRoot.mozMatchesSelector || d3_selectRoot.msMatchesSelector || d3_selectRoot.oMatchesSelector,
-    d3_selectMatches = function(n, s) { return d3_selectMatcher.call(n, s); };
+var d4_select = function(s, n) { return n.querySelector(s); },
+    d4_selectAll = function(s, n) { return n.querySelectorAll(s); },
+    d4_selectRoot = d4_document.documentElement,
+    d4_selectMatcher = d4_selectRoot.matchesSelector || d4_selectRoot.webkitMatchesSelector || d4_selectRoot.mozMatchesSelector || d4_selectRoot.msMatchesSelector || d4_selectRoot.oMatchesSelector,
+    d4_selectMatches = function(n, s) { return d4_selectMatcher.call(n, s); };
 
 // Prefer Sizzle, if available.
 if (typeof Sizzle === "function") {
-  d3_select = function(s, n) { return Sizzle(s, n)[0] || null; };
-  d3_selectAll = function(s, n) { return Sizzle.uniqueSort(Sizzle(s, n)); };
-  d3_selectMatches = Sizzle.matchesSelector;
+  d4_select = function(s, n) { return Sizzle(s, n)[0] || null; };
+  d4_selectAll = function(s, n) { return Sizzle.uniqueSort(Sizzle(s, n)); };
+  d4_selectMatches = Sizzle.matchesSelector;
 }
 
-d3.selection = function() {
-  return d3_selectionRoot;
+d4.selection = function() {
+  return d4_selectionRoot;
 };
 
-var d3_selectionPrototype = d3.selection.prototype = [];
+var d4_selectionPrototype = d4.selection.prototype = [];
 
 import "select";
 import "selectAll";
@@ -50,16 +50,16 @@ import "enter";
 import "transition";
 
 // TODO fast singleton implementation?
-d3.select = function(node) {
-  var group = [typeof node === "string" ? d3_select(node, d3_document) : node];
-  group.parentNode = d3_selectRoot;
-  return d3_selection([group]);
+d4.select = function(node) {
+  var group = [typeof node === "string" ? d4_select(node, d4_document) : node];
+  group.parentNode = d4_selectRoot;
+  return d4_selection([group]);
 };
 
-d3.selectAll = function(nodes) {
-  var group = d3_array(typeof nodes === "string" ? d3_selectAll(nodes, d3_document) : nodes);
-  group.parentNode = d3_selectRoot;
-  return d3_selection([group]);
+d4.selectAll = function(nodes) {
+  var group = d4_array(typeof nodes === "string" ? d4_selectAll(nodes, d4_document) : nodes);
+  group.parentNode = d4_selectRoot;
+  return d4_selection([group]);
 };
 
-var d3_selectionRoot = d3.select(d3_selectRoot);
+var d4_selectionRoot = d4.select(d4_selectRoot);

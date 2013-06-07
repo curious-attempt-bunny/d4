@@ -4,11 +4,11 @@ var vows = require("vows"),
     time = require("./time"),
     utc = time.utc;
 
-var suite = vows.describe("d3.time.format");
+var suite = vows.describe("d4.time.format");
 
 suite.addBatch({
   "format.iso": {
-    topic: load("time/format-iso").expression("d3.time.format.iso"),
+    topic: load("time/format-iso").expression("d4.time.format.iso"),
 
     "toString is %Y-%m-%dT%H:%M:%S.%LZ": function(format) {
       assert.equal(format + "", "%Y-%m-%dT%H:%M:%S.%LZ");

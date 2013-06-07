@@ -2,11 +2,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.layout.tree");
+var suite = vows.describe("d4.layout.tree");
 
 suite.addBatch({
   "tree": {
-    topic: load("layout/tree").expression("d3.layout.tree"),
+    topic: load("layout/tree").expression("d4.layout.tree"),
     "can handle an empty children array": function(tree) {
       var t = tree();
       assert.deepEqual(t.nodes({children: []}).map(layout), [

@@ -1,6 +1,6 @@
 import "geom";
 
-d3.geom.polygon = function(coordinates) {
+d4.geom.polygon = function(coordinates) {
 
   coordinates.area = function() {
     var i = 0,
@@ -51,13 +51,13 @@ d3.geom.polygon = function(coordinates) {
       j = -1;
       while (++j < m) {
         d = input[j];
-        if (d3_geom_polygonInside(d, a, b)) {
-          if (!d3_geom_polygonInside(c, a, b)) {
-            subject.push(d3_geom_polygonIntersect(c, d, a, b));
+        if (d4_geom_polygonInside(d, a, b)) {
+          if (!d4_geom_polygonInside(c, a, b)) {
+            subject.push(d4_geom_polygonIntersect(c, d, a, b));
           }
           subject.push(d);
-        } else if (d3_geom_polygonInside(c, a, b)) {
-          subject.push(d3_geom_polygonIntersect(c, d, a, b));
+        } else if (d4_geom_polygonInside(c, a, b)) {
+          subject.push(d4_geom_polygonIntersect(c, d, a, b));
         }
         c = d;
       }
@@ -69,12 +69,12 @@ d3.geom.polygon = function(coordinates) {
   return coordinates;
 };
 
-function d3_geom_polygonInside(p, a, b) {
+function d4_geom_polygonInside(p, a, b) {
   return (b[0] - a[0]) * (p[1] - a[1]) < (b[1] - a[1]) * (p[0] - a[0]);
 }
 
 // Intersect two infinite lines cd and ab.
-function d3_geom_polygonIntersect(c, d, a, b) {
+function d4_geom_polygonIntersect(c, d, a, b) {
   var x1 = c[0], x3 = a[0], x21 = d[0] - x1, x43 = b[0] - x3,
       y1 = c[1], y3 = a[1], y21 = d[1] - y1, y43 = b[1] - y3,
       ua = (x43 * (y1 - y3) - y43 * (x1 - x3)) / (y43 * x21 - x43 * y21);

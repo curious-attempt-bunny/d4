@@ -1,4 +1,4 @@
-d3.sum = function(array, f) {
+d4.sum = function(array, f) {
   var s = 0,
       n = array.length,
       a,

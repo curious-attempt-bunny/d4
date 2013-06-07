@@ -1,19 +1,19 @@
 import "../core/array";
 import "selection";
 
-function d3_selection_enter(selection) {
-  d3_arraySubclass(selection, d3_selection_enterPrototype);
+function d4_selection_enter(selection) {
+  d4_arraySubclass(selection, d4_selection_enterPrototype);
   return selection;
 }
 
-var d3_selection_enterPrototype = [];
+var d4_selection_enterPrototype = [];
 
-d3.selection.enter = d3_selection_enter;
-d3.selection.enter.prototype = d3_selection_enterPrototype;
+d4.selection.enter = d4_selection_enter;
+d4.selection.enter.prototype = d4_selection_enterPrototype;
 
-d3_selection_enterPrototype.append = d3_selectionPrototype.append;
-d3_selection_enterPrototype.insert = d3_selectionPrototype.insert;
-d3_selection_enterPrototype.empty = d3_selectionPrototype.empty;
-d3_selection_enterPrototype.node = d3_selectionPrototype.node;
+d4_selection_enterPrototype.append = d4_selectionPrototype.append;
+d4_selection_enterPrototype.insert = d4_selectionPrototype.insert;
+d4_selection_enterPrototype.empty = d4_selectionPrototype.empty;
+d4_selection_enterPrototype.node = d4_selectionPrototype.node;
 
 import "enter-select";

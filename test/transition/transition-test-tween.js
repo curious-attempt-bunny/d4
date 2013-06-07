@@ -1,17 +1,17 @@
 var assert = require("../assert");
 
 module.exports = {
-  topic: function(d3) {
+  topic: function(d4) {
     var cb = this.callback,
         dd = [],
         ii = [],
         tt = [],
         fails = 0;
 
-    var s = d3.select("body").append("div").selectAll("div")
+    var s = d4.select("body").append("div").selectAll("div")
         .data(["red", "green"])
       .enter().append("div")
-        .text(function(d) { return d3.rgb(d)+""; });
+        .text(function(d) { return d4.rgb(d)+""; });
 
     var t = s.transition()
         .tween("text", function() { ++fails; })
@@ -29,7 +29,7 @@ module.exports = {
         fails: fails
       });
       return i && function(t) {
-        this.textContent = d3.hsl(230, 0.5, t) + "";
+        this.textContent = d4.hsl(230, 0.5, t) + "";
       };
     }
   },

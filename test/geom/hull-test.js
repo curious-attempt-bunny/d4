@@ -3,11 +3,11 @@ var vows = require("vows"),
     load = require("../load"),
     assert = require("../assert");
 
-var suite = vows.describe("d3.geom.hull");
+var suite = vows.describe("d4.geom.hull");
 
 suite.addBatch({
   "hull": {
-    topic: load("geom/hull").expression("d3.geom.hull"),
+    topic: load("geom/hull").expression("d4.geom.hull"),
     "the default hull layout": {
       topic: function(hull) {
         return hull();

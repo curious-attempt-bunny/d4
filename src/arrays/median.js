@@ -2,8 +2,8 @@ import "../math/number";
 import "ascending";
 import "quantile";
 
-d3.median = function(array, f) {
+d4.median = function(array, f) {
   if (arguments.length > 1) array = array.map(f);
-  array = array.filter(d3_number);
-  return array.length ? d3.quantile(array.sort(d3.ascending), .5) : undefined;
+  array = array.filter(d4_number);
+  return array.length ? d4.quantile(array.sort(d4.ascending), .5) : undefined;
 };

@@ -5,11 +5,11 @@ var vows = require("vows"),
     local = time.local,
     utc = time.utc;
 
-var suite = vows.describe("d3.time.month");
+var suite = vows.describe("d4.time.month");
 
 suite.addBatch({
   "month": {
-    topic: load("time/month").expression("d3.time.month"),
+    topic: load("time/month").expression("d4.time.month"),
     "defaults to floor": function(interval) {
       assert.strictEqual(interval, interval.floor);
     },
